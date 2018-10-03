@@ -18,7 +18,7 @@
 	</header>
 
 	<section>
-		<?= $content ?>
+		<?= $content; ?>
 	</section>
 
 	<footer></footer>
