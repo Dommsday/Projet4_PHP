@@ -19,6 +19,7 @@ class Routeur{
 
 	//Renvoie la route demandé
 	public function getRoute($url){
+
 		foreach ($this->$routes as $route){
 			
 			//Si la route correspond à l'url
@@ -27,7 +28,7 @@ class Routeur{
 				//Si l'url contient des variables
 				if($route->vars()){
 
-					$varNames = $route->varNames();
+					$varNames = $route->varName();
 					$listVars = [];
 
 					foreach ($varRoute as $key => $value) {
