@@ -2,7 +2,7 @@
 
 namespace framework;
 
-class HTPPRequest{
+class HTPPRequest extends Component{
 
 	//Obtenir un cookie
 	public function cookieData($key){

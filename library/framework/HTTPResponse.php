@@ -2,7 +2,7 @@
 
 namespace framework;
 
-class HTTPResponse{
+class HTTPResponse extends Component{
 
 	protected $page;
 
