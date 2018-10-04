@@ -21,7 +21,7 @@ class Route{
 	public function vars(){
 
 		//on retourne la variable si elle est présente
-		if(!empty($this->varName));
+		return(!empty($this->varName));
 	}
 
 	public function match($url){
