@@ -9,6 +9,7 @@ class Routeur{
 
 	const ERR_ROUTE = 1;
 
+	//Ajoute une route
 	public function addRoute(Route $route){
 		//Si la route ne se trouve pas dans le tableau, on l'ajoute
 		if(!in_array($route, $this->routes)){
@@ -16,6 +17,7 @@ class Routeur{
 		}
 	}
 
+	//Renvoie la route demandé
 	public function getRoute($url){
 		foreach ($this->$routes as $route){
 			
