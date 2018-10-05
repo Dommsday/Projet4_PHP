@@ -9,10 +9,14 @@ class BackController extends Component{
 	protected $page = null;
 	protected $view = '';
 
+	protected $managers = null;
+
 	public function __construct(Application $app, $module, $action){
 
 		parent::__construct($app);
 
+
+		$this->managers = new Managers('PDO', PDOFactory::mysqlConnexion());
 		$this->page = new Page($app);
 
 		$this->setModule($module);

@@ -4,7 +4,7 @@ namespace frameworks;
 
 class PDOFactory{
 
-	public static function MysqlConnexion(){
+	public static function mysqlConnexion(){
 
 		$db = new \PDO('mysql:host=localhost;dbname=blog_p4', 'root', '');
 		$db->setAttribut(\PDO::ATR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

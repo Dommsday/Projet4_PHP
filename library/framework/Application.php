@@ -28,6 +28,8 @@ abstract class Application{
 
 			//Si une variable est présente dans l'URL
 			if($route->attributeExist('vars')){
+
+				//Sépare le nom des variables par des ',' et récupère la valeur des variables
 				$vars = explode(',', $route->getAttribute('vars'));
 			}
 
@@ -36,6 +38,7 @@ abstract class Application{
 
 		try{
 			$matchedRoute = $router->getRoute($this->httpRequest->requestURI());
+			
 		}catch(\RuntimeException $e){
 
 			if($e->getCode == Routeur::ERR_ROUTE){
