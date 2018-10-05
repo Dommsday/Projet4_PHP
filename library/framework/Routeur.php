@@ -26,7 +26,7 @@ class Routeur{
 			if(($varRoute = $route->match($url)) == true){
 
 				//Si l'url contient des variables
-				if($route->vars()){
+				if($route->varsExists()){
 
 					$varNames = $route->varName();
 					$listVars = [];
