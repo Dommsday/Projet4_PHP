@@ -18,7 +18,7 @@ class Route{
 		$this->setVarName($varName);
 	}
 
-	public function vars(){
+	public function varsExists(){
 
 		//on retourne la variable si elle est présente
 		return(!empty($this->varName));
