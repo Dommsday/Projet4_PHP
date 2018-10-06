@@ -7,10 +7,12 @@ abstract class Application{
 	protected $httpRequest;
 	protected $httpResponse;
 	protected $name;
+	protected $config;
 
 	public function __construct(){
 		$this->httpRequest = new HTPPRequest;
 		$this->httpResponse = new HTTPResponse;
+		$this->config = new Config;
 		$this->name = '';
 	}
 
