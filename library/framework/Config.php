@@ -11,7 +11,7 @@ class Config extends Component{
 		if(!$this->configs){
 
 			$xml = new \DOMDocument;
-			$xml = load(__DIR__.'/../../Frontend/Routeur/configroute.xml');
+			$xml = load(__DIR__.'/../../Frontend/Routeur/config.xml');
 
 			$elements = $xml->getElementsByTagName('define');
 

@@ -22,14 +22,16 @@ abstract class Application{
 		$routeur  = new Routeur;
 
 		$xml = new \DOMDocument;
-		$xml->load(__DIR__.'/../../'.$this->name.'/Routeur/routes.xml');
+		$xml->load(__DIR__.'/../../Frontend/Routeur/routes.xml');
+
+		$routes = $xml->getElementsByTagName('route');
 
 		foreach ($routes as $route){
 
 			$arrayVars = [];
 
 			//Si une variable est présente dans l'URL
-			if($route->attributeExist('vars')){
+			if($route->hasAttribute('vars')){
 
 				//Sépare le nom des variables par des ',' et récupère la valeur des variables
 				$vars = explode(',', $route->getAttribute('vars'));
