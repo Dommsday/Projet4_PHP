@@ -62,6 +62,10 @@ class BackController extends Component{
 		if(!is_string($view) || empty($view)){
 			throw new \InvalidArgumentExeption('La vue doit être une chaîne de caractère et être précisé');
 		}
+
+		$this->view = $view;
+
+		$this->page->setContentFile(__DIR__.'/../../Frontend/Modules/'.$this->module.'/Views/.$this->view.'.php);
 	}
 
 	public function page(){

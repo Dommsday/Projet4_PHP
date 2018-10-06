@@ -34,7 +34,7 @@ class Page extends Component{
 		return ob_get_clean();
 	}
 
-	public function setContent($contentFile){
+	public function setContentFile($contentFile){
 
 		if(!is_string($contentFile) || empty($contentFile)){
 			throw new \InvalidAugumentException('La vue demandés est invalide');
