@@ -78,7 +78,7 @@ class News extends Entity{
 		return $this->setDateAjout;
 	}
 
-	public function pudateDate(){
+	public function updateDate(){
 		return $this->updateDate;
 	}
 
