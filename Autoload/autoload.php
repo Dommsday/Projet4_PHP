@@ -11,3 +11,6 @@ $libraryLoader->register();
 
 $FrontLoader = new ClassLoader('Frontend', __DIR.'/..');
 $FrontLoader->register();
+
+//Instancie la classe Frontend/FrontendApplication
+$appClass = 'Frontend'.'\\'.$_GET['app'].'Application';
