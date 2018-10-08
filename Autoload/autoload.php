@@ -9,7 +9,7 @@ require __DIR__.'/../library/framework/ClassLoader.php';
 $libraryLoader = new ClassLoader('framework', __DIR__.'/../library');
 $libraryLoader->register();
 
-$FrontLoader = new ClassLoader('Frontend', __DIR.'/..');
+$FrontLoader = new ClassLoader('Frontend', __DIR__.'/..');
 $FrontLoader->register();
 
 //Instancie la classe Frontend/FrontendApplication
