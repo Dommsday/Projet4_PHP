@@ -1,6 +1,6 @@
 <?php 
 
-namespace frameworks;
+namespace framework;
 
 class BackController extends Component{
 
@@ -21,7 +21,7 @@ class BackController extends Component{
 
 		$this->setModule($module);
 		$this->setAction($action);
-		$this->setView($view);
+		$this->setView($action);
 	}
 
 	public function execute(){
@@ -31,7 +31,7 @@ class BackController extends Component{
 		//Si l'argument peut être executé comme fonction
 		if(is_callable([$this, $method])){
 
-			$this->$method($this->app->httpRequest);
+			$this->$method($this->app->httpRequest());
 
 		}else{
 
@@ -65,7 +65,7 @@ class BackController extends Component{
 
 		$this->view = $view;
 
-		$this->page->setContentFile(__DIR__.'/../../Frontend/Modules/'.$this->module.'/Views/.$this->view.'.php);
+		$this->page->setContentFile(__DIR__.'/../../Frontend/Modules/'.$this->module.'/Views/'.$this->view.'php');
 	}
 
 	public function page(){
