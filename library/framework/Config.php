@@ -1,6 +1,6 @@
 <?php
 
-namespace frameworks;
+namespace framework;
 
 class Config extends Component{
 
@@ -11,12 +11,12 @@ class Config extends Component{
 		if(!$this->configs){
 
 			$xml = new \DOMDocument;
-			$xml = load(__DIR__.'/../../Frontend/Routeur/config.xml');
+			$xml->load(__DIR__.'/../../Frontend/Routeur/config.xml');
 
 			$elements = $xml->getElementsByTagName('define');
 
 			foreach ($elements as $element){
-				$this->configs[$element->getAttribute('var')] = $value->getAttribute('value');
+				$this->configs[$element->getAttribute('var')] = $element->getAttribute('value');
 			}
 		}
 	
