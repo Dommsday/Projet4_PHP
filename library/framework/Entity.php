@@ -44,7 +44,7 @@ abstract class Entity implements \ArrayAccess{
 	}
 
 	public function setId($id){
-		$this->id (int) $id;
+		$this->id = (int) $id;
 	}
 
 	public function offsetExists($var){
@@ -53,7 +53,7 @@ abstract class Entity implements \ArrayAccess{
 
 	public function offsetGet($var){
 
-		if(isset($this->$var) $$ is_callable([$this, $var])){
+		if(isset($this->$var) && is_callable([$this, $var])){
 			return $this->$var();
 		}
 	}
