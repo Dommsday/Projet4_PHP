@@ -10,9 +10,9 @@ abstract class Application{
 	protected $config;
 
 	public function __construct(){
-		$this->httpRequest = new HTPPRequest;
-		$this->httpResponse = new HTTPResponse;
-		$this->config = new Config;
+		$this->httpRequest = new HTTPRequest($this);
+		$this->httpResponse = new HTTPResponse($this);
+		$this->config = new Config($this);
 		$this->name = '';
 	}
 
@@ -34,14 +34,14 @@ abstract class Application{
 			if($route->hasAttribute('vars')){
 
 				//Sépare le nom des variables par des ',' et récupère la valeur des variables
-				$vars = explode(',', $route->getAttribute('vars'));
+				$arrayVars = explode(',', $route->getAttribute('vars'));
 			}
 
-			$router->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
+			$routeur->addRoute(new Route($route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $arrayVars));
 		}
 
 		try{
-			$matchedRoute = $router->getRoute($this->httpRequest->requestURI());
+			$matchedRoute = $routeur->getRoute($this->httpRequest->requestURI());
 			
 		}catch(\RuntimeException $e){
 
@@ -53,7 +53,7 @@ abstract class Application{
 
 		$_GET = array_merge($_GET, $matchedRoute->varName());
 
-		$controllerClass = $this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module.'Controller';
+		$controllerClass = 'Frontend'.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
 
 		return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
 
