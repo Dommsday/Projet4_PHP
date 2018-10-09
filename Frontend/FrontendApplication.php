@@ -2,7 +2,7 @@
 
 namespace Frontend;
 
-use framework/Application:
+use \framework\Application;
 
 class FrontendApplication extends Application{
 
