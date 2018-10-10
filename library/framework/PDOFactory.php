@@ -1,17 +1,13 @@
 <?php
 
-namespace frameworks;
+namespace framework;
 
 class PDOFactory{
 
-	protected $mysql = 'mysql:host=localhost; dbname=blog_p4';
-	protected $user = 'root';
-	protected $mdp = ' ';
-
 	public static function mysqlConnexion(){
 
-		$db = new \PDO($this->mysql, $this->user, $this->mdp);
-		$db->setAttribut(\PDO::ATR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+		$db = new \PDO('mysql:host=localhost;dbname=blog_p4', 'root', '');
+		$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 		return $db;
 	}
