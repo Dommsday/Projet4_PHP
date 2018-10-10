@@ -17,7 +17,7 @@ class HTTPResponse extends Component{
 	}
 
 	//Redirige l'utilisateur
-	public function page($location){
+	public function redirect($location){
 		header('Location'.$location);
 	}
 
