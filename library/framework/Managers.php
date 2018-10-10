@@ -1,6 +1,6 @@
 <?php
 
-namespace frameworks;
+namespace framework;
 
 class Managers{
 
