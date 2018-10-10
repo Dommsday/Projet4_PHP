@@ -2,7 +2,7 @@
 
 namespace Entity;
 
-use framework/Entity;
+use \framework\Entity;
 
 class News extends Entity{
 
@@ -75,7 +75,7 @@ class News extends Entity{
 	}
 
 	public function dateAjout(){
-		return $this->setDateAjout;
+		return $this->dateAjout;
 	}
 
 	public function updateDate(){
