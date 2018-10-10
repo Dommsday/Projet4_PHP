@@ -5,15 +5,15 @@ namespace framework;
 class Page extends Component{
 
 	protected $contentFile;
-	protected $vars = [];
+	protected $arrayVars = [];
 
 	public function addVarPage($var, $value){
 
-		if(!is_strin($var) || is_numeric($var) || empty($var)){
+		if(!is_string($var) || is_numeric($var) || empty($var)){
 			throw new \InvalidAugumentException('Le nom de la variable doit être une chaîne de caractère et présente');
 		}
 
-		$this->vars[$var] = $value;
+		$this->arrayVars[$var] = $value;
 	}
 
 	public function getGeneratedPage(){
@@ -21,16 +21,17 @@ class Page extends Component{
 		if(!file_exists($this->contentFile)){
 
 			throw new \RuntimeException('La vue demandée n\'existe pas');
+
 		}
 
-		extract($this->vars);
+		extract($this->arrayVars);
 
 		ob_start();
 		require $this->contentFile;
 		$content = ob_get_clean();
 
 		ob_start();
-		require(__DIR__.'/../../FrontendViews/layout.php');
+		require __DIR__.'/../../Frontend/FrontendViews/layout.php';
 		return ob_get_clean();
 	}
 
