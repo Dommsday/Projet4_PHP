@@ -1,6 +1,6 @@
 <?php
 
-namespace Manager;
+namespace framework;
 
 abstract class Manager{
 
