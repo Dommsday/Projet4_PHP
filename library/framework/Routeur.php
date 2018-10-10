@@ -5,7 +5,7 @@ namespace framework;
 class Routeur{
 
 	//Tableau contenant les routes
-	protected $routes = []
+	protected $routes = [];
 
 	const ERR_ROUTE = 1;
 
@@ -20,7 +20,7 @@ class Routeur{
 	//Renvoie la route demandé
 	public function getRoute($url){
 
-		foreach ($this->$routes as $route){
+		foreach ($this->routes as $route){
 			
 			//Si la route correspond à l'url
 			if(($varRoute = $route->match($url)) == true){
@@ -42,7 +42,7 @@ class Routeur{
 					$route->setVars($listVars);
 				}
 
-				return $route
+				return $route;
 			}
 		}
 
