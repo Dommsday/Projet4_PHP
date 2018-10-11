@@ -6,10 +6,11 @@ use \framework\Entity;
 
 class News extends Entity{
 
-	protected $auteur;
+	protected $id;
+	protected $idauteur;
 	protected $titre;
 	protected $contenu;
-	protected $dateAjout;
+	protected $date;
 	protected $updateDate;
 
 	const AUTEUR_INVALIDE = 1;
@@ -21,14 +22,23 @@ class News extends Entity{
 		return !(empty($this->auteur) ||  empty($this->titre) || empty($this->contenu));
 	}
 
-	public function setAuteur($auteur){
+	public function setId($id){
+		$id = (int) $id;
 
-		if(!is_string($auteur) || empty($auteur)){
+		if($id > 0){
 
-			$this->erreurs[] = self::AUTEUR_INVALIDE;
+			$this->id = $id;
 		}
+	}
 
-		$this->auteur = $auteur;
+	public function setIdAuteur($idauteur){
+
+		$idauteur = (int) $idauteur;
+
+		if($idauteur > 0){
+
+			$this->idauteur = $idauteur;
+		}
 	}
 
 	public function setTitre($titre){
@@ -52,9 +62,9 @@ class News extends Entity{
 
 	}
 
-	public function setDateAjout(\DateTime $dateAjout){
+	public function setDate(\DateTime $date){
 
-		$this->dateAjout = $dateAjout;
+		$this->date = $date;
 	}
 
 	public function setUpdateDate(\DateTime $updateDate){
@@ -62,8 +72,12 @@ class News extends Entity{
 		$this->updateDate = $updateDate;
 	}
 
-	public function auteur(){
-		return $this->auteur;
+	public function id(){
+		return $this->id;
+	}
+
+	public function idauteur(){
+		return $this->idauteur;
 	}
 
 	public function titre(){
@@ -74,8 +88,8 @@ class News extends Entity{
 		return $this->contenu;
 	}
 
-	public function dateAjout(){
-		return $this->dateAjout;
+	public function date(){
+		return $this->date;
 	}
 
 	public function updateDate(){
