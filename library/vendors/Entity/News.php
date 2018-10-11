@@ -7,9 +7,9 @@ use \framework\Entity;
 class News extends Entity{
 
 	protected $id;
-	protected $idauteur;
-	protected $titre;
-	protected $contenu;
+	protected $idauthor;
+	protected $title;
+	protected $content;
 	protected $date;
 	protected $updateDate;
 
@@ -19,7 +19,7 @@ class News extends Entity{
 
 	public function Valid(){
 
-		return !(empty($this->auteur) ||  empty($this->titre) || empty($this->contenu));
+		return !(empty($this->idauthor) ||  empty($this->title) || empty($this->content));
 	}
 
 	public function setId($id){
@@ -31,34 +31,34 @@ class News extends Entity{
 		}
 	}
 
-	public function setIdAuteur($idauteur){
+	public function setIdAuthor($idauthor){
 
-		$idauteur = (int) $idauteur;
+		$idauthor = (int) $idauthor;
 
-		if($idauteur > 0){
+		if($idauhor > 0){
 
-			$this->idauteur = $idauteur;
+			$this->idauthor = $idauthor;
 		}
 	}
 
-	public function setTitre($titre){
+	public function setTitle($title){
 
-		if(!is_string($titre) || empty($titre)){
+		if(!is_string($title) || empty($title)){
 
 			$this->erreurs[] = self::TITRE_INVALIDE;
 		}
 
-		$this->titre = $titre;
+		$this->title = $title;
 	}
 
-	public function setContenu($contenu){
+	public function setContent($content){
 
-		if(!is_string($contenu) || empty($contenu)){
+		if(!is_string($content) || empty($content)){
 
 			$this->erreurs[] = self::CONTENU_INVALIDE;
 		}
 
-		$this->contenu = $contenu;
+		$this->content = $content;
 
 	}
 
@@ -76,16 +76,16 @@ class News extends Entity{
 		return $this->id;
 	}
 
-	public function idauteur(){
-		return $this->idauteur;
+	public function idauthor(){
+		return $this->idauthor;
 	}
 
-	public function titre(){
-		return $this->titre;
+	public function title(){
+		return $this->title;
 	}
 
-	public function contenu(){
-		return $this->contenu;
+	public function content(){
+		return $this->content;
 	}
 
 	public function date(){
