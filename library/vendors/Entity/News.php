@@ -7,7 +7,7 @@ use \framework\Entity;
 class News extends Entity{
 
 	protected $id;
-	protected $idauthor;
+	protected $author;
 	protected $title;
 	protected $content;
 	protected $date;
@@ -19,7 +19,7 @@ class News extends Entity{
 
 	public function Valid(){
 
-		return !(empty($this->idauthor) ||  empty($this->title) || empty($this->content));
+		return !(empty($this->author) ||  empty($this->title) || empty($this->content));
 	}
 
 	public function setId($id){
@@ -31,14 +31,14 @@ class News extends Entity{
 		}
 	}
 
-	public function setIdAuthor($idauthor){
+	public function setAuthor($author){
 
-		$idauthor = (int) $idauthor;
+		if(!is_string($author) || empty($author)){
 
-		if($idauhor > 0){
-
-			$this->idauthor = $idauthor;
+			$this->erreurs[] = self::AUTEUR_INVALIDE;
 		}
+
+		$this->author = $author;
 	}
 
 	public function setTitle($title){
@@ -76,8 +76,8 @@ class News extends Entity{
 		return $this->id;
 	}
 
-	public function idauthor(){
-		return $this->idauthor;
+	public function author(){
+		return $this->author;
 	}
 
 	public function title(){
