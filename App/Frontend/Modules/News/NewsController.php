@@ -6,6 +6,8 @@ use \framework\HTTPRequest;
 
 class NewsController extends BackController
 {
+    
+     //Méthode pour afficher les derniers articles postés
   public function executeIndex(HTTPRequest $request)
   {
     $nombreNews = $this->app->config()->get('nombre_news');
@@ -34,5 +36,18 @@ class NewsController extends BackController
     $this->page->addVarPage('listNews', $listNews);
   }
   
-  
+   //Méthode pour affichier un article précis
+  public function executePost(HTTPRequest $request){
+
+    $post = $this->managers->getManagerOf("News")->getUnique($request->getData('id'));
+
+    if(empty($post)){
+
+      $this->app->httpResponse()->page404();
+    }
+
+    $this->page->addVar('title' $post->title());
+    $this->page->addVar('post' $post);
+
+  }
 }
