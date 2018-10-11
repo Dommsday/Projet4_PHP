@@ -1,5 +1,4 @@
 <?php
-
 namespace framework;
 
 abstract class Application{
@@ -22,7 +21,7 @@ abstract class Application{
 		$routeur  = new Routeur;
 
 		$xml = new \DOMDocument;
-		$xml->load(__DIR__.'/../../Frontend/Routeur/routes.xml');
+		$xml->load(__DIR__.'/../../App/'.$this->name.'/Routeur/routes.xml');
 
 		$routes = $xml->getElementsByTagName('route');
 
@@ -45,7 +44,7 @@ abstract class Application{
 			
 		}catch(\RuntimeException $e){
 
-			if($e->getCode == Routeur::ERR_ROUTE){
+			if($e->getCode() == Routeur::ERR_ROUTE){
 
 				$this->httpResponse->page404();
 			}
@@ -53,7 +52,7 @@ abstract class Application{
 
 		$_GET = array_merge($_GET, $matchedRoute->varName());
 
-		$controllerClass = 'Frontend'.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
+		$controllerClass = 'App\\'.$this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
 
 		return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
 
