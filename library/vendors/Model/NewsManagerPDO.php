@@ -1,5 +1,4 @@
 <?php
-
 namespace Model;
 
 use \Entity\News;
@@ -8,7 +7,7 @@ class NewsManagerPDO extends NewsManager{
 
 	public function getList($debut = -1, $limite = -1){
 
-		$req = 'SELECT id, id_author, title, content, date, update_date FROM news ORDER BY id DESC';
+		$req = 'SELECT id, title, content, date, update_date FROM news ORDER BY id DESC';
 
 		if($debut != -1 || $limite != -1){
 
@@ -21,7 +20,7 @@ class NewsManagerPDO extends NewsManager{
 		$listNews = $request->fetchAll();
 
 		foreach ($listNews as $news){
-			$news->setDateAjout(new \DateTime($news->dateAjout()));
+			$news->setDate(new \DateTime($news->date()));
 			$news->setUpdateDate(new \DateTime($news->updateDate()));
 		}
 
@@ -30,3 +29,4 @@ class NewsManagerPDO extends NewsManager{
 		return $listNews;
 	}
 }
+
