@@ -39,15 +39,15 @@ class NewsController extends BackController
    //Méthode pour affichier un article précis
   public function executePost(HTTPRequest $request){
 
-    $post = $this->managers->getManagerOf("News")->getUnique($request->getData('id'));
+    $post = $this->managers->getManagerOf("News")->getPost($request->getData('id'));
 
     if(empty($post)){
 
       $this->app->httpResponse()->page404();
     }
 
-    $this->page->addVar('title' $post->title());
-    $this->page->addVar('post' $post);
+    $this->page->addVar('title', $post->title());
+    $this->page->addVar('post', $post);
 
   }
 }
