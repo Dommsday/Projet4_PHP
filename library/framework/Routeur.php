@@ -39,7 +39,7 @@ class Routeur{
 						}
 					}
 
-					$route->setVars($listVars);
+					$route->setArrayVars($listVars);
 				}
 
 				return $route;
