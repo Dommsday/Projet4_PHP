@@ -35,7 +35,7 @@ class Routeur{
 						
 						if($key !==0){
 
-							$listVars[$varNames[$key -1] = $value];
+							$listVars[$varNames[$key -1]] = $value;
 						}
 					}
 
