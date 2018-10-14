@@ -31,7 +31,7 @@ class HTTPResponse extends Component{
 	}
 
 	//Ajout du header
-	public function header($header){
+	public function addHeader($header){
 		header($header);
 	}
 
