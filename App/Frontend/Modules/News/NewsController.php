@@ -46,8 +46,8 @@ class NewsController extends BackController
       $this->app->httpResponse()->page404();
     }
 
-    $this->page->addVar('title', $post->title());
-    $this->page->addVar('post', $post);
+    $this->page->addVarPage('title', $post->title());
+    $this->page->addVarPage('post', $post);
 
   }
 }
