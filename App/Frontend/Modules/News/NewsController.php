@@ -50,4 +50,32 @@ class NewsController extends BackController
     $this->page->addVarPage('post', $post);
 
   }
+    
+    //Méthode pour ajouter un commentaire
+  public function executeInsertComment(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Ajout d\'un commentaire');
+
+    if($request->postExists('pseudo')){
+
+      $comment = new Comment([
+        'news' => $request->getData('news'),
+        'author' => $request->getData('pseudo'),
+        'content' => $request->getData('content')
+      ]);
+
+      if($comment->Valid()){
+
+        $this->managers->getManagerOf('Comment')->save($comment);
+
+        $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
+
+      }else{
+
+        $this->page->addVarPage('erreurs', $comment->erreurs());
+      }
+
+      $this->page->addVarPage('comment', $comment);
+    }
+  }
 }
