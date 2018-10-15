@@ -8,6 +8,8 @@ use \Entity\Comment;
 abstract class CommentManager extends Manager{
 
 	abstract protected function add(Comment $comment);
+    
+    abstract protected function getListOf($news);
 
 	public function save(Comment $comment){
 
