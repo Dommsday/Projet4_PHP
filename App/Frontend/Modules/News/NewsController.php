@@ -48,7 +48,7 @@ class NewsController extends BackController
 
     $this->page->addVarPage('title', $post->title());
     $this->page->addVarPage('post', $post);
-
+    $this->page->addVarPage('comment', $this->managers->getManagerOf('Comment')->getListOf($news->id()));
   }
     
     //Méthode pour ajouter un commentaire
