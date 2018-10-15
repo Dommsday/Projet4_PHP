@@ -50,7 +50,7 @@ abstract class Application{
 			}
 		}
 
-		$_GET = array_merge($_GET, $matchedRoute->varName());
+		$_GET = array_merge($_GET, $matchedRoute->arrayVars());
 
 		$controllerClass = 'App\\'.$this->name.'\\Modules\\'.$matchedRoute->module().'\\'.$matchedRoute->module().'Controller';
 
