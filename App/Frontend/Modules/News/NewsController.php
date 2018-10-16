@@ -60,8 +60,8 @@ class NewsController extends BackController
 
       $comment = new Comment([
         'news' => $request->getData('news'),
-        'author' => $request->getData('pseudo'),
-        'content' => $request->getData('content')
+        'author' => $request->postData('pseudo'),
+        'content' => $request->postData('content')
       ]);
 
       if($comment->Valid()){
