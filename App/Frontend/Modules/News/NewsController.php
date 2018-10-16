@@ -3,6 +3,7 @@ namespace App\Frontend\Modules\News;
 
 use \framework\BackController;
 use \framework\HTTPRequest;
+use \Entity\Comment;
 
 class NewsController extends BackController
 {
