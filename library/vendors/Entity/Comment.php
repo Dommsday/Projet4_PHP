@@ -16,7 +16,7 @@ class Comment extends Entity{
 
 	public function Valid(){
 
-		return !(empty($author) || empty($content));
+		return !(empty($this->author) || empty($this->content));
 	}
 
 	public function setNews($news){
@@ -26,7 +26,7 @@ class Comment extends Entity{
 
 	public function setAuthor($author){
 
-		if(!is_string($author) || empty($auteur)){
+		if(!is_string($author) || empty($author)){
 
 			$this->erreurs[] = self::AUTEUR_INVALIDE;
 		}
