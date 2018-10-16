@@ -15,7 +15,7 @@ abstract class CommentManager extends Manager{
 
 		if($comment->Valid()){
 
-			$comment->isNew() ? $this->add($comment) : $this->modify($comment);
+			$comment->idNew() ? $this->add($comment) : $this->modify($comment);
 
 		}else{
 
