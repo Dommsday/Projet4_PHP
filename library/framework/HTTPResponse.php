@@ -18,7 +18,8 @@ class HTTPResponse extends Component{
 
 	//Redirige l'utilisateur
 	public function redirect($location){
-		header('Location'.$location);
+		header('Location: '.$location);
+        exit;
 	}
 
 	//En cas d'erreur l'utilisateur est redirigé vers la page 404
