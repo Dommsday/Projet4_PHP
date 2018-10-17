@@ -31,7 +31,7 @@ class Comment extends Entity{
 			$this->erreurs[] = self::AUTEUR_INVALIDE;
 		}
 
-		$this->author = $author
+		$this->author = $author;
 	}
 
 	public function setContent($content){
