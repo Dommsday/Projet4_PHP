@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Backend\Module\News;
+namespace App\Backend\Modules\News;
 
 use \framework\BackController;
 use\framework\HTTPRequest;
