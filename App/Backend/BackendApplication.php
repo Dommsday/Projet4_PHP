@@ -1,5 +1,5 @@
 <?php
-namespace Backend;
+namespace App\Backend;
 
 use \framework\Application;
 
