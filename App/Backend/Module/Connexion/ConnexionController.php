@@ -14,7 +14,7 @@ class ConnexionController extends BackController{
 		if($request->postExists('login')){
 
 			$login = $request->postData('login');
-			$password = $reques->postData('password');
+			$password = $request->postData('password');
 
 			//Si les valeurs entrées sont identiques au fichiers de configuration 
 			if($login == $this->app->config()->get('login') && $password == $this->app->config()->get('pwd')){
