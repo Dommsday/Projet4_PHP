@@ -7,14 +7,14 @@ class BackendApplication extends Application{
 
 	public function __construct(){
 
-		parrent::__construct();
+		parent::__construct();
 
 		$this->name = 'Backend';
 	}
 
 	public function run(){
 
-		$controller = new Modules\Connexion\ConnexionController($this, 'Connexion', 'index');
+		$controller = new Module\Connexion\ConnexionController($this, 'Connexion', 'index');
 		$controler = execute();
 
 		$this->httpResponse->setPage($controller->page());
