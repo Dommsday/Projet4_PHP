@@ -31,7 +31,7 @@ class Page extends Component{
 		$content = ob_get_clean();
 
 		ob_start();
-		require __DIR__.'/../../App/'.$this->app->name().'/FrontendViews/layout.php';
+		require __DIR__.'/../../App/'.$this->app->name().'/Template/layout.php';
 		return ob_get_clean();
 	}
 
