@@ -25,7 +25,7 @@ class CommentManagerPDO extends CommentManager{
 			throw new \InvalidAugumentException('L\'identifiant de la news doit être un nombre entier et valide');
 		}
 
-		$request = $this->dao->prepare('SELECT id, news, author, content, date FROM comments WHERZ news = :news');
+		$request = $this->dao->prepare('SELECT id, news, author, content, date FROM comments WHERE news = :news');
 
 		$request->bindValue(':news', $news, \PDO::PARAM_INT);
 		$request->execute();
