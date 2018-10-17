@@ -46,5 +46,10 @@ class NewsManagerPDO extends NewsManager{
     
     return null;
 	}
+
+	public function count(){
+
+		return $this->dao->query('SELECT COUNT(*) FROM news')->fetchColumn();
+	}
 }
 
