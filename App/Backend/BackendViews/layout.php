@@ -1,1 +1,0 @@
-<?php require __DIR__.'/../../Frontend/FrontendViews/layout.php';
