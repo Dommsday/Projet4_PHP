@@ -9,7 +9,7 @@
 			<input type="text" name="login"/><br />
 
 			<label>Mot de Passe</label>
-			<input type="passeword" name="password" /><br />
+			<input type="password" name="password" /><br />
 		</div>
 
 			<input type="submit" class="btn btn-primary" value="Connexion" />
