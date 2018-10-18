@@ -14,7 +14,16 @@ class BackendApplication extends Application{
 
 	public function run(){
 
-		$controller = new Modules\Connexion\ConnexionController($this, 'Connexion', 'index');
+        if($this->user->isAuthenticated()){
+            
+            $controller = $this->getController();
+            
+        }else{
+            
+            $controller = new Modules\Connexion\ConnexionController($this, 'Connexion', 'index');
+            
+        }
+		
 		$controller->execute();
 
 		$this->httpResponse->setPage($controller->page());
