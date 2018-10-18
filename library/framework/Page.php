@@ -23,6 +23,8 @@ class Page extends Component{
 			throw new \RuntimeException('La vue demandée n\'existe pas');
 
 		}
+        
+        $user = $this->app->user();
 
 		extract($this->arrayVars);
 
