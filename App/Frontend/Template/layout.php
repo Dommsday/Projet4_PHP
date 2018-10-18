@@ -19,6 +19,15 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/admin/">Admin</a>
 				</li>
+				<?php
+					if($user->isAuthenticated()){
+				?>
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/news-insert\.html">Ajouter un article</a>
+					</li>
+				<?php
+					}
+				?>
 			</ul>
 		</nav>
 	</header>
