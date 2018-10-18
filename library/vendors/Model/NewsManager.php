@@ -22,7 +22,7 @@ abstract class NewsManager extends Manager{
     		$post->idNew() ? $this->add($post) : $this->modify($post);
     	}else{
 
-    		throw new \RuntimeException('L\'article doit être validé pour être enregistré';
+    		throw new \RuntimeException('L\'article doit être validé pour être enregistré');
     	}
     }
 }
