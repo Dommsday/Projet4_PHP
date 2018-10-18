@@ -23,7 +23,7 @@
 					if($user->isAuthenticated()){
 				?>
 					<li class="nav-item">
-						<a class="nav-link" href="/admin/news-insert\.html">Ajouter un article</a>
+						<a class="nav-link" href="/admin/news-insert.html">Ajouter un article</a>
 					</li>
 				<?php
 					}
