@@ -7,11 +7,13 @@ abstract class Application{
 	protected $httpResponse;
 	protected $name;
 	protected $config;
+	protected $user;
 
 	public function __construct(){
 		$this->httpRequest = new HTTPRequest($this);
 		$this->httpResponse = new HTTPResponse($this);
 		$this->config = new Config($this);
+		$this->user = new User($this);
 		$this->name = '';
 	}
 
@@ -76,4 +78,8 @@ abstract class Application{
 	public function config(){
 		return $this->config;
 	}
+
+	public function user(){
+		return $this->user;
+  	}
 }
