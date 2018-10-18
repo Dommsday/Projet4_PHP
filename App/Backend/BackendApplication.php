@@ -14,8 +14,8 @@ class BackendApplication extends Application{
 
 	public function run(){
 
-		$controller = new Module\Connexion\ConnexionController($this, 'Connexion', 'index');
-		$controler->execute();
+		$controller = new Modules\Connexion\ConnexionController($this, 'Connexion', 'index');
+		$controller->execute();
 
 		$this->httpResponse->setPage($controller->page());
 		$this->httpResponse->send();
