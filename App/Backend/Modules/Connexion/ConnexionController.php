@@ -24,7 +24,7 @@ class ConnexionController extends BackController{
 
 			}else{
                 
-                $this->app->user->setMessage('Le pseudo ou le mot de passe est incorrect');
+                $this->app->user()->setMessage('Le pseudo ou le mot de passe est incorrect');
             }
 		}
 	}
