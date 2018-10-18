@@ -32,6 +32,12 @@
 	<section class="section-container container-fluid">
 		<div class="container-contenu container">
 			<div class="row">
+			 
+			     <?php if($user->hasMessage()){
+                            
+                            echo $user->getMessage();
+                        }
+                ?>
 				<?= $content ?>
 			</div>
 		</div>
