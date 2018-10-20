@@ -53,4 +53,17 @@ class NewsController extends BackController{
 
 		$this->page->addVarPage('news', $post);
 	}
+    
+    public function executeUpdate(HTTPRequest $request){
+
+		if($request->postExists('author')){
+
+			$this->processForm($request);
+		}else{
+
+			$this->page->addVarPage('news', $this->managers->getManagerOf('News')->getPost($request->getData('id')));
+		}
+
+		$this->page->addVarPage('title', 'Modification de l\'article');
+	}
 }
