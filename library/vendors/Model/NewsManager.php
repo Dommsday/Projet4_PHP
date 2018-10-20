@@ -15,6 +15,8 @@ abstract class NewsManager extends Manager{
     
     abstract protected function add(News $post);
     
+    abstract protected function modify(News $news);
+    
      //Méthode qui s'écrit directement car elle n'est pas dépendante de la DAO
     public function save(News $post){
 
