@@ -75,4 +75,38 @@ class NewsController extends BackController{
 
 		$this->app->httpResponse()->redirect('.');
 	}
+    
+    public function executeUpdateComment(HTTPRequest $request){
+
+		$this->page->addVarPage('title', 'Mofication d\'un commentaire');
+
+		if($request->postExists('pseudo')){
+
+			$comment = new Comment([
+
+				'id' => $request->getData('id'),
+				'author' => $request->postData('author'),
+				'content' => $resquest->postData('content')
+			]);
+
+			if($comment->Valid()){
+
+				$this->managers->getManagerOf('Comment')->save($comment);
+
+				$this->app->user()->setMessage('Le commentaire a bien été modifié !');
+
+				$this->app->httpResponse()->redirect('/news-'.$request->postData('post').'.html');
+
+			}else{
+
+				$this->page->addVarPage('erreurs', $comment->erreurs());
+			}
+
+			$this->page->addVarPage('comment', $comment);
+
+		}else{
+
+			$this->page->addVar('comment', $this->managers->getManagerOf('Comment')->get($request->getData('id')));
+		}
+	}
 }
