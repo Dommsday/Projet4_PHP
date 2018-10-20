@@ -52,7 +52,7 @@ class NewsManagerPDO extends NewsManager{
 		return $this->dao->query('SELECT COUNT(*) FROM news')->fetchColumn();
 	}
     
-    public function add(News $post){
+    protected function add(News $post){
 
 		$request = $this->dao->prepare('INSERT INTO news SET author = :author, title = :title, content = :content, date = NOW(), update_date = NOW()');
 
