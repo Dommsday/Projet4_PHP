@@ -66,4 +66,13 @@ class NewsController extends BackController{
 
 		$this->page->addVarPage('title', 'Modification de l\'article');
 	}
+    
+    public function executeDelete(HTTPRequest $request){
+
+		$this->managers->getManagerOf('News')->delete($request->getData('id'));
+
+		$this->app->user()->setMessage('L\'article à bien été supprimé');
+
+		$this->app->httpResponse()->redirect('.');
+	}
 }
