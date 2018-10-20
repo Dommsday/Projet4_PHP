@@ -62,5 +62,17 @@ class NewsManagerPDO extends NewsManager{
 
 		$request->execute();
 	}
+    
+    protected function modify(News $post){
+
+		$request = $this->dao->prepare('UPDATE news SET author = :author, title = :title, content = :content, update_date = NOW() WHERE id = :id');
+
+		$request->bindValue(':author', $post->author());
+		$request->bindValue(':title', $post->title());
+		$request->bindValue(' :content', $post->content());
+		$request->bindValue(' :id', $post->id(), \PDO::PARAM_INT);
+
+		$request->execute();
+	}
 }
 
