@@ -3,6 +3,7 @@
 namespace Model;
 
 use \framework\Manager;
+use \Entity\News;
 
 abstract class NewsManager extends Manager{
 
