@@ -4,6 +4,7 @@ namespace App\Backend\Modules\News;
 
 use \framework\BackController;
 use\framework\HTTPRequest;
+use \Entity\News;
 
 class NewsController extends BackController{
 
