@@ -40,4 +40,27 @@ class CommentManagerPDO extends CommentManager{
 
 		return $comments;
 	}
+    
+    protected function modify(Comment $comment){
+
+		$request = $this->dao->prepare('UPDATE comments SET author = :author, content = :content WHERE id = :id');
+
+		$request->bindValue(':author', $comment->author());
+		$request->bindValue(':content', $comment->content());
+		$request->bindValue(':id', $comment->id(), \PDO::PARAM_INT);
+
+		$request->execute();
+	}
+
+	public function get($id){
+
+		$request = $this->dao->prepare('SELECT id, news, author, content FROM comments WHERE id = :id');
+		$request->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+
+		$request->execute();
+
+		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+
+		return $request->fetch();
+	}
 }
