@@ -26,7 +26,7 @@ foreach ($comments as $comment){
 <p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
 
 <?php if($user->isAuthenticated()){ ?>
-		<a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> /
+		<a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> / <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>
 <?php } ?>
 
 </p>
