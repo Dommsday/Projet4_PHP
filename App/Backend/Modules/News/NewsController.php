@@ -5,6 +5,7 @@ namespace App\Backend\Modules\News;
 use \framework\BackController;
 use\framework\HTTPRequest;
 use \Entity\News;
+use \Entity\Comment;
 
 class NewsController extends BackController{
 
@@ -108,5 +109,14 @@ class NewsController extends BackController{
 
 			$this->page->addVar('comment', $this->managers->getManagerOf('Comment')->get($request->getData('id')));
 		}
+	}
+    
+    public function executeDeleteComment(HTTPRequest $request){
+
+		$this->managers->getManagerOf('Comment')->delete($request->getData('id'));
+
+		$this->app->user()->setMessage('Le commentaire à bien été supprimé !');
+
+		$this->app->httpResponse->redirect('.');
 	}
 }
