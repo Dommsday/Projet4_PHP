@@ -10,6 +10,10 @@ abstract class CommentManager extends Manager{
 	abstract protected function add(Comment $comment);
     
     abstract protected function getListOf($news);
+    
+    abstract protected function modify(Comment $comment);
+
+    abstract public function get($id);
 
 	public function save(Comment $comment){
 
