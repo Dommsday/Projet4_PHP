@@ -23,7 +23,13 @@
 foreach ($comments as $comment){
 ?>
 
-<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?></p>
+<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
+
+<?php if($user->isAuthenticated()){ ?>
+		<a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> /
+<?php } ?>
+
+</p>
 
 <p><?= $comment['content'] ?></p>
 
