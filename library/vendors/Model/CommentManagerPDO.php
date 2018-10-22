@@ -63,4 +63,9 @@ class CommentManagerPDO extends CommentManager{
 
 		return $request->fetch();
 	}
+    
+    public function delete($id){
+
+		$request = $this->dao->prepare('DELETE FROM comments WHERE id = '. (int) $id);
+	}
 }
