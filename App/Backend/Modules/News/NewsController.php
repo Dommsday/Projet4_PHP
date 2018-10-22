@@ -44,7 +44,7 @@ class NewsController extends BackController{
 		if($post->Valid()){
 			$this->managers->getManagerOf('News')->save($post);
 
-			$this->app->user()->setMessage($post->idNew()) ? 'L\'article à bien été ajouté !' : 'L\'article à bien été modifié !';
+			$this->app->user()->setMessage($post->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article à bien été modifié !');
 
 		}else{
 
