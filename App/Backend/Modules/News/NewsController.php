@@ -71,6 +71,8 @@ class NewsController extends BackController{
     public function executeDelete(HTTPRequest $request){
 
 		$this->managers->getManagerOf('News')->delete($request->getData('id'));
+        
+        $this->managers->getManagerOf('Comment')->deleteFromNews($request->getData('id'));
 
 		$this->app->user()->setMessage('L\'article à bien été supprimé');
 
