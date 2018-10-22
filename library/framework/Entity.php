@@ -7,25 +7,14 @@ abstract class Entity implements \ArrayAccess{
 
 	protected $erreurs = [];
 	protected $id;
+    
+    use Hydrator;
 
 	public function __construct(array $donnees = []){
 
 		if(!empty($donnees)){
 
 			$this->hydrate($donnees);
-		}
-	}
-
-	public function hydrate(array $donnees){
-
-		foreach ($donnees as $attribut => $value){
-			
-			$method = 'set'.ucfirst($attribut);
-
-			if(is_callable([$this, $method])){
-
-				$this->$method($value);
-			}
 		}
 	}
 
