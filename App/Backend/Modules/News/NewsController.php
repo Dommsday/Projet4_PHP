@@ -6,6 +6,9 @@ use \framework\BackController;
 use\framework\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
+use \FormBuilder\CommentFormBuilder;
+use \FormBuilder\NewsFormBuilder;
+use \framework\FormHandler;
 
 class NewsController extends BackController{
 
@@ -21,49 +24,56 @@ class NewsController extends BackController{
     
     public function executeInsert(HTTPRequest $request){
 
-		if($request->postExists('author')){
+		$this->processForm($request);
 
-			$this->processForm($request);
-		}
-
-		$this->page->addVarPage('title', 'Ajour d\'un post');
+		$this->page->addVarPage('title', 'Ajout d\'un article');
 	}
 
 	public function processForm(HTTPRequest $request){
 
-		$post = new News([
-			'author' => $request->postData('author'),
-			'title' => $request->postData('title'),
-			'content' => $request->postData('content')
-		]);
+		if($request->method() == 'POST'){
 
-		if($request->postExists('id')){
+			$news = new News([
 
-			$post->setId($request->postData('id'));
-		}
+				'author' => $request->postData('author'),
+				'title' => $request->postData('title'),
+				'content' => $request->postData('content')
+			]);
 
-		if($post->Valid()){
-			$this->managers->getManagerOf('News')->save($post);
+			if($request->getExists('id')){
 
-			$this->app->user()->setMessage($post->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article à bien été modifié !');
-
+				$news->setId($request->getData('id'));
+			}
 		}else{
 
-			$this->page->addVarPage('erreurs', $post->erreurs());
+			if($request->getExists('id')){
+
+				$news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+
+			}else{
+
+				$news = new News;
+			}
 		}
 
-		$this->page->addVarPage('news', $post);
+		$formBilder = new NewsFormBuilder($news);
+		$formBilder->build();
+
+		$form = $formBuilder->form();
+
+		if($request->method() == 'POST' && $form->Valid()){
+
+			$this->managers->getManagerOf('News')->save($news);
+			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié ! ');
+			$this->app->httpResponse()->redirect('/admin/');
+		}
+
+		$this->page->addVarPage('form', $form->cretaeView());
 	}
     
     public function executeUpdate(HTTPRequest $request){
 
-		if($request->postExists('author')){
-
-			$this->processForm($request);
-		}else{
-
-			$this->page->addVarPage('news', $this->managers->getManagerOf('News')->getPost($request->getData('id')));
-		}
+		$this->processForm($request);
 
 		$this->page->addVarPage('title', 'Modification de l\'article');
 	}
@@ -81,36 +91,34 @@ class NewsController extends BackController{
     
     public function executeUpdateComment(HTTPRequest $request){
 
-		$this->page->addVarPage('title', 'Mofication d\'un commentaire');
+		$this->page->addVarPage('title', 'Modification d\'un commentaire');
 
-		if($request->postExists('pseudo')){
+		if($request->method() == 'POST'){
 
 			$comment = new Comment([
 
 				'id' => $request->getData('id'),
-				'author' => $request->postData('pseudo'),
-				'content' => $resquest->postData('content')
+				'author' => $request->postData('author'),
+				'content' => $request->postData('content')
 			]);
-
-			if($comment->Valid()){
-
-				$this->managers->getManagerOf('Comment')->save($comment);
-
-				$this->app->user()->setMessage('Le commentaire a bien été modifié !');
-
-				$this->app->httpResponse()->redirect('/news-'.$request->postData('post').'.html');
-
-			}else{
-
-				$this->page->addVarPage('erreurs', $comment->erreurs());
-			}
-
-			$this->page->addVarPage('comment', $comment);
-
 		}else{
 
-			$this->page->addVar('comment', $this->managers->getManagerOf('Comment')->get($request->getData('id')));
+			$comment = $this->managers->getManagerOf('Comment')->get($request->getData('id'));
 		}
+
+		$formBuilder = new CommentFormBuilder($comment);
+		$formBuilder->build();
+
+		$form = $formBuilder->form();
+
+		if($request->method == 'POST' && $form->Valid()){
+
+			$this->managers->getManagerOf('Comment')->save($comment);
+			$this->app->user()->setMessage('Le comment a bien été modifié');
+			$this->app->httpResponse()->redirect('/admin/');
+		}
+
+		$this->page->addVarPage('form', $form->createView());
 	}
     
     public function executeDeleteComment(HTTPRequest $request){
