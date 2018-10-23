@@ -40,7 +40,7 @@ abstract class Field{
 
 	public function setLabel($label){
 
-		if(is_string($lable)){
+		if(is_string($label)){
 			$this->label = $label;
 		}
 	}
