@@ -57,14 +57,15 @@ class NewsController extends BackController
     
     //Méthode pour ajouter un commentaire
   public function executeInsertComment(HTTPRequest $request){
-
-   if($request->method() == 'POST'){
+      
+      
+    if($request->method() == 'POST'){
 
       $comment = new Comment([
 
-        'author' => $request->getData('pseudo'),
         'news' => $request->getData('news'),
-        'content' => $request->getData('content')
+        'pseudo' => $request->postData('pseudo'),
+        'content' => $request->postData('content')
       ]);
 
     }else{
@@ -72,29 +73,21 @@ class NewsController extends BackController
       $comment = new Comment;
     }
 
-    $form = new Form($comment);
+    $formBuilder = new CommentFormBuilder($comment);
+    $formBuilder->build();
 
-    $form->add(new StringField([
-      'label' => 'Author',
-      'name' => 'pseudo',
-      'maxLength' => 50
-    ]));
+    $form = $formBuilder->form();
 
-    $form->add(new Textfield([
-      'label' => 'Content',
-      'name' => 'content',
-      'cols'=> 50,
-      'rows' => 7
-    ]));
+    if($request->method() == 'POST' && $form->Valid()){
 
-    if($form->Valid()){
-
-
+      $this->managers->getManagerOf('Comment')->save($comment);
+      $this->app->user()->setMessage('Le commentaire a bien été ajouté !');
+      $this->app->httpResponse->redirect('news-'.$request->getData('news').'.html');
     }
 
     $this->page->addVarPage('comment', $comment);
     $this->page->addVarPage('form', $form->createView());
-    $this->page->addVarPage('title', 'Ajour d\'un commentaire');
-  }
+    $this->page->addVarPage('title', 'Ajout d\'un commentaire');
+   
   }
 }
