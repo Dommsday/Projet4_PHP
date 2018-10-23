@@ -4,6 +4,9 @@ namespace App\Frontend\Modules\News;
 use \framework\BackController;
 use \framework\HTTPRequest;
 use \Entity\Comment;
+use \framework\Form;
+use \framework\StringField;
+use \framework\Textfield;
 
 class NewsController extends BackController
 {
@@ -55,28 +58,43 @@ class NewsController extends BackController
     //Méthode pour ajouter un commentaire
   public function executeInsertComment(HTTPRequest $request){
 
-    $this->page->addVarPage('title', 'Ajout d\'un commentaire');
-
-    if($request->postExists('pseudo')){
+   if($request->method() == 'POST'){
 
       $comment = new Comment([
+
+        'author' => $request->getData('pseudo'),
         'news' => $request->getData('news'),
-        'author' => $request->postData('pseudo'),
-        'content' => $request->postData('content')
+        'content' => $request->getData('content')
       ]);
 
-      if($comment->Valid()){
+    }else{
 
-        $this->managers->getManagerOf('Comment')->save($comment);
-
-        $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
-
-      }else{
-
-        $this->page->addVarPage('erreurs', $comment->erreurs());
-      }
-
-      $this->page->addVarPage('comment', $comment);
+      $comment = new Comment;
     }
+
+    $form = new Form($comment);
+
+    $form->add(new StringField([
+      'label' => 'Author',
+      'name' => 'pseudo',
+      'maxLength' => 50
+    ]));
+
+    $form->add(new Textfield([
+      'label' => 'Content',
+      'name' => 'content',
+      'cols'=> 50,
+      'rows' => 7
+    ]));
+
+    if($form->Valid()){
+
+
+    }
+
+    $this->page->addVarPage('comment', $comment);
+    $this->page->addVarPage('form', $form->createView());
+    $this->page->addVarPage('title', 'Ajour d\'un commentaire');
+  }
   }
 }
