@@ -21,6 +21,9 @@ $modelLoader->register();
 $entityLoader = new SplClassLoader('Entity', __DIR__.'/../library/vendors');
 $entityLoader->register();
 
+$formBuilderLoader = new SplClassLoader('FormBuilder', __DIR__.'/../library/vendors');
+$formBuilderLoader->register();
+
 //Instancie la classe Frontend/FrontendApplication
 $appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';
 
