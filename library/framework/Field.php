@@ -10,6 +10,8 @@ abstract class Field{
 	protected $label;
 	protected $name;
 	protected $value;
+    protected $validators = [];
+	protected $length;
 
 	public function __construct(array $options =[]){
 
@@ -22,7 +24,17 @@ abstract class Field{
 	abstract public function buildWidget();
 
 	public function Valid(){
+        
+        foreach ($this->validators as $validator){
+			
+			if(!$validator->Valid($this->value)){
 
+				$this->errorMessage = $validator->errorMessage();
+				return false;
+			}
+		}
+
+		return true;
 
 	}
 
@@ -37,11 +49,26 @@ abstract class Field{
 	public function value(){
 		return $this->value;
 	}
+    
+    public function length(){
+		return $this->length;
+	}
+
 
 	public function setLabel($label){
 
 		if(is_string($label)){
 			$this->label = $label;
+		}
+	}
+    
+    public function setLength($length){
+
+		$length = (int) $length;
+
+		if($length > 0){
+
+			$this->length = $length;
 		}
 	}
 
@@ -58,4 +85,15 @@ abstract class Field{
 			$this->value = $value;
 		}
 	}
+    
+    public function setValidators(array $validators){
+
+    	foreach ($validators as $validator){
+
+      		if ($validator instanceof Validator && !in_array($validator, $this->validators)){
+
+        		$this->validators[] = $validator;
+      		}
+    	}
+  	}
 }
