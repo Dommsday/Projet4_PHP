@@ -7,7 +7,7 @@ class Form{
 	protected $entity;
 	protected $fields = [];
 
-	public function _construct(Entity $entity){
+	public function __construct(Entity $entity){
 
 		$this->setEntity($entity);
 	}
