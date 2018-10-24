@@ -69,8 +69,8 @@ class NewsManagerPDO extends NewsManager{
 
 		$request->bindValue(':author', $post->author());
 		$request->bindValue(':title', $post->title());
-		$request->bindValue(' :content', $post->content());
-		$request->bindValue(' :id', $post->id(), \PDO::PARAM_INT);
+		$request->bindValue(':content', $post->content());
+		$request->bindValue(':id', $post->id(), \PDO::PARAM_INT);
 
 		$request->execute();
 	}
