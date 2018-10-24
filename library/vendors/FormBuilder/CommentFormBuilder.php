@@ -19,8 +19,8 @@ class CommentFormBuilder extends FormBuilder
           new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
           new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
         ],
-       ]))
-       ->add(new TextField([
+       ]));
+       $this->form->add(new TextField([
         'label' => 'Content',
         'name' => 'content',
         'rows' => 7,
