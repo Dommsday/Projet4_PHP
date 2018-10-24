@@ -3,10 +3,9 @@ namespace App\Frontend\Modules\News;
 
 use \framework\BackController;
 use \framework\HTTPRequest;
+use \framework\FormHandler;
 use \Entity\Comment;
-use \framework\Form;
-use \framework\StringField;
-use \framework\Textfield;
+use \formBuilder\CommentFormBuilder;
 
 class NewsController extends BackController
 {
@@ -77,10 +76,11 @@ class NewsController extends BackController
     $formBuilder->build();
 
     $form = $formBuilder->form();
+      
+    $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comment'), $request);
 
-    if($request->method() == 'POST' && $form->Valid()){
+    if($formHandler->process()){
 
-      $this->managers->getManagerOf('Comment')->save($comment);
       $this->app->user()->setMessage('Le commentaire a bien été ajouté !');
       $this->app->httpResponse->redirect('news-'.$request->getData('news').'.html');
     }
