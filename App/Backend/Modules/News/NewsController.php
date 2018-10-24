@@ -61,7 +61,7 @@ class NewsController extends BackController{
 
 		$form = $formBuilder->form();
         
-        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request)
+        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
 
 
 		if($formHandler->process()){
@@ -114,7 +114,7 @@ class NewsController extends BackController{
 
 		$form = $formBuilder->form();
         
-        $formHandler = news FormHandler($form, $this->managers->getManagerOf('Comment'), $request);
+        $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comment'), $request);
 
 		if($formHandler->process()){
             
