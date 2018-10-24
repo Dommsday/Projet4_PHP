@@ -24,7 +24,7 @@ class StringField extends Field{
 
 		if(!empty($this->maxLength)){
 
-			$widget = ' maxlenght="'.$this->maxLength.'"';
+			$widget = ' maxlength="'.$this->maxLength.'"';
 		}
 
 		return $widget .= ' />';

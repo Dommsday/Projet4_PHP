@@ -71,7 +71,7 @@ class NewsController extends BackController{
 			$this->app->httpResponse()->redirect('/admin/');
 		}
 
-		$this->page->addVarPage('form', $form->cretaeView());
+		$this->page->addVarPage('form', $form->createView());
 	}
     
     public function executeUpdate(HTTPRequest $request){

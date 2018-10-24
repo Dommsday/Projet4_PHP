@@ -5,7 +5,7 @@ use \framework\BackController;
 use \framework\HTTPRequest;
 use \framework\FormHandler;
 use \Entity\Comment;
-use \formBuilder\CommentFormBuilder;
+use \FormBuilder\CommentFormBuilder;
 
 class NewsController extends BackController
 {
@@ -63,7 +63,7 @@ class NewsController extends BackController
       $comment = new Comment([
 
         'news' => $request->getData('news'),
-        'pseudo' => $request->postData('pseudo'),
+        'author' => $request->postData('author'),
         'content' => $request->postData('content')
       ]);
 
