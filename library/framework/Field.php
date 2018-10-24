@@ -15,9 +15,9 @@ abstract class Field{
 
 	public function __construct(array $options =[]){
 
-		if(!empty($option)){
+		if(!empty($options)){
 
-			$this->hydrate($option);
+			$this->hydrate($options);
 		}
 	}
 
