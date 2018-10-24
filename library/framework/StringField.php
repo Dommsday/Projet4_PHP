@@ -15,7 +15,7 @@ class StringField extends Field{
 			$widget .= $this->errorMessage.'<br />';
 		}
 
-		$widget .= '<label>'.$this->label.'</label><input type="text" name="'.$this->name().'"';
+		$widget .= '<label>'.$this->label.'</label><input type="text" name="'.$this->name.'"';
 
 		if(!empty($this->value)){
 
@@ -24,7 +24,7 @@ class StringField extends Field{
 
 		if(!empty($this->maxLength)){
 
-			$widget = ' maxlenght="'.$this->maxLenght.'"';
+			$widget = ' maxlenght="'.$this->maxLength.'"';
 		}
 
 		return $widget .= ' />';
@@ -35,7 +35,7 @@ class StringField extends Field{
 		$maxLength = (int) $maxLength;
 
 		if($maxlenght > 0){
-			$this->maxlenght = $maxlenght;
+			$this->maxLenght = $maxLength;
 
 		}else{
 
