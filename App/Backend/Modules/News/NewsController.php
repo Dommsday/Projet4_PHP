@@ -131,6 +131,6 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('Le commentaire à bien été supprimé !');
 
-		$this->app->httpResponse->redirect('.');
+		$this->app->httpResponse()->redirect('.');
 	}
 }
