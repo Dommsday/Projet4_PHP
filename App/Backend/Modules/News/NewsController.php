@@ -48,7 +48,7 @@ class NewsController extends BackController{
 
 			if($request->getExists('id')){
 
-				$news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+				$news = $this->managers->getManagerOf('News')->getPost($request->getData('id'));
 
 			}else{
 
