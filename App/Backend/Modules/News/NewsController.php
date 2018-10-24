@@ -60,10 +60,13 @@ class NewsController extends BackController{
 		$formBilder->build();
 
 		$form = $formBuilder->form();
+        
+        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request)
 
-		if($request->method() == 'POST' && $form->Valid()){
 
-			$this->managers->getManagerOf('News')->save($news);
+		if($formHandler->process()){
+
+			
 			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié ! ');
 			$this->app->httpResponse()->redirect('/admin/');
 		}
@@ -110,10 +113,11 @@ class NewsController extends BackController{
 		$formBuilder->build();
 
 		$form = $formBuilder->form();
+        
+        $formHandler = news FormHandler($form, $this->managers->getManagerOf('Comment'), $request);
 
-		if($request->method == 'POST' && $form->Valid()){
-
-			$this->managers->getManagerOf('Comment')->save($comment);
+		if($formHandler->process()){
+            
 			$this->app->user()->setMessage('Le comment a bien été modifié');
 			$this->app->httpResponse()->redirect('/admin/');
 		}
