@@ -34,8 +34,8 @@ class StringField extends Field{
 
 		$maxLength = (int) $maxLength;
 
-		if($maxlenght > 0){
-			$this->maxLenght = $maxLength;
+		if($maxlength > 0){
+			$this->maxLength = $maxLength;
 
 		}else{
 
