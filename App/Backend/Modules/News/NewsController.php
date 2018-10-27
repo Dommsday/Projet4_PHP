@@ -123,7 +123,7 @@ class NewsController extends BackController{
     
     public function executeUpdate(HTTPRequest $request){
 
-		$this->processForm($request);
+		$this->processTinyMCEForm($request);
 
 		$this->page->addVarPage('title', 'Modification de l\'article');
 	}
