@@ -10,7 +10,7 @@ class FormTinyMCEHandler{
 
 	public function __construct(Form $tinymce, Manager $manager, HTTPRequest $request){
 
-		$this->setForm($tinymce);
+		$this->setTinymce($tinymce);
 		$this->setManager($manager);
 		$this->setRequest($request);
 	}
@@ -27,7 +27,7 @@ class FormTinyMCEHandler{
 		return false;
 	}
 
-	public function setForm(Form $tinymce){
+	public function setTinymce(Form $tinymce){
 
 		$this->tinymce = $tinymce;
 	}
