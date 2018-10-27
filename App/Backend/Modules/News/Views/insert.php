@@ -2,7 +2,7 @@
 
 <form action="" method="post">
 	
-	<?= $form ?>
+	<?= $tinymce ?>
 
 	<input type="submit" value="Ajouter" />
 </form>
