@@ -26,7 +26,7 @@ class NewsController extends BackController{
     
     public function executeInsert(HTTPRequest $request){
 
-		$this->processForm($request);
+		$this->processTinyMCEForm($request);
 
 		$this->page->addVarPage('title', 'Ajout d\'un article');
 	}
