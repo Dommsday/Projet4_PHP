@@ -82,7 +82,7 @@ class NewsController extends BackController
     if($formHandler->process()){
 
       $this->app->user()->setMessage('Le commentaire a bien été ajouté !');
-      $this->app->httpResponse->redirect('news-'.$request->getData('news').'.html');
+      $this->app->httpResponse()->redirect('news-'.$request->getData('news').'.html');
     }
 
     $this->page->addVarPage('comment', $comment);
