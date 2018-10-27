@@ -56,8 +56,8 @@ class NewsController extends BackController{
 			}
 		}
 
-		$formBilder = new NewsFormBuilder($news);
-		$formBilder->build();
+		$formBuilder = new NewsFormBuilder($news);
+		$formBuilder->build();
 
 		$form = $formBuilder->form();
         
