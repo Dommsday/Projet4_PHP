@@ -8,7 +8,9 @@ use \Entity\News;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
+use \FormBuilder\NewsTinyMCEFormBuilder;
 use \framework\FormHandler;
+use \framework\FormTinyMCEHandler;
 
 class NewsController extends BackController{
 
@@ -72,6 +74,51 @@ class NewsController extends BackController{
 		}
 
 		$this->page->addVarPage('form', $form->createView());
+	}
+    
+    public function processTinyMCEForm(HTTPRequest $request){
+
+		if($request->method() == 'POST'){
+
+			$news = new News([
+
+				'author' => $request->postData('author'),
+				'title' => $request->postData('title'),
+				'content' => $request->postData('content')
+			]);
+
+			if($request->getExists('id')){
+
+				$news->setId($request->getData('id'));
+			}
+		}else{
+
+			if($request->getExists('id')){
+
+				$news = $this->managers->getManagerOf('News')->getPost($request->getData('id'));
+
+			}else{
+
+				$news = new News;
+			}
+		}
+
+		$formTinyMCEBuilder = new NewsTinyMCEFormBuilder($news);
+		$formTinyMCEBuilder->build();
+
+		$tinymce = $formTinyMCEBuilder->tinymce();
+        
+        $formTinyMCEHandler = new FormTinyMCEHandler($tinymce, $this->managers->getManagerOf('News'), $request);
+
+
+		if($formTinyMCEHandler->process()){
+
+			
+			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié ! ');
+			$this->app->httpResponse()->redirect('/admin/');
+		}
+
+		$this->page->addVarPage('tinymce', $tinymce->createView());
 	}
     
     public function executeUpdate(HTTPRequest $request){
