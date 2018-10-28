@@ -73,4 +73,9 @@ class CommentManagerPDO extends CommentManager{
 
 		$this->dao->exec('DELETE FROM comments WHERE news ='.(int) $news);
 	}
+    
+    public function count(){
+
+		return $this->dao->query('SELECT COUNT(*) FROM comments')->fetchColumn();
+	}
 }
