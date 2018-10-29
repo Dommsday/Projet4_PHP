@@ -31,3 +31,29 @@
 	?>
 </table>
 </div>
+
+
+<h2>Commentaires signalés</h2>
+
+<div class="warning-comments col-lg-12">
+<table>
+	<tr>
+		<th class="author">Auteur</th>
+		<th class="title">Article</th>
+		<th class="content">Contenu</th>
+		<th class="date">Date</th>
+		<th class="action">Action</th>
+	</tr>
+
+	<?php
+	foreach ($commentsWarning as $comment) {
+
+		echo '<tr><td>'.$comment['author'].'</td>
+		<td>'.$comment['news'].'</td>
+		<td>'.$comment['content'].'</td>
+		<td>'.$comment['date']->format('d/m/Y à H\hi').'</td>
+		<td><a href="news-update-'.$comment['id'].'.html"><i class="fas fa-check"></i></a> <a href="news-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a></td></tr>';
+	}
+	?>
+</table>
+</div>
