@@ -10,6 +10,7 @@ class Comment extends Entity{
 	protected $author;
 	protected $date;
 	protected $content;
+    protected $warning;
 
 	const AUTEUR_INVALIDE = 1;
 	const CONTENU_INVALIDE = 2;
@@ -48,6 +49,11 @@ class Comment extends Entity{
 
 		$this->date = $date;
 	}
+    
+    public function setWarning($warning){
+
+		$this->warning = $warning;
+	}
 
 	public function news(){
 		return $this->news;
@@ -63,6 +69,10 @@ class Comment extends Entity{
 
 	public function date(){
 		return $this->date;
+	}
+    
+    public function warning(){
+		return $this->warning;
 	}
 }
 
