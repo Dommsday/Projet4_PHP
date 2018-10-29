@@ -52,7 +52,7 @@
 		<td>'.$comment['news'].'</td>
 		<td>'.$comment['content'].'</td>
 		<td>'.$comment['date']->format('d/m/Y à H\hi').'</td>
-		<td><a href="news-update-'.$comment['id'].'.html"><i class="fas fa-check"></i></a> <a href="news-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a></td></tr>';
+		<td><a href="#"><i class="fas fa-check"></i></a> <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a></td></tr>';
 	}
 	?>
 </table>
