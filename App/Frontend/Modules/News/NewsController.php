@@ -90,4 +90,13 @@ class NewsController extends BackController
     $this->page->addVarPage('title', 'Ajout d\'un commentaire');
    
   }
+    
+    public function executeWarningComment(HTTPRequest $request){
+
+    // On ajoute une définition pour le titre.
+    $this->page->addVarPage('title', 'Signalement de commentaire');
+
+    $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
+
+  }
 }
