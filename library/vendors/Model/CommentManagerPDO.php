@@ -43,7 +43,7 @@ class CommentManagerPDO extends CommentManager{
     
     public function getCommentsWarning(){
 
-		$request = $this->dao->query('SELECT author, news, content, date FROM comments WHERE warning = 1');
+		$request = $this->dao->query('SELECT id, author, news, content, date FROM comments WHERE warning = 1');
 		
 		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\Comment');
 
