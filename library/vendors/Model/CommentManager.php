@@ -14,6 +14,8 @@ abstract class CommentManager extends Manager{
     abstract protected function modify(Comment $comment);
     
     abstract public function warning($id);
+    
+    abstract public function commentValid($id);
 
     abstract public function get($id);
     
