@@ -100,4 +100,9 @@ class CommentManagerPDO extends CommentManager{
 		$request = $this->dao->exec('UPDATE comments SET warning = 1 WHERE id = '.(int) $id);
 
 	}
+    
+    public function commentValid($id){
+
+		$request = $this->dao->exec('UPDATE comments SET warning = 0 WHERE id = '.(int) $id);
+	}
 }
