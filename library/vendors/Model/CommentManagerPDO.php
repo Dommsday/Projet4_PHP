@@ -78,4 +78,10 @@ class CommentManagerPDO extends CommentManager{
 
 		return $this->dao->query('SELECT COUNT(*) FROM comments')->fetchColumn();
 	}
+    
+    public function warning($id){
+
+		$request = $this->dao->exec('UPDATE comments SET warning = 1 WHERE id = '.(int) $id);
+
+	}
 }
