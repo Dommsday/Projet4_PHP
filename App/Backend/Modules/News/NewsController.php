@@ -184,4 +184,13 @@ class NewsController extends BackController{
 
 		$this->app->httpResponse()->redirect('.');
 	}
+    
+    public function executeCommentValid(HTTPRequest $request){
+
+		$this->managers->getManagerOf('Comment')->commentValid($request->getData('id'));
+
+		$this->app->user()->setMessage('Le commentaire a bien été validé ! ');
+
+		$this->app->httpResponse()->redirect('.');
+	}
 }
