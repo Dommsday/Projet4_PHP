@@ -16,16 +16,24 @@ class NewsController extends BackController{
 
 	public function executeIndex(HTTPRequest $request){
 
-		$this->page->addVarPage('title', 'Liste des news');
+		$this->page->addVarPage('title', 'Tableau de bord');
 
 		$manager = $this->managers->getManagerOf('News');
         $managerscomments = $this->managers->getManagerOf('Comment');
 
-		$this->page->addVarPage('listNews', $manager->getList());
 		$this->page->addVarPage('nombreNews', $manager->count());
         
         $this->page->addVarPage('commentsWarning', $managerscomments->getCommentsWarning());
         $this->page->addVarPage('nombreComments', $managerscomments->count());
+	}
+    
+    public function executeAllPost(HTTPRequest $request){
+
+		$this->page->addVarPage('title', 'Liste des articles');
+
+		$manager = $this->managers->getManagerOf('News');
+
+		$this->page->addVarPage('listNews', $manager->getList());
 	}
     
     public function executeInsert(HTTPRequest $request){
