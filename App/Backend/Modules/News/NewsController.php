@@ -36,6 +36,16 @@ class NewsController extends BackController{
 		$this->page->addVarPage('listNews', $manager->getList());
 	}
     
+    public function executeSeeAllComments(HTTPRequest $request){
+
+		$this->page->addVarPage('title', 'Liste des commentaires');
+
+		$manager = $this->managers->getManagerOf('Comment');
+
+		
+		$this->page->addVarPage('commentsWarning', $manager->getCommentsWarning());
+	}
+    
     public function executeInsert(HTTPRequest $request){
 
 		$this->processTinyMCEForm($request);
