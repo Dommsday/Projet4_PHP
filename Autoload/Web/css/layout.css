@@ -67,18 +67,12 @@ h2{
 	font-weight: bold;
 }
 
-.news{
-	background-color: #FF6B6B;
-}
-
-.comments{
-	background-color: #20C997;
-}
-
 .news, .comments{
+	background: #228BE6;
 	width: 300px;
 	height: 150px;
 }
+
 
 .number{
 
@@ -87,12 +81,12 @@ h2{
 	padding: 10px;
 }
 
-.all-resume{
+.all-resume, .warning-comments{
 	margin-top: 4%;
 	text-align: center;
 }
 
-.all-resume table{
+.all-resume table, .warning-comments table{
 	margin: auto;
 	width: 100%;
 }
@@ -104,10 +98,6 @@ th{
 
 td{
 	padding: 1%;
-}
-
-.container-resume{
-	background: yellow;
 }
 
 .fas{
