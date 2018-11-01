@@ -43,7 +43,7 @@ class NewsController extends BackController{
 		$manager = $this->managers->getManagerOf('Comment');
 
 		
-		$this->page->addVarPage('commentsWarning', $manager->getCommentsWarning());
+		$this->page->addVarPage('comments', $manager->getAllComment());
 	}
     
     public function executeInsert(HTTPRequest $request){
