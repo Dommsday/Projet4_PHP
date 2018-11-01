@@ -59,7 +59,7 @@ class CommentManagerPDO extends CommentManager{
     
     public function getAllComment(){
 
-		$request = $this->dao->query('SELECT c.id id_comments, c.author author_comments, c.content content_comments, c.warning warning_comments, c.date date_comments, n.title title_news FROM comments c INNER JOIN news n ON c.news = n.id');
+		$request = $this->dao->query('SELECT n.title title_news, c.author author_comment, c.content content_comment, c.date date_comment, c.warning warning_comment FROM comments c INNER JOIN news n ON n.id = c.news');
 
 		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\Comment');
 
