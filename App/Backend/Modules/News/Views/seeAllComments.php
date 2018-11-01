@@ -1,4 +1,3 @@
-<p>	Bonjour <?= $_SESSION['nom']?></p>
 
 <div class="warning-comments col-lg-12">
 <table>
@@ -10,15 +9,30 @@
 		<th class="action">Action</th>
 	</tr>
 
-	<?php
-	foreach ($commentsWarning as $comment) {
+	
 
-		echo '<tr><td>'.$comment['author'].'</td>
-		<td>'.$comment['news'].'</td>
-		<td>'.$comment['content'].'</td>
-		<td>'.$comment['date']->format('d/m/Y à H\hi').'</td>
-		<td><a href="comment-valid-'.$comment['id'].'.html"><i class="fas fa-check"></i></a> <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a></td><td><i class="fas fa-star"></i></td></tr>';
-	}
+	<?php
+		foreach ($comments as $comment){
+	?>
+		<tr><td><?= $comment['author_comment'] ?></td>
+		<td><?= $comment['title_news'] ?></td>
+		<td><?= $comment['content_comment'] ?></td>
+		
+		
+		<?php
+			if($comment['warning_comment'] == 1){
+				echo '<td><i class="fas fa-star"></i>
+						  <a href="comment-valid-'.$comment['id_comment'].'.html"><i class="fas fa-check"></i></a>
+						  <a href="comment-delete-'.$comment['id_comment'].'.html"><i class="fas fa-trash-alt"></i></a>
+					  </td>';
+			}
+		?>
+		</tr>
+
+
+
+	<?php
+		}
 	?>
 </table>
 </div>
