@@ -28,13 +28,25 @@
 	</tr>
 
 	<?php
-	foreach ($commentsWarning as $comment) {
+	foreach ($comments as $comment) {
+	?>
 
-		echo '<tr><td>'.$comment['author'].'</td>
-		<td>'.$comment['news'].'</td>
-		<td>'.$comment['content'].'</td>
-		<td>'.$comment['date']->format('d/m/Y à H\hi').'</td>
-		<td><a href="comment-valid-'.$comment['id'].'.html"><i class="fas fa-check"></i></a> <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a></td></tr>';
+	<?php
+		if($comment['warning'] == 1){
+	?>
+
+	<tr>
+		<td><?= $comment['author'] ?></td>
+		<td><?= $comment['title'] ?></td>
+		<td><?= $comment['comments'] ?></td>
+		<td><?= $comment['date'] ?></td>
+		<td><a href="comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
+			<a href="comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a> </td>
+	</tr>
+
+	<?php
+	}
+
 	}
 	?>
 </table>
