@@ -23,7 +23,7 @@ class NewsController extends BackController{
 
 		$this->page->addVarPage('nombreNews', $manager->count());
         
-        $this->page->addVarPage('commentsWarning', $managerscomments->getCommentsWarning());
+        $this->page->addVarPage('comments', $managerscomments->getAllComment());
         $this->page->addVarPage('nombreComments', $managerscomments->count());
 	}
     
