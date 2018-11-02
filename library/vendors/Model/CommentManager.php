@@ -23,8 +23,6 @@ abstract class CommentManager extends Manager{
     
     abstract public function deleteFromNews($news);
     
-    abstract public function getCommentsWarning();
-    
     abstract public function getAllComment();
 
 	public function save(Comment $comment){
