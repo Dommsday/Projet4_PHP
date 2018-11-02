@@ -14,22 +14,21 @@
 	<?php
 		foreach ($comments as $comment){
 	?>
-		<tr><td><?= $comment['author_comment'] ?></td>
-		<td><?= $comment['title_news'] ?></td>
-		<td><?= $comment['content_comment'] ?></td>
+		<tr><td><?= $comment['author'] ?></td>
+		<td><?= $comment['title'] ?></td>
+		<td><?= $comment['comments'] ?></td>
+		<td><?= $comment['date'] ?></td>
 		
 		
 		<?php
-			if($comment['warning_comment'] == 1){
+			if($comment['warning'] == 1){
 				echo '<td><i class="fas fa-star"></i>
-						  <a href="comment-valid-'.$comment['id_comment'].'.html"><i class="fas fa-check"></i></a>
-						  <a href="comment-delete-'.$comment['id_comment'].'.html"><i class="fas fa-trash-alt"></i></a>
+						  <a href="comment-valid-'.$comment['id'].'.html"><i class="fas fa-check"></i></a>
+						  <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a>
 					  </td>';
 			}
 		?>
 		</tr>
-
-
 
 	<?php
 		}
