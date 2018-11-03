@@ -9,6 +9,7 @@ abstract class Field{
 	protected $errorMessage;
 	protected $label;
 	protected $name;
+    protected $id;
 	protected $value;
     protected $validators = [];
 	protected $length;
@@ -45,6 +46,10 @@ abstract class Field{
 	public function name(){
 		return $this->name;
 	}
+    
+    public function id(){
+		return $this->id;
+	}
 
 	public function value(){
 		return $this->value;
@@ -59,6 +64,13 @@ abstract class Field{
 
 		if(is_string($label)){
 			$this->label = $label;
+		}
+	}
+    
+    public function setId($id){
+
+		if(is_string($id)){
+			$this->id = $id;
 		}
 	}
     
