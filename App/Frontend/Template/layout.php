@@ -12,29 +12,40 @@
 
 <body>
 	<header class="container-fluid">
-		<nav class="container">
-			<ul class ="nav justify-content-end">
-				<li class="nav-item">
-					<a class="nav-link" href="/">Accueil</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/admin/">Admin</a>
-				</li>
-				<?php
-					if($user->isAuthenticated()){
-				?>
+
+		<div class="container-header">
+			<div class="logo">
+                <a href="#">Jean Forteroche</a>
+            </div>
+
+            <nav class="header_nav">
+				<ul class ="nav justify-content-end">
 					<li class="nav-item">
-						<a class="nav-link" href="/admin/news-insert.html">Ajouter un article</a>
+							<a class="nav-link" href="/">Accueil</a>
 					</li>
-				<?php
-					}
-				?>
-			</ul>
-		</nav>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/admin/">Admin</a>
+					</li>
+
+					<?php
+						if($user->isAuthenticated()){
+					?>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/news-insert.html">Ajouter un article</a>
+						</li>
+					<?php
+						}
+					?>
+					
+				</ul>
+			</nav>
+
+		</div>
 	</header>
 
-	<section id="banniere" class="container-fluid">
-		<div class="row">
+	<section id="banniere">
+		<div class="ban">
 			<img src="/Web/images/ban_Alaska.jpg" />
 		</div>	
 	</section>
