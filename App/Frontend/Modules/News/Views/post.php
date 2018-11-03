@@ -1,43 +1,48 @@
-<div class="info-comment col-xl-12">
-	<p>Par <em><?= $post['author'] ?></em>, le <?= $post['date']->format('d/m/Y à H\hi') ?></p>
-</div>
+<div class="container container-post">
 
-<div class="title col-xl-12">
-	<h2><?= $post['title'] ?></h2>
-</div>
+	<div class="post-text col-lg-12">
+		<div class="info-comment col-xl-12">
+			<p>Par <em><?= $post['author'] ?></em>, le <?= $post['date']->format('d/m/Y à H\hi') ?></p>
+		</div>
 
-<p><?= nl2br($post['content']) ?></p>
+		<div class="title col-xl-12">
+			<h2 class="title-post"><?= $post['title'] ?></h2>
+		</div>
 
+		<p><?= nl2br($post['content']) ?></p>
 
-<div class="container-comment">
-<p><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaires</a></p>
+	</div>
 
-<?php
-	if(empty($comments)){
-?>
+	<div class="container-comment">
+		<p><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaires</a></p>
 
-<p>Aucun commentaire. Tu n'as pas envie d'etre le premier??</p>
-<?php
-}
+		<?php
+			if(empty($comments)){
+		?>
 
-foreach ($comments as $comment){
-?>
+		<p>Aucun commentaire. Tu n'as pas envie d'etre le premier??</p>
 
-<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
+		<?php
+			}
 
-<a href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
+			foreach ($comments as $comment){
+		?>
+		
+		<div class="comment">
+			<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
 
-<?php if($user->isAuthenticated()){ ?>
-		<a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a> / <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>
-<?php } ?>
+			<a href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
 
-</p>
+			</p>
 
-<p><?= $comment['content'] ?></p>
+			<p class="text-comment"><em><?= $comment['content'] ?></em></p>
 
-<?php
-}
-?>
+			<?php
+			}
+			?>
 
-<p><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaire</a></p>
+		</div>
+		
+	</div>
+
 </div>
