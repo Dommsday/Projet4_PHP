@@ -11,3 +11,8 @@ foreach ($listNews as $news){
 <?php
 }
 ?>
+
+
+<div class="button">
+	<button type="button" class="btn btn-primary"><a href="/all-post.html">Voir tout les articles</a></button>
+</div>
