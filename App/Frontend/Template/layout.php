@@ -25,6 +25,10 @@
 					<li class="nav-item">
 							<a class="nav-link" href="/">Accueil</a>
 					</li>
+					
+					<li class="nav-item">
+							<a class="nav-link" href="/all-post.html">Articles</a>
+					</li>
 
 					<li class="nav-item">
 						<a class="nav-link" href="/admin/">Admin</a>
