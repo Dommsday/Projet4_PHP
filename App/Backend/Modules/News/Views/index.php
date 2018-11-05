@@ -1,5 +1,5 @@
-<div class="title-admin col-lg-12">
-	<h1>Tableau de bord</h1>
+<div class="containt-admin title col-lg-12">
+	<h1 class="title-admin">Tableau de bord</h1>
 </div>
 
 <div class="informations col-lg-12">
@@ -14,8 +14,9 @@
 	</div>
 </div>
 
-
-<h2>Commentaires signalés</h2>
+<div class="title col-xl-12">
+		<h2 class="title-admin">Commentaires signalés</h2>
+</div>
 
 <div class="warning-comments col-lg-12">
 <table>
