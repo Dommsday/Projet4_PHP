@@ -1,8 +1,13 @@
-<h2>Ajouter une news</h2>
+<div class="title col-xl-12">
+	<h2 class="title-form">Ajouter une news</h2>
+</div>
 
-<form action="" method="post">
-	
-	<?= $tinymce ?>
+<div class="form col-xl-12">
+	<form action="" method="post">
+		<div class="form-group">
+			<?= $tinymce ?>
+		</div>
 
-	<input type="submit" value="Ajouter" />
-</form>
+		<input type="submit" class="btn btn-primary" value="Ajouter" />
+	</form>
+</div>
