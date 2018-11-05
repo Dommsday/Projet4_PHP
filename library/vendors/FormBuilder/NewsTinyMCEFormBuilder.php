@@ -12,8 +12,10 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
   public function build()
   {
     $this->tinymce->add(new StringField([
-        'label' => 'author',
+        'label' => 'Auteur',
         'name' => 'author',
+        'id' => 'author',
+        'boots' => 'form-control',
         'maxLength' => 20,
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
@@ -22,9 +24,10 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
        ]));
 
        $this->tinymce->add(new StringField([
-        'label' => 'Title',
+        'label' => 'Titre',
         'name' => 'title',
-        'maxLength' => 100,
+        'id' => 'title',
+        'boots' => 'form-control',
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long', 100),
           new NotNullValidator('Merci de spécifier le titre de la news'),
@@ -34,6 +37,7 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
       $this->tinymce->add(new TextTinyField([
         'label' => 'Content',
         'name' => 'content',
+        'id' => 'mytextarea',
         'rows' => 8,
         'cols' => 60,
         'validators' => [
