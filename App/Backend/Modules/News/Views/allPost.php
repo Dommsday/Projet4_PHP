@@ -1,9 +1,6 @@
-<p>	Bonjour <?= $_SESSION['nom']?></p>
-
 <div class="all-resume col-lg-12">
 <table>
 	<tr>
-		<th class="author">Auteur</th>
 		<th class="title">Titre</th>
 		<th class="date">Date</th>
 		<th class="action">Action</th>
@@ -11,13 +8,19 @@
 
 	<?php
 	foreach ($listNews as $news) {
+	?>
 
-		echo '<tr><td>'.$news['author'].'</td>
-		<td>'.$news['title'].'</td>
-		<td>'.$news['date'].'</td>
-		<td> <a href="news-update-'.$news['id'].'.html"><i class="fas fa-pen"></i></a> <a href="news-delete-'.$news['id'].'.html"><i class="fas fa-trash-alt"></i></a></td></tr>';
+	<tr>
+		<td><a href="../news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></td>
+		<td><?= $news['date'] ?></td>
+		<td><a href="news-update-<?= $news['id'] ?>.html"><i class="fas fa-pen"></i></a>
+			<a href="news-delete-<?= $news['id'] ?>.html"><i class="fas fa-trash-alt"></i></a></td>
+	</tr>
+
+	<?php
 	}
 	?>
+
 </table>
 </div>
 
