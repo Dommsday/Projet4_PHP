@@ -48,7 +48,7 @@
 
 	<section id="banniere">
 		<div class="ban">
-			<img src="/Web/images/ban_Alaska.jpg" alt="Baleine"/>
+			<img src="/Web/images/ban_Alaska.jpg" alt="Baleine" />
 		</div>	
 	</section>
 
