@@ -10,7 +10,7 @@ abstract class Field{
 	protected $label;
 	protected $name;
     protected $id;
-    protected $class;
+    protected $boots;
 	protected $value;
     protected $validators = [];
 	protected $length;
@@ -44,8 +44,8 @@ abstract class Field{
 		return $this->label;
 	}
     
-    public function class(){
-        return $this->class;
+    public function boots(){
+        return $this->boots;
     }
 
 	public function name(){
@@ -72,9 +72,9 @@ abstract class Field{
 		}
 	}
     
-    public function setClass($class){
-        if(is_string($class)){
-            $this->class = $class;
+    public function setBoots($boots){
+        if(is_string($boots)){
+            $this->boots = $boots;
         }
     }
     
