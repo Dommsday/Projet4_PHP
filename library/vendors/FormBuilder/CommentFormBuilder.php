@@ -24,7 +24,7 @@ class CommentFormBuilder extends FormBuilder
        ]));
        $this->form->add(new TextField([
         'label' => 'Commentaire',
-        'name' => 'comment',
+        'name' => 'content',
         'id' => 'comment',
         'boots' => 'form-control',
         'rows' => 7,
