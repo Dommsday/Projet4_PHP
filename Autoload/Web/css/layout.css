@@ -6,6 +6,8 @@ body, html{
 /*PARTIE HEADER
 *****************/
 header{
+	position: relative;
+	top: 0%;
     width: 100%;
     height: 100px;
 }
@@ -18,7 +20,7 @@ header .container-header{ /*Il contient le logo et le menu de navigation*/
 }
 
 .logo{
-    margin: 0.6% 0% 0% 5%;
+    margin: 1.6% 0% 0% 5%;
 }
 
 .header_nav{
@@ -27,8 +29,12 @@ header .container-header{ /*Il contient le logo et le menu de navigation*/
 
 .header_nav ul li{
     color: #87898d;
-    margin-right: 20px;
-    padding: 30px 15px 0px 15px;
+    margin: 2% 0% 0% 0%;
+    padding: 10px 15px 0px 15px;
+}
+
+.logo, .header_nav ul li{
+	font-size: 1.5em;
 }
 /*FIN HEADER
 ****************/
@@ -36,25 +42,38 @@ header .container-header{ /*Il contient le logo et le menu de navigation*/
 /*PARTIE BANNIERE
 *******************/
 #banniere{
-	background-color: green;
 	position: relative;
 	width: 100%;
-	height: 600px;
 }
 
 .ban{
-	display: flex;
+ 	display: flex;
     width: 100%;
     min-width: 100%;
-    height: 100%;
 }
 
 .ban img{
 	width: 100%;
-    min-width: 100%;
+    max-width: 100%;
     height: 100%;
     max-height: 100%;
 }
+
+.texte_banniere{
+    position: absolute;
+    display: flex;
+    top: 30%;
+    left: 22%;
+    width: 65%;
+}
+
+.texte_banniere h1{
+	text-align: center;
+    font-size: 6em;
+    color: #DAF0F7; 
+    text-shadow: #000000 4px 4px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
+}
+
 
 /*PARTIE BANNIERE
 *******************/
@@ -79,16 +98,43 @@ h2{
 	margin-bottom: 10px;
 }
 
-.info-author{
-	font-weight: bold;
+.button{
+	margin-left: 42%;
+	margin-bottom: 2%;
+}
+
+.button a{
+	color: #FFFFFF;
 }
 
 /*FIN NEWS
 *******************/
 
+/*DEBUT ALL NEWS
+*******************/
+.all-post-text{
+	margin-top: 2%;
+	border: 2px solid black;
+	border-radius: 50px;
+	padding: 2%;
+	background: #ACDBEA;
+}
+
+.title-all-post h2 a{
+	color: #5F7CE7;
+	font-weight: bold;
+}
+/*FIN ALL NEWS
+*******************/
+
 
 /*DEBUT NEW
 *******************/
+
+.info-author{
+	font-weight: bold;
+}
+
 a{
 	color: #5F7CE7;
 }
@@ -110,6 +156,8 @@ a:hover{
 
 .title-post{
 	font-size: 2.2em;
+	color: #5F7CE7;
+	font-weight: bold;
 }
 
 .post-text, .container-comment{
@@ -133,7 +181,6 @@ a:hover{
 	background: #FFFFFF;
 }
 
-
 /*FIN NEW
 *******************/
 
@@ -143,29 +190,9 @@ a:hover{
 /*Partie Backend
 ****************/
 
-/*PARTIE CONNEXION
-********************/
-.title-form, .title-admin{
-	font-size: 3em;
-	margin-top: 2%;
-}
 
-.form{
-	border: solid black 2px;
-	background: #DDDEDE;
-	border-radius: 20px;
-	margin: 2%;
-}
-
-label{
-	font-weight: bold;
-	letter-spacing: 1px;
-}
-
-.form-group, .btn-primary{
-	margin: 2%;
-}
-
+/*PARTIE INDEX
+*****************/
 .containt-admin{
 	text-align: center;
 	margin-bottom: 4%;
@@ -176,13 +203,14 @@ label{
 .informations{
 	display: flex;
 	justify-content: space-around;
+	margin-bottom: 4%;
 }
 
 .informations h2{
 	text-align: inherit;
 	font-size: 1.4em;
 	padding: 10px;
-	color: #F9FFF8;
+	color: #000000;
 	font-weight: bold;
 }
 
@@ -190,15 +218,24 @@ label{
 	background: #228BE6;
 	width: 300px;
 	height: 150px;
+	transition-property: background;
+	transition-duration: 1s;
+}
+
+.news:hover, .comments:hover{
+	background: #FBEDE0;
 }
 
 
 .number{
-
 	font-size: 2em;
-	color: #F9FFF8;
+	color: #000000;
 	padding: 10px;
 }
+
+/*FIN INDEX
+****************/
+
 
 .all-resume, .warning-comments{
 	margin-top: 4%;
@@ -235,3 +272,29 @@ td{
 
 /*Fin partie tout les commentaires
 ********************************/
+
+/*DEBUT FORMULAIRE
+**********************/
+.title-form, .title-admin{
+	font-size: 3em;
+	margin-top: 2%;
+}
+
+.form{
+	border: solid black 2px;
+	background: #FBEDE0;
+	border-radius: 20px;
+	margin: 2%;
+}
+
+label{
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.form-group, .btn-primary{
+	margin: 2%;
+}
+
+/*FIN FORMULAIRE
+**********************/
