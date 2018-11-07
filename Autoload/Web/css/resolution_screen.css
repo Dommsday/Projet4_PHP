@@ -1,0 +1,57 @@
+/*PARTIE FRONTEND
+*********************/
+
+/*DEBUT HEADER
+********************/
+.navbar-brand, .nav-item{
+	font-size: 1.9vw;
+}
+
+.nav-item{
+    padding: 10px;
+}
+/*FIN HEADER
+*******************/
+
+/*DEBUT PARTIE BANNIERE
+******************/
+
+
+/*FIN PARTIE BANNIERE
+*****************/
+.intro{
+    left: 10%;
+}
+
+.intro h1{
+    font-size: 6.7vw;
+}
+/*PARTIE NEWS
+*******************/
+ .contenu{
+	margin: 78px;
+}
+
+/*FIN NEWS
+*******************/
+
+/*FIN FRONTEND
+*********************/
+
+/*PARTIE INDEX
+*******************/
+.warning-comments td{
+	padding: 15px;
+}
+
+/*FIN PARTIE INDEX
+*******************/
+
+
+/*PARTIE BACKEND
+*********************/
+
+
+
+/*FIN BACKEND
+*********************/

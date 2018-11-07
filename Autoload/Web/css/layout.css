@@ -2,40 +2,53 @@
 ***********************/
 body, html{
 	font-family: 'Puritan', sans-serif;
+	background-color: rgb(211, 236, 250);
+}
+
+a{
+	color: #5F7CE7;
+}
+
+a:hover{
+	text-decoration: inherit;
+}
+
+th{
+	margin: 6%;
+	border-bottom: 2px solid #d9d9d9 
+}
+
+td{
+	padding: 1%;
 }
 /*PARTIE HEADER
 *****************/
 header{
-	position: relative;
-	top: 0%;
     width: 100%;
-    height: 100px;
+    height: 120px;
+    background: #8AD1F9;
 }
 
-header .container-header{ /*Il contient le logo et le menu de navigation*/
+.navbar{
     width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
+    height: 120px;
+    position: relative;
+   
 }
 
-.logo{
-    margin: 1.6% 0% 0% 5%;
+.navbar-brand, .nav-item{
+	font-size: 1.2vw;
+    font-weight: bold;
 }
 
-.header_nav{
-    width: 37%;
+.navbar-nav{
+	position: absolute;
+	right: 0%;
+}
+.nav-item{
+    padding: 30px;
 }
 
-.header_nav ul li{
-    color: #87898d;
-    margin: 2% 0% 0% 0%;
-    padding: 10px 15px 0px 15px;
-}
-
-.logo, .header_nav ul li{
-	font-size: 1.5em;
-}
 /*FIN HEADER
 ****************/
 
@@ -44,45 +57,49 @@ header .container-header{ /*Il contient le logo et le menu de navigation*/
 #banniere{
 	position: relative;
 	width: 100%;
+	height: 600px;
+	padding: 0px;
 }
 
 .ban{
- 	display: flex;
+	display: flex;
     width: 100%;
-    min-width: 100%;
+    max-width: 100%;
+    height: 600px;
 }
 
-.ban img{
+.img-fluid{
 	width: 100%;
     max-width: 100%;
-    height: 100%;
-    max-height: 100%;
+    height: auto;
 }
 
-.texte_banniere{
+.intro{
     position: absolute;
     display: flex;
-    top: 30%;
-    left: 22%;
-    width: 65%;
+    top: 40%;
+    left: 20%;
 }
 
-.texte_banniere h1{
+.intro h1{
 	text-align: center;
-    font-size: 6em;
+    font-size: 5vw;
     color: #DAF0F7; 
     text-shadow: #000000 4px 4px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
 
-/*PARTIE BANNIERE
+/*FIN PARTIE BANNIERE
 *******************/
 
 /*PARTIE NEWS
 *******************/
 
 .section-container{
-	background-color: rgb(211, 236, 250);
+	height: auto;
+}
+
+.container-contenu{
 	height: auto;
 }
 
@@ -93,9 +110,10 @@ header .container-header{ /*Il contient le logo et le menu de navigation*/
 	margin: 90px;
 }
 
-h2{
+.title-index{
 	text-align: center;
 	margin-bottom: 10px;
+	padding: 10px;
 }
 
 .button{
@@ -110,45 +128,17 @@ h2{
 /*FIN NEWS
 *******************/
 
-/*DEBUT ALL NEWS
+/*DEBUT PAGE UNE NEW
 *******************/
-.all-post-text{
-	margin-top: 2%;
-	border: 2px solid black;
-	border-radius: 50px;
-	padding: 2%;
-	background: #ACDBEA;
+.container-post{
+	margin: 2%;
 }
-
-.title-all-post h2 a{
-	color: #5F7CE7;
-	font-weight: bold;
-}
-/*FIN ALL NEWS
-*******************/
-
-
-/*DEBUT NEW
-*******************/
 
 .info-author{
 	font-weight: bold;
 }
 
-a{
-	color: #5F7CE7;
-}
-
-a:hover{
-	text-decoration: inherit;
-}
-
-
-.container-post{
-	margin: 2%;
-}
-
-.info-comment{
+.info-post{
 	margin-top: 2%;
 	margin-bottom: 2%;
 	font-weight: bold;
@@ -158,6 +148,7 @@ a:hover{
 	font-size: 2.2em;
 	color: #5F7CE7;
 	font-weight: bold;
+	text-align: center;
 }
 
 .post-text, .container-comment{
@@ -181,11 +172,80 @@ a:hover{
 	background: #FFFFFF;
 }
 
-/*FIN NEW
+.link-comment{
+	font-weight: bold;
+}
+
+.link-warning{
+	margin-left: 10px;
+}
+
+/*FIN PAGE UNE NEW
+*******************/
+
+/*DEBUT PAGE TOUTE LES NEWS
+****************************/
+.all-post-text{
+	margin-top: 2%;
+	border: 2px solid #000000;
+	border-radius: 50px;
+	padding: 2%;
+	background: #FFFFFF;
+}
+
+.title-all-post h2 a{
+	color: #5F7CE7;
+	font-weight: bold;
+}
+
+.container-all-post .info-comment{
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/*FIN PAGE TOUTE LES NEWS
+***************************/
+
+/*DEBUT FOOTER
+*******************/
+footer{
+	background: #8AD1F9;
+	text-align: center;
+}
+
+/*FIN FOOTER
 *******************/
 
 /*Fin Partie Frontend
 ***********************/
+
+/*DEBUT FORMULAIRE
+**********************/
+.title-form, .title-admin{
+	font-size: 3em;
+	margin-top: 2%;
+}
+
+.form{
+	border: solid black 2px;
+	background: #FBEDE0;
+	border-radius: 20px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+label{
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.form-group, .btn-primary{
+	margin: 2%;
+}
+
+/*FIN FORMULAIRE
+**********************/
+
 
 /*Partie Backend
 ****************/
@@ -193,17 +253,22 @@ a:hover{
 
 /*PARTIE INDEX
 *****************/
+
 .containt-admin{
 	text-align: center;
 	margin-bottom: 4%;
 	margin-top: 2%;
 }
 
+.title-admin{
+	font-weight: bold;
+	letter-spacing: 2px;
+}
 
 .informations{
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 4%;
+	margin-top: 7%;
 }
 
 .informations h2{
@@ -212,6 +277,7 @@ a:hover{
 	padding: 10px;
 	color: #000000;
 	font-weight: bold;
+	letter-spacing: 2px;
 }
 
 .news, .comments{
@@ -233,68 +299,65 @@ a:hover{
 	padding: 10px;
 }
 
-/*FIN INDEX
-****************/
-
-
-.all-resume, .warning-comments{
-	margin-top: 4%;
+.title-comments-warning{
+	margin-top: 7%;
 	text-align: center;
 }
 
-.all-resume table, .warning-comments table{
+
+.warning-comments{
+	margin-top: 7%;
+	margin-bottom: 4%;
+	text-align: center;
+}
+
+
+.warning-comments table{
 	margin: auto;
 	width: 100%;
 }
 
-.warning-comments{
-	margin-bottom: 4%;
+.warning-comments th{
+	letter-spacing: 2px;
+	font-size: 1.2em;
 }
 
-th{
-	margin: 6%;
-	border-bottom: 2px solid #d9d9d9 
-}
-
-td{
-	padding: 1%;
-}
+.warning-comments td{
+	font-size: 1.1em;
+}    
 
 .fas{
 	margin-right: 10px;
 }
 
-/*Partie tout les commentaires
+/*FIN INDEX
+****************/
+
+/*PARTIE TOUT LES COMMENTAIRES
 ********************************/
 .fa-star{
 	color: red;
 }
 
-/*Fin partie tout les commentaires
+/*FIN PARTIE TOUT LES COMMENTAIRES
 ********************************/
 
-/*DEBUT FORMULAIRE
-**********************/
-.title-form, .title-admin{
-	font-size: 3em;
-	margin-top: 2%;
+/*PARTIE PAGE TOUT LES ARTICLES
+**********************************/
+.all-resume{
+	margin-top: 4%;
+	text-align: center;
 }
 
-.form{
-	border: solid black 2px;
-	background: #FBEDE0;
-	border-radius: 20px;
-	margin: 2%;
+.all-resume table{
+	margin: auto;
+	width: 100%;
 }
 
-label{
+td.title, td.date{
+	font-size: 1.4em;
 	font-weight: bold;
-	letter-spacing: 1px;
 }
 
-.form-group, .btn-primary{
-	margin: 2%;
-}
-
-/*FIN FORMULAIRE
-**********************/
+/*FIN PAGE TOUT LES ARTICLES
+**********************************/

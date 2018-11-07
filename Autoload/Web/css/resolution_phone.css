@@ -1,0 +1,132 @@
+/*DEBUT FRONTEND
+********************/
+
+/*PARTIE HEADER
+******************/
+
+.navbar-brand, .nav-item{
+	font-size: 3.6vw;
+}
+
+#navbarSupportedContent ul{
+	z-index: 1;
+	width: 100%;
+	background: #8AD1F9;
+	margin-top: 20px; 
+}
+
+/*FIN PARTIE HEADER
+********************/
+
+/*PARTIE BANNIERE
+*******************/
+
+#banniere, .ban{
+	height: 300px;
+}
+
+.intro{
+    top: 35%;
+    left: 3%;
+}
+
+.intro h1{
+    font-size: 7.6vw;
+}
+
+/*FIN PARTIE BANNIERE
+**********************/
+
+/*PARTIE NEWS
+*******************/
+.button{
+	margin-left: 34%;
+	margin-bottom: 10%;
+}
+/*FIN NEWS
+*******************/
+
+/*DEBUT PAGE UNE NEW
+*******************/
+.post-text p{
+	padding: 10px;
+}
+
+.info-post{
+	text-align: center;
+}
+
+.post-text, .container-comment{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+/*FIN DEBUT PAGE UNE NEW
+*******************/
+
+/*FIN FRONTEND
+********************/
+
+/*DEBUT BACKEND
+********************/
+
+/*DEBUT INDEX
+*****************/
+.informations{
+	display: flex;
+	flex-direction: column;
+}
+
+.news, .comments{
+	margin-left: 20%;
+	margin-bottom: 15%;
+}
+
+.author-warning, .comment-warning{
+	font-weight: bold;
+}
+
+th.author, td.author-warning, 
+th.date, td.date-warning, th.action, td.action-warning{
+	display: none;
+}
+/*FIN INDEX
+*****************/
+
+/*PAGE TOUT LES ARTICLES
+**************************/
+.all-resume th.date, .all-resume td.date, 
+.all-resume th.action, .all-resume td.action{
+	display: none;
+}
+
+.all-resume td.title-warning, .all-resume td.comment-warning{
+	padding: 15px;
+}
+/*FIN PAGE TOUT LES ARTICLES
+******************************/
+
+/*PAGE TOUT LES COMMENTAIRES
+**************************/
+.warning-comments th.author, .warning-comments td.author, 
+.warning-comments th.date, .warning-comments td.date,
+.warning-comments th.action, .warning-comments td.action{
+	display: none;
+}
+
+.warning-comments td.title, .warning-comments td.content{
+	padding: 15px;
+}
+
+.warning-comments td.title{
+ 	font-size: 1em;
+}
+
+/*FIN PAGE TOUT LES COMMENTAIRES
+**************************/
+footer{
+	margin-top: 240px;
+}
+/*FIN BACKEND
+********************/
