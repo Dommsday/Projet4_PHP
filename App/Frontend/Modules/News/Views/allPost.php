@@ -1,21 +1,22 @@
-<div class="container container-allpost">
+<div class="container container-all-post">
 
 		<?php
 			foreach ($listNews as $news) {
 		?>
 
-	<div class="all-post-text col-lg-12">
+	<div class="all-post-text col-md-12 col-lg-12 col-xl-12">
 
-		<div class="title-all-post col-xl-12">
-			<h2><a href="../news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></h2>
+		<div class="title-all-post">
+			<h2 class="title-post"><a href="../news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></h2>
 		</div>
 
-		<div class="info-comment col-xl-12">
+		<div class="info-comment">
 			<?= $news['date'] ?>
 		</div>
 
-		<?= $news['content'] ?>
-
+		<div class="container-text">
+			<?= $news['content'] ?>
+		</div>
 	</div>
 		<?php
 		}

@@ -1,8 +1,8 @@
-<div class="title col-xl-12">
+<div class="title col-lg-12 col-xl-12">
 	<h2 class="title-form">Ajouter une news</h2>
 </div>
 
-<div class="form col-xl-12">
+<div class="form col-lg-12 col-xl-12">
 	<form action="" method="post">
 		<div class="form-group">
 			<?= $tinymce ?>

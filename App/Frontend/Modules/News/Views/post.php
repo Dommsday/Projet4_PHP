@@ -1,11 +1,11 @@
 <div class="container container-post">
 
-	<div class="post-text col-lg-12">
-		<div class="info-comment col-xl-12">
+	<div class="post-text col-md-12 col-lg-12 col-xl-12">
+		<div class="info-post col-md-12 col-lg-12 col-xl-12">
 			<p>Par <em><?= $post['author'] ?></em>, le <?= $post['date']->format('d/m/Y à H\hi') ?></p>
 		</div>
 
-		<div class="title col-xl-12">
+		<div class="title col-md-12 col-lg-12 col-xl-12">
 			<h2 class="title-post"><?= $post['title'] ?></h2>
 		</div>
 
@@ -13,8 +13,8 @@
 
 	</div>
 
-	<div class="container-comment">
-		<p><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaires</a></p>
+	<div class="container-comment container-text col-md-12 col-lg-12 col-xl-12">
+		<p class="link-comment"><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaires</a></p>
 
 		<?php
 			if(empty($comments)){
@@ -31,7 +31,7 @@
 		<div class="comment">
 			<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
 
-			<a href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
+			<a class="link-warning" href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
 
 			</p>
 

@@ -1,8 +1,8 @@
-<div class="containt-admin title col-lg-12">
+<div class="containt-admin title col-md-12 col-lg-12 col-xl-12">
 	<h1 class="title-admin">Tableau de bord</h1>
 </div>
 
-<div class="informations col-lg-12">
+<div class="informations col-sm-12 col-md-12 col-lg-12 col-xl-12">
 	<div class="news">
 			<a href="/admin/all-post.html"><h2>Articles</h2></a>
 			<p class="number"> <?= $nombreNews ?> </p>
@@ -14,11 +14,11 @@
 	</div>
 </div>
 
-<div class="title col-xl-12">
+<div class="title-comments-warning col-md-12 col-lg-12 col-xl-12">
 		<h2 class="title-admin">Commentaires signalés</h2>
 </div>
 
-<div class="warning-comments col-lg-12">
+<div class="warning-comments col-md-12 col-lg-12 col-xl-12">
 <table>
 	<tr>
 		<th class="author">Auteur</th>
@@ -37,11 +37,11 @@
 	?>
 
 	<tr>
-		<td><?= $comment['author'] ?></td>
-		<td><?= $comment['title'] ?></td>
-		<td><?= $comment['comments'] ?></td>
-		<td><?= $comment['date'] ?></td>
-		<td><a href="comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
+		<td class="author-warning"><?= $comment['author'] ?></td>
+		<td class="title-warning"><?= $comment['title'] ?></td>
+		<td class="comment-warning"><?= $comment['comments'] ?></td>
+		<td class="date-warning"><?= $comment['date'] ?></td>
+		<td class="action-warning"><a href="comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
 			<a href="comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a> </td>
 	</tr>
 

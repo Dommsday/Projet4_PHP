@@ -1,5 +1,5 @@
 
-<div class="warning-comments col-lg-12">
+<div class="warning-comments col-md-12 col-lg-12 col-xl-12">
 <table>
 	<tr>
 		<th class="author">Auteur</th>
@@ -14,22 +14,22 @@
 	<?php
 		foreach ($comments as $comment){
 	?>
-		<tr><td><?= $comment['author'] ?></td>
-		<td><?= $comment['title'] ?></td>
-		<td><?= $comment['comments'] ?></td>
-		<td><?= $comment['date'] ?></td>
+		<td class="author"><?= $comment['author'] ?></td>
+		<td class="title"><?= $comment['title'] ?></td>
+		<td class="content"><?= $comment['comments'] ?></td>
+		<td class="date"><?= $comment['date'] ?></td>
 		
-		
+
 		<?php
 			if($comment['warning'] == 1){
-				echo '<td><i class="fas fa-star"></i>
+				echo '<td class="action"><i class="fas fa-star"></i>
 						  <a href="comment-valid-'.$comment['id'].'.html"><i class="fas fa-check"></i></a>
 						  <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a>
 					  </td>';
 			}
 		?>
 		</tr>
-
+		
 	<?php
 		}
 	?>
