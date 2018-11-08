@@ -40,10 +40,10 @@ class NewsController extends BackController{
 
 		$this->page->addVarPage('title', 'Liste des commentaires');
 
-		$manager = $this->managers->getManagerOf('Comment');
+		$managercomments = $this->managers->getManagerOf('Comment');
 
-		
-		$this->page->addVarPage('comments', $manager->getAllComment());
+		$this->page->addVarPage('comments', $managercomments->getAllComment());
+
 	}
     
     public function executeInsert(HTTPRequest $request){
@@ -158,40 +158,7 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('L\'article à bien été supprimé');
 
-		$this->app->httpResponse()->redirect('.');
-	}
-    
-    public function executeUpdateComment(HTTPRequest $request){
-
-		$this->page->addVarPage('title', 'Modification d\'un commentaire');
-
-		if($request->method() == 'POST'){
-
-			$comment = new Comment([
-
-				'id' => $request->getData('id'),
-				'author' => $request->postData('author'),
-				'content' => $request->postData('content')
-			]);
-		}else{
-
-			$comment = $this->managers->getManagerOf('Comment')->get($request->getData('id'));
-		}
-
-		$formBuilder = new CommentFormBuilder($comment);
-		$formBuilder->build();
-
-		$form = $formBuilder->form();
-        
-        $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comment'), $request);
-
-		if($formHandler->process()){
-            
-			$this->app->user()->setMessage('Le comment a bien été modifié');
-			$this->app->httpResponse()->redirect('/admin/');
-		}
-
-		$this->page->addVarPage('form', $form->createView());
+		$this->app->httpResponse()->redirect('/admin/all-post.html');
 	}
     
     public function executeDeleteComment(HTTPRequest $request){
@@ -207,8 +174,8 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('Comment')->commentValid($request->getData('id'));
 
-		$this->app->user()->setMessage('Le commentaire a bien été validé ! ');
+		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
 
-		$this->app->httpResponse()->redirect('.');
+		$this->app->httpResponse()->redirect('/admin/');
 	}
 }

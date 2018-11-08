@@ -14,6 +14,7 @@
 	<?php
 		foreach ($comments as $comment){
 	?>
+	<tr>
 		<td class="author"><?= $comment['author'] ?></td>
 		<td class="title"><?= $comment['title'] ?></td>
 		<td class="content"><?= $comment['comments'] ?></td>
@@ -36,4 +37,4 @@
 </table>
 </div>
 
-<p><a href="/admin/">Retour</a></p>
+<p><a class="link" href="/admin/">Retour</a></p>

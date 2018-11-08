@@ -24,4 +24,4 @@
 </table>
 </div>
 
-<p><a href="/admin/">Retour</a></p>
+<p><a class="link " href="/admin/">Retour</a></p>

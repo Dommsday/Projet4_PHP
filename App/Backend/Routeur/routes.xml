@@ -7,7 +7,6 @@
 	<route url="/admin/all-post\.html" module="News" action="allPost"></route>
 	<route url="/admin/all-comments\.html" module="News" action="seeAllComments"></route>
 	
-	<route url="/admin/comment-update-([0-9]+)\.html" module="News" action="updateComment" vars="id"></route>
 	<route url="/admin/comment-delete-([0-9]+)\.html" module="News" action="deleteComment" vars="id"></route>
 	<route url="/admin/comment-valid-([0-9]+)\.html" module="News" action="commentValid" vars="id"></route>
 </routes>

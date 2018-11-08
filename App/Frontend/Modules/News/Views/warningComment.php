@@ -1,3 +1,5 @@
-<h1>Votre signalement pour ce commentaire a été envoyé à l'administrateur</h1>
+<div class="confirmation">
+	<h1><i class="fas fa-check-circle"></i>Votre signalement à été envoyé à l'administrateur</h1>
 
-
+	<p><a class="link link-confimration" href="/all-post.html">Tout les articles</a></p>
+</div>
