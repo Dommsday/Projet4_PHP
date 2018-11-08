@@ -6,6 +6,7 @@
 	</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Depuis quelques temps maintenant, j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'.Cependant, j'ai voulu innover en publiant mon roman sur mon blog. Le fonctionnement est très simple, je publie régulièrement par 'épisode', des petits chapitres de mon roman.">
 
 	<!--LIEN BOOTSTRAP-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -18,13 +19,24 @@
 	<link rel="stylesheet" href="/Web/css/resolution_screen.css" media="screen and (min-width: 992px) and (max-width: 1199px)" type="text/css" />
 	<link rel="stylesheet" href="/Web/css/resolution_tablette.css" media="screen and (min-width: 768px) and (max-width: 991px)" type="text/css" />
 	<link rel="stylesheet" href="/Web/css/resolution_phone.css" media="screen and (max-width: 767px)" type="text/css" />
-	<link rel="stylesheet" href="/Web/css/resolution_extraa_small.css" media="screen and (max-width: 575px)" type="text/css" />
 	
 	<!--FICHIER DES ICONES-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
 	<!--FICHIER POLICE D'ECRITURE-->
 	<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet">
+
+	<!--Facebook-->
+    <meta property="og:title" content="Jean Forteroche">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://www.julien-zimmermann.fr/blog/Projet4_PHP/Autoload/autoload.php">
+    <meta property="og:image" content=" ">
+    <meta property="og:description" content="Depuis quelques temps maintenant, j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'.Cependant, j'ai voulu innover en publiant mon roman sur mon blog. Le fonctionnement est très simple, je publie régulièrement par 'épisode', des petits chapitres de mon roman.">
+        
+    <!--Twitter-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:description" content="j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'."/>
+    <meta name="twitter:site" content=" ">
 </head>
 
 <body>
@@ -101,7 +113,12 @@
 		</div>
 	</section>
 	<!--FIN CONTENU DES DERNIERES NEWS-->
-	<footer>© Copyright 2018</footer>
+
+	<!--FOOTER-->
+	<footer>
+		<p>© Copyright 2018</p>
+		<p><a href="/mentions-legales.html">Mentions légales</a></p>
+	</footer>
 
 
 	<!--PARTIE FORMULAIRE TINYMCE-->
