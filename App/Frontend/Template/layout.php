@@ -26,16 +26,16 @@
 	<!--FICHIER POLICE D'ECRITURE-->
 	<link href="https://fonts.googleapis.com/css?family=Puritan" rel="stylesheet">
 
-	<!--Facebook-->
+	<!--FACEBOOK-->
     <meta property="og:title" content="Jean Forteroche">
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://www.julien-zimmermann.fr/blog/Projet4_PHP/Autoload/autoload.php">
     <meta property="og:image" content=" ">
     <meta property="og:description" content="Depuis quelques temps maintenant, j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'.Cependant, j'ai voulu innover en publiant mon roman sur mon blog. Le fonctionnement est très simple, je publie régulièrement par 'épisode', des petits chapitres de mon roman.">
         
-    <!--Twitter-->
+    <!--TWITTER-->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:description" content="j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'."/>
+    <meta name="twitter:description" content="J'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'."/>
     <meta name="twitter:site" content=" ">
 </head>
 
@@ -116,8 +116,12 @@
 
 	<!--FOOTER-->
 	<footer>
-		<p>© Copyright 2018</p>
-		<p><a href="/mentions-legales.html">Mentions légales</a></p>
+		<div class="items-footer">
+			<p class="icon-footer copyright">© Copyright 2018</p>
+			<p class="icon-footer facebbok"><a href="#"><i class="fab fa-facebook-square"></i></a></p>
+			<p class="icon-footer twitter"><a href="#"><i class="fab fa-twitter-square"></i></a></p>
+			<p class="icon-footer instagram"><a href="#"><i class="fab fa-instagram"></i></a></p>
+		</div>
 	</footer>
 
 
