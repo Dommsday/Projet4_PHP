@@ -2,9 +2,14 @@
 
 const DEFAULT_APP = 'Frontend';
 
+
+$GLOBALS['css'] = '/blog/Autoload/Web/';
+$GLOBALS['page'] = '/blog/Autoload/autoload.php';
+
 if(!isset($_GET['app']) || !file_exists(__DIR__.'/../App/'.$_GET['app'])){
 	
 	$_GET['app'] = DEFAULT_APP;
+	
 } 
 
 require __DIR__.'/../library/framework/ClassLoader.php';
