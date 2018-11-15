@@ -15,10 +15,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 	<!--FICHIER CSS-->
-	<link rel="stylesheet" href="<?= $GLOBALS['css'] ?>css/layout.css" type="text/css" />
-	<link rel="stylesheet" href="<?= $GLOBALS['css'] ?>css/resolution_screen.css" media="screen and (min-width: 992px) and (max-width: 1199px)" type="text/css" />
-	<link rel="stylesheet" href="<?= $GLOBALS['css'] ?>css/resolution_tablette.css" media="screen and (min-width: 768px) and (max-width: 991px)" type="text/css" />
-	<link rel="stylesheet" href="<?= $GLOBALS['css'] ?>css/resolution_phone.css" media="screen and (max-width: 767px)" type="text/css" />
+	<link rel="stylesheet" href="<?= $GLOBALS['ROOT_URL'] ?>Web/css/layout.css" />
+	<link rel="stylesheet" href="<?= $GLOBALS['ROOT_URL'] ?>Web/css/resolution_screen.css" media="screen and (min-width: 992px) and (max-width: 1199px)" type="text/css" />
+	<link rel="stylesheet" href="<?= $GLOBALS['ROOT_URL'] ?>Web/css/resolution_tablette.css" media="screen and (min-width: 768px) and (max-width: 991px)" type="text/css" />
+	<link rel="stylesheet" href="<?= $GLOBALS['ROOT_URL'] ?>Web/css/resolution_phone.css" media="screen and (max-width: 767px)" type="text/css" />
 	
 	<!--FICHIER DES ICONES-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -46,7 +46,7 @@
 		
             <nav class="navbar navbar-expand-md navbar-light">
 
-                <a  class="navbar-brand" href="<?= $GLOBALS['page'] ?> ">Jean Forteroche</a>
+                <a  class="navbar-brand" href="<?= $GLOBALS['ROOT_URL'] ?>">Jean Forteroche</a>
 
             	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             	<span class="navbar-toggler-icon"></span>
@@ -56,15 +56,15 @@
 
 					<ul class ="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="<?= $GLOBALS['page'] ?>">Accueil</a>
+							<a class="nav-link" href="<?= $GLOBALS['ROOT_URL'] ?>">Accueil</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?= $GLOBALS['page'] ?>/allpost">Articles</a>
+							<a class="nav-link" href="<?= $GLOBALS['ROOT_URL'] ?>all-post.html">Articles</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?= $GLOBALS['page'] ?>/admin/">Admin</a>
+							<a class="nav-link" href="<?= $GLOBALS['ROOT_URL'] ?>admin/">Admin</a>
 						</li>
 
 						<?php
@@ -72,7 +72,7 @@
 						?>
 
 						<li class="nav-item">
-							<a class="nav-link" href="/admin/news-insert.html">Ajouter un article</a>
+							<a class="nav-link" href="<?= $GLOBALS['ROOT_URL'] ?>admin/news-insert.html">Ajouter un article</a>
 						</li>
 
 						<?php
@@ -89,7 +89,7 @@
 	<!--BANNIERE-->
 	<section class="container-fluid" id="banniere">
 		<div class="ban">
-			<img class="img-fluid" src="<?= $GLOBALS['css'] ?>images/montagne.jpg" alt="Baleine Responsive image" />
+			<img class="img-fluid" src="<?= $GLOBALS['ROOT_URL'] ?>Web/images/montagne.jpg" alt="Baleine Responsive image" />
 		</div>
 
 		<div class="intro texte_banniere">
@@ -103,7 +103,6 @@
 		<div class="container-contenu container">
 			<div class="row">
 
-         
 				<?= $content ?>
 			</div>
 		</div>

@@ -23,10 +23,12 @@
 
 		<?php
 			if($comment['warning'] == 1){
-				echo '<td class="action"><i class="fas fa-star"></i>
-						  <a href="comment-valid-'.$comment['id'].'.html"><i class="fas fa-check"></i></a>
-						  <a href="comment-delete-'.$comment['id'].'.html"><i class="fas fa-trash-alt"></i></a>
-					  </td>';
+			?>
+				<td class="action"><i class="fas fa-star"></i>
+					<a href="/test/Autoload/admin/comment-valid-<?=$comment['id'] ?>.html"><i class="fas fa-check"></i></a>
+					<a href="/test/Autoload/admin/comment-delete-<?=$comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a>
+				</td>'
+		<?php
 			}
 		?>
 		</tr>
@@ -37,4 +39,4 @@
 </table>
 </div>
 
-<p><a class="link" href="/admin/">Retour</a></p>
+<p><a class="link" href="<?= $GLOBALS['ROOT_URL'] ?>admin/">Retour</a></p>

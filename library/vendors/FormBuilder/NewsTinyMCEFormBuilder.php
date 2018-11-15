@@ -28,6 +28,7 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
         'name' => 'title',
         'id' => 'title',
         'boots' => 'form-control',
+        'maxLength' => 100,
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long', 100),
           new NotNullValidator('Merci de spécifier le titre de la news'),
@@ -35,7 +36,7 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
        ]));
 
       $this->tinymce->add(new TextTinyField([
-        'label' => 'Content',
+        'label' => 'Article',
         'name' => 'content',
         'id' => 'mytextarea',
         'rows' => 8,

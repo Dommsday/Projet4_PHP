@@ -41,7 +41,9 @@ class CommentManagerPDO extends CommentManager{
 		return $comments;
 	}
 
-    public function getAllComment(){
+   
+
+	public function getAllComment(){
 
 		$request = $this->dao->query('SELECT c.id AS id, c.author AS author, c.content AS comments, c.date AS date, c.warning AS warning, n.title AS title FROM comments AS c INNER JOIN news AS n ON c.news = n.id ORDER BY title');
 

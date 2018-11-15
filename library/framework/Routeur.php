@@ -41,7 +41,6 @@ class Routeur{
 
 					$route->setArrayVars($listVars);
 				}
-
 				return $route;
 			}
 		}

@@ -4,12 +4,12 @@
 
 <div class="informations col-sm-12 col-md-12 col-lg-12 col-xl-12">
 	<div class="news">
-			<a href="/admin/all-post.html"><h2>Articles</h2></a>
+			<a href="<?= $GLOBALS['ROOT_URL'] ?>admin/all-post.html"><h2>Articles</h2></a>
 			<p class="number"> <?= $nombreNews ?> </p>
 	</div>
 
 	<div class="comments">
-		<a href="/admin/all-comments.html"><h2>Commentaires</h2></a>
+		<a href="<?= $GLOBALS['ROOT_URL'] ?>admin/all-comments.html"><h2>Commentaires</h2></a>
 		<p class="number"><?= $nombreComments ?> </p>
 	</div>
 </div>
@@ -41,8 +41,9 @@
 		<td class="title-warning"><?= $comment['title'] ?></td>
 		<td class="comment-warning"><?= $comment['comments'] ?></td>
 		<td class="date-warning"><?= $comment['date'] ?></td>
-		<td class="action-warning"><a href="comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
-			<a href="comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a> </td>
+		<td class="action-warning"><a href="/test/Autoload/admin/comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
+									<a href="/test/Autoload/admin/comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a> 
+		</td>
 	</tr>
 
 	<?php

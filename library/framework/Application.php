@@ -43,11 +43,12 @@ abstract class Application{
 
 		try{
 			$matchedRoute = $routeur->getRoute($this->httpRequest->requestURI());
+
 			
 		}catch(\RuntimeException $e){
 
 			if($e->getCode() == Routeur::ERR_ROUTE){
-
+					
 				$this->httpResponse->page404();
 			}
 		}

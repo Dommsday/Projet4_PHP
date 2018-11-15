@@ -9,8 +9,8 @@ abstract class Field{
 	protected $errorMessage;
 	protected $label;
 	protected $name;
-    protected $id;
-    protected $boots;
+	protected $id;
+	protected $boots;
 	protected $value;
     protected $validators = [];
 	protected $length;
@@ -43,17 +43,17 @@ abstract class Field{
 	public function label(){
 		return $this->label;
 	}
-    
-    public function boots(){
-        return $this->boots;
-    }
+
+	public function boots(){
+		return $this->boots;
+	}
+
+	public function id(){
+		return $this->id;
+	}
 
 	public function name(){
 		return $this->name;
-	}
-    
-    public function id(){
-		return $this->id;
 	}
 
 	public function value(){
@@ -71,17 +71,18 @@ abstract class Field{
 			$this->label = $label;
 		}
 	}
-    
-    public function setBoots($boots){
-        if(is_string($boots)){
-            $this->boots = $boots;
-        }
-    }
-    
-    public function setId($id){
+
+	public function setId($id){
 
 		if(is_string($id)){
 			$this->id = $id;
+		}
+	}
+
+	public function setBoots($boots){
+
+		if(is_string($boots)){
+			$this->boots = $boots;
 		}
 	}
     

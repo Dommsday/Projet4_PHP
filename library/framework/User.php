@@ -3,6 +3,8 @@ namespace framework;
 
 session_start();
 
+$_SESSION['nom'] = "Jean Forteroche";
+
 class User{
 
 	public function getAttribute($attr){

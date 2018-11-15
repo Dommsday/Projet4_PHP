@@ -17,7 +17,7 @@ class TextTinyField extends Field{
       			$widget .= $this->errorMessage.'<br />';
     		}
 
-    		$widget .= '<label>'.$this->label.'</label><textarea id="mytextarea" name="'.$this->name.'"';
+    		$widget .= '<label for="'.$this->id.'">'.$this->label.'</label><textarea id="'.$this->id.'" name="'.$this->name.'"';
 
     		if (!empty($this->cols)){
 
