@@ -5,7 +5,7 @@
 ******************/
 
 .navbar-brand, .nav-item{
-	font-size: 3.6vw;
+	font-size: 5vw;
 }
 
 #navbarSupportedContent ul{
@@ -31,7 +31,7 @@
 }
 
 .intro h1{
-    font-size: 7.6vw;
+    font-size: 9vw;
 }
 
 /*FIN PARTIE BANNIERE
@@ -39,8 +39,21 @@
 
 /*PARTIE NEWS
 *******************/
+
+.contenu{
+	height: 300px;
+	border: 2px solid rgb(113, 162, 202);
+	background: #ffffff;
+	margin: 60px;
+}
+
+.title-index{
+	font-size: 1.4em;
+	
+}
+
 .button{
-	margin-left: 34%;
+	margin-left: 20%;
 	margin-bottom: 10%;
 }
 /*FIN NEWS
@@ -68,6 +81,33 @@
 /*FIN FRONTEND
 ********************/
 
+/*DEBUT FORMULAIRE
+**********************/
+.title-form, .title-admin{
+	font-size: 3em;
+	margin-top: 2%;
+}
+
+.form{
+	border: solid black 2px;
+	background: #FBEDE0;
+	border-radius: 20px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+label{
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.form-group, .btn-primary{
+	margin: 6%;
+}
+
+/*FIN FORMULAIRE
+**********************/
+
 /*DEBUT BACKEND
 ********************/
 
@@ -79,8 +119,9 @@
 }
 
 .news, .comments{
-	margin-left: 20%;
+	margin-left: 12%;
 	margin-bottom: 15%;
+	width: 200px;
 }
 
 .author-warning, .comment-warning{
@@ -103,6 +144,14 @@ th.date, td.date-warning, th.action, td.action-warning{
 
 .all-resume td.title-warning, .all-resume td.comment-warning{
 	padding: 15px;
+}
+
+.all-resume a{
+	margin-bottom: 20px;
+}
+
+.title-comments-warning h2{
+	font-size: 2.2em;
 }
 /*FIN PAGE TOUT LES ARTICLES
 ******************************/
