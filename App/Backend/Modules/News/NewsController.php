@@ -3,7 +3,7 @@
 namespace App\Backend\Modules\News;
 
 use \framework\BackController;
-use \framework\HTTPRequest;
+use\framework\HTTPRequest;
 use \Entity\News;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
@@ -137,7 +137,7 @@ class NewsController extends BackController{
 
 			
 			$this->app->user()->setMessage($news->idNew() ? '<p class="message">L\'article à bien été ajouté !</p>' : '<p class="message">L\'article a bien été modifié ! </p>');
-			$this->app->httpResponse()->redirect('/test/Autoload/admin/');
+			$this->app->httpResponse()->redirect('/blog/Autoload/admin/');
 		}
 
 		$this->page->addVarPage('tinymce', $tinymce->createView());
@@ -158,7 +158,7 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('<p class="message">L\'article à bien été supprimé</p>');
 
-		$this->app->httpResponse()->redirect('/test/Autoload/admin/all-post.html');
+		$this->app->httpResponse()->redirect('/blog/Autoload/admin/all-post.html');
 	}
     
     public function executeDeleteComment(HTTPRequest $request){
@@ -176,6 +176,6 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
 
-		$this->app->httpResponse()->redirect('/test/Autoload/admin/');
+		$this->app->httpResponse()->redirect("/blog/Autoload/admin/");
 	}
 }
