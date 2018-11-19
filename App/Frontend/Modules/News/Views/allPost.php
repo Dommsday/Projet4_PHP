@@ -1,6 +1,4 @@
-
 <div class="container container-all-post">
-
 		<?php
 			foreach ($listNews as $news) {
 		?>
