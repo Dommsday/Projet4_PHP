@@ -4,8 +4,11 @@ namespace App\Frontend\Modules\News;
 use \framework\BackController;
 use \framework\HTTPRequest;
 use \framework\FormHandler;
+use \framework\AuthorFormHandler;
 use \Entity\Comment;
+use \Entity\Author;
 use \FormBuilder\CommentFormBuilder;
+use \FormBuilder\AuthorFormBuilder;
 
 class NewsController extends BackController
 {
@@ -13,6 +16,7 @@ class NewsController extends BackController
      //Méthode pour afficher les derniers articles postés
   public function executeIndex(HTTPRequest $request)
   {
+   
     $nombreNews = $this->app->config()->get('nombre_news');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     
@@ -98,9 +102,68 @@ class NewsController extends BackController
     $this->page->addVarPage('title', 'Ajout d\'un commentaire');
    
   }
+
+  public function executeInscription(HTTPRequest $request){
+
+    $this->processAuthorForm($request);
+
+    $this->page->addVarPage('title', 'Inscription');
+  }
+
+  public function processAuthorForm(HTTPRequest $request){
+
+    if($request->method() == 'POST'){
+
+      $author = new Author([
+
+        'pseudo' => $request->postData('pseudo'),
+        'email' => $request->postData('email'),
+        'password' => $request->postData('password')
+      ]);
+
+    }else{
+
+     $author = new Author;
+
+    }
+
+    $formAuthorBuilder = new AuthorFormBuilder($author);
+    $formAuthorBuilder->build();
+
+    $authorform = $formAuthorBuilder->authorform();
+
+    $formAuthorBuilder = new AuthorFormHandler($authorform, $this->managers->getManagerOf('Author'), $request);
+
+    if($formAuthorBuilder->process()){
+
+      $this->app->user()->setAuthenticated(true);
+
+      $this->app->httpResponse()->redirect('/blog/Autoload/');
+    }
+
+    $this->page->addVarPage('authorform', $authorform->createView());
+  }
     
-    public function executeWarningComment(HTTPRequest $request){
+  public function executeWarningComment(HTTPRequest $request){
 
     $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
+  }
+
+  public function executeConnexion(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Connexion');
+
+    $manager = $this->managers->getManagerOf('Author');
+
+    $this->page->addVarPage('connexion', $manager->connexionIdentifiant($request->postData('pseudo'), $request->postData('password')));
+
+    $PasswordConnexion = password_verify($_POST['passeword'], $connexion['password']);
+
+    if($PasswordConnexion){
+
+      $this->page->addVarPage('/');
+      echo 'bonjour';
+    }
+
   }
 }

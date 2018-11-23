@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<title>
 		<?= isset($title) ? $title : "Jean Forteroche: Billet simple pour l'Alaska"; ?>
@@ -64,20 +64,12 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL_BACK'] ?>">Admin</a>
+							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL'] ?>inscription.html">S'inscrire</a>
 						</li>
-
-						<?php
-							if($user->isAuthenticated()){
-						?>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL_BACK'] ?>news-insert.html">Ajouter un article</a>
+							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL'] ?>connexion.html">Se connecter</a>
 						</li>
-
-						<?php
-						}
-						?>
 					
 					</ul>
 

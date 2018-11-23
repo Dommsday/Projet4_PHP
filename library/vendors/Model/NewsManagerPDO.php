@@ -20,6 +20,7 @@ class NewsManagerPDO extends NewsManager{
 		$listNews = $request->fetchAll();
 
 		foreach ($listNews as $news){
+			$news->setDate(new \DateTime($news->date()));
 			$news->setContent($news->content());
 		}
 

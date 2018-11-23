@@ -5,4 +5,7 @@
 		<route url="/blog/Autoload/comment-news-([0-9]+).html" module="News" action="insertComment" vars="news"></route>
 		<route url="/blog/Autoload/warning-comment-([0-9]+).html" module="News" action="warningComment" vars="id"></route>
 		<route url="/blog/Autoload/all-post.html" module="News" action="allPost"></route>
+
+		<route url="/blog/Autoload/inscription.html" module="News" action="inscription"></route>
+		<route url="/blog/Autoload/connexion.html" module="News" action="connexion"></route>
 	</routes>
