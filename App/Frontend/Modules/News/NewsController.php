@@ -16,7 +16,6 @@ class NewsController extends BackController
      //Méthode pour afficher les derniers articles postés
   public function executeIndex(HTTPRequest $request)
   {
-   
     $nombreNews = $this->app->config()->get('nombre_news');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     
@@ -138,7 +137,7 @@ class NewsController extends BackController
 
       $this->app->user()->setAuthenticated(true);
 
-      $this->app->httpResponse()->redirect('/blog/Autoload/');
+      $this->app->httpResponse()->redirect('.');
     }
 
     $this->page->addVarPage('authorform', $authorform->createView());
@@ -157,7 +156,7 @@ class NewsController extends BackController
 
     $this->page->addVarPage('connexion', $manager->connexionIdentifiant($request->postData('pseudo'), $request->postData('password')));
 
-    $PasswordConnexion = password_verify($_POST['passeword'], $connexion['password']);
+    $PasswordConnexion = password_verify($_POST['password'], $connexion['password']);
 
     if($PasswordConnexion){
 
@@ -166,4 +165,6 @@ class NewsController extends BackController
     }
 
   }
+
 }
+
