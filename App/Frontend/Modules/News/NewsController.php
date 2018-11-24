@@ -49,8 +49,8 @@ class NewsController extends BackController
 
     $this->page->addVarPage('listNews', $manager->getList());
   }
+
    //Méthode pour affichier un article précis
-  
   public function executePost(HTTPRequest $request){
 
     $post = $this->managers->getManagerOf("News")->getPost($request->getData('id'));
@@ -154,16 +154,22 @@ class NewsController extends BackController
 
     $manager = $this->managers->getManagerOf('Author');
 
-    $this->page->addVarPage('connexion', $manager->connexionIdentifiant($request->postData('pseudo'), $request->postData('password')));
+    $this->page->addVarPage('connexion', $manager->connexionIdentifiant($request->postData('login'), $request->postData('password')));
 
-    $PasswordConnexion = password_verify($_POST['password'], $connexion['password']);
+    $login = $request->postData('login');
+    $password = $request->postData('password');
 
-    if($PasswordConnexion){
+    $passwordCorrect = password_verify($password, $connexion['password']);
 
-      $this->page->addVarPage('/');
-      echo 'bonjour';
+    if(!empty($login)){
+
+      echo 'login rempli';
+
+    }else{
+
+      echo 'login vide';
+
     }
-
   }
 
 }
