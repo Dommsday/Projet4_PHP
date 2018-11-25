@@ -5,10 +5,12 @@ use \framework\BackController;
 use \framework\HTTPRequest;
 use \framework\FormHandler;
 use \framework\AuthorFormHandler;
+use \framework\AuthorConnexionFormHandler;
 use \Entity\Comment;
 use \Entity\Author;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\AuthorFormBuilder;
+use \FormBuilder\AuthorFormConnexionBuilder;
 
 class NewsController extends BackController
 {
@@ -115,9 +117,9 @@ class NewsController extends BackController
 
       $author = new Author([
 
-        'pseudo' => $request->postData('pseudo'),
-        'email' => $request->postData('email'),
-        'password' => $request->postData('password')
+        'pseudo' => htmlspecialchars($request->postData('pseudo')),
+        'email' => htmlspecialchars($request->postData('email')),
+        'password' => htmlspecialchars($request->postData('password'))
       ]);
 
     }else{
@@ -142,6 +144,43 @@ class NewsController extends BackController
 
     $this->page->addVarPage('authorform', $authorform->createView());
   }
+
+  public function processAuthorFormConnexion(HTTPRequest $request){
+
+    if($request->method() == 'POST'){
+
+        $author = new Author([
+
+          'pseudo' => htmlspecialchars($request->postData('pseudo')),
+          'password' => password_hash($request->postData('password'), PASSWORD_DEFAULT)
+
+        ]);
+
+    }else{
+
+      $author = new Author;
+
+    }
+
+    $formAuthorConnexionBuilder = new AuthorFormConnexionBuilder($author);
+    $formAuthorConnexionBuilder->build();
+
+    $authorconnexionform = $formAuthorConnexionBuilder->authorconnexionform();
+
+    $formAuthorConnexionBuilder = new AuthorConnexionFormHandler($authorconnexionform, $this->managers->getManagerOf('Author'), $request); 
+
+
+    $this->page->addVarPage('authorconnexionform', $authorconnexionform->createView());
+
+    if($formAuthorConnexionBuilder->process()){
+
+      echo 'test process';
+
+    }else{
+      echo 'mauvais test process';
+    }
+
+  }
     
   public function executeWarningComment(HTTPRequest $request){
 
@@ -152,24 +191,27 @@ class NewsController extends BackController
 
     $this->page->addVarPage('title', 'Connexion');
 
-    $manager = $this->managers->getManagerOf('Author');
+    $this->processAuthorFormConnexion($request);
 
-    $this->page->addVarPage('connexion', $manager->connexionIdentifiant($request->postData('login'), $request->postData('password')));
+    /*
+    $connexion = $this->managers->getManagerOf('Author');
 
-    $login = $request->postData('login');
+    $connexion->connexionIdentifiant($request->postData('pseudo'));
+
+    $login = $request->postData('pseudo');
+
     $password = $request->postData('password');
 
-    $passwordCorrect = password_verify($password, $connexion['password']);
+    $passwordCorrect = password_verify($password, $connexion);
 
-    if(!empty($login)){
+    if($passwordCorrect){
 
-      echo 'login rempli';
-
+      echo 'bon';
     }else{
 
-      echo 'login vide';
-
-    }
+      echo 'mauvais';
+    }*/
+    
   }
 
 }

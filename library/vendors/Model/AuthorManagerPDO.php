@@ -18,18 +18,17 @@ class AuthorManagerPDO extends AuthorManager{
 		$author->setId($this->dao->lastInsertId());
 	}
 
-	public function connexionIdentifiant($pseudo, $password){
+	public function connexionIdentifiant($password){
 
-		$request = $this->dao->prepare('SELECT id FROM author WHERE pseudo = :pseudo AND password = :password');
+		$request = $this->dao->prepare('SELECT id, pseudo FROM author WHERE password = :password');
 
-		$request->execute(array(
-			'pseudo' => $pseudo,
-			'password' => $password
-		));
+		$request->bindValue(':password', $password->password());
+
+		$request->execute();
 
 		$connexion = $request->fetch();
 
-
 		return $connexion;
 	}
+
 }

@@ -9,7 +9,7 @@ abstract class AuthorManager extends Manager{
 
 	abstract protected function newIdentifiant(Author $author);
 
-	abstract public function connexionIdentifiant( $pseudo,  $password);
+	abstract public function connexionIdentifiant($password);
 
 	public function save(Author $author){
 
