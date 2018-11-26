@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 	<routes>
-		<route url="/blog/Autoload/" module="News" action="index" />
-		<route url="/blog/Autoload/news-([0-9]+).html" module="News" action="post" vars="id"/>
-		<route url="/blog/Autoload/comment-news-([0-9]+).html" module="News" action="insertComment" vars="news"></route>
-		<route url="/blog/Autoload/warning-comment-([0-9]+).html" module="News" action="warningComment" vars="id"></route>
-		<route url="/blog/Autoload/all-post.html" module="News" action="allPost"></route>
+		<route url="/" module="News" action="index" />
+		<route url="/news-([0-9]+)\.html" module="News" action="post" vars="id"/>
+		<route url="/comment-news-([0-9]+)\.html" module="News" action="insertComment" vars="news"></route>
+		<route url="/warning-comment-([0-9]+)\.html" module="News" action="warningComment" vars="id"></route>
+		<route url="/all-post\.html" module="News" action="allPost"></route>
 
-		<route url="/blog/Autoload/inscription.html" module="News" action="inscription"></route>
-		<route url="/blog/Autoload/connexion.html" module="News" action="connexion"></route>
+		<route url="/inscription\.html" module="News" action="inscription"></route>
+		<route url ="/confirmation-inscription\.html" module="News" action="confirmeInscription"></route>
+
+		<route url="/connexion\.html" module="News" action="connexion"></route>
+		<route url ="/confirmation-connexion\.html" module="News" action="confirmeConnexion"></route>
+
 	</routes>

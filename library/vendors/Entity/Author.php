@@ -10,6 +10,7 @@ class Author extends Entity{
 	protected $pseudo;
 	protected $email;
 	protected $password;
+	protected $passwordConfirm;
 
 	const PSEUDO_INVALIDE = 1;
 	const EMAIL_INVALIDE = 2;
@@ -17,7 +18,7 @@ class Author extends Entity{
 
 	public function Valid(){
 
-		return !(empty($this->pseudo) ||  empty($this->email) || empty($this->password));
+		return !(empty($this->pseudo) ||  empty($this->email) || empty($this->password) || empty($this->passwordConfirm));
 	}
 
 	public function setId($id){
@@ -63,6 +64,17 @@ class Author extends Entity{
 
 	}
 
+	public function setPasswordConfirm($passwordConfirm){
+
+		if(!is_string($passwordConfirm) || empty($passwordConfirm)){
+
+			$this->erreurs[] = self::MDP_INVALIDE;
+		}
+
+		$this->passwordConfirm = $passwordConfirm;
+
+	}
+
 	public function id(){
 		return $this->id;
 	}
@@ -77,5 +89,9 @@ class Author extends Entity{
 
 	public function password(){
 		return $this->password;
+	}
+
+	public function passwordConfirm(){
+		return $this->passwordConfirm;
 	}
 }

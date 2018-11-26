@@ -4,6 +4,7 @@ namespace FormBuilder;
 use \framework\AuthorBuilder;
 use \framework\StringField;
 use \framework\PasswordField;
+use \framework\PasswordConfirmField;
 use \framework\EmailField;
 use \framework\MaxLengthValidator;
 use \framework\NotNullValidator;
@@ -20,7 +21,7 @@ class AuthorFormBuilder extends AuthorBuilder{
         'maxLength' => 50,
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
-          new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
+          new NotNullValidator('Merci de spécifier le pseudo'),
         ],
        ]));
 
@@ -34,7 +35,16 @@ class AuthorFormBuilder extends AuthorBuilder{
         ],
        ]));
 
-       
+
+       $this->authorform->add(new PasswordField([
+        'label' => 'Retaper Mot de Passe',
+        'name' => 'passwordConfirm',
+        'id' => 'passwordConfirm',
+        'boots' => 'form-control',
+        'validators' => [
+          new NotNullValidator('Merci de spécifier le même mot de passe que le précédent '),
+        ],
+       ])); 
 
        $this->authorform->add(new EmailField([
         'label' => 'E-mail',

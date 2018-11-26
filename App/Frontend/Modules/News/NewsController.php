@@ -113,19 +113,31 @@ class NewsController extends BackController
 
   public function processAuthorForm(HTTPRequest $request){
 
+    $author = new Author;
+
+    $password = htmlspecialchars($request->postData('password'));
+    $passwordConfirm = htmlspecialchars($request->postData('passwordConfirm'));
+    $email = htmlspecialchars($request->postData('email'));
+
     if($request->method() == 'POST'){
 
-      $author = new Author([
+      if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-        'pseudo' => htmlspecialchars($request->postData('pseudo')),
-        'email' => htmlspecialchars($request->postData('email')),
-        'password' => htmlspecialchars($request->postData('password'))
-      ]);
+        if($passwordConfirm === $password){
 
-    }else{
+            $author = new Author([
 
-     $author = new Author;
+            'pseudo' => htmlspecialchars($request->postData('pseudo')),
+            'email' => htmlspecialchars($request->postData('email')),
+            'password' => htmlspecialchars($request->postData('password')),
+            'passwordConfirm' => htmlspecialchars($request->postData('passwordConfirm')),
+          ]);
 
+          }else{
+        
+            $this->app->user()->setMessage('Les mot de passe ne sont pas les mêmes');
+          }
+      }
     }
 
     $formAuthorBuilder = new AuthorFormBuilder($author);
@@ -139,7 +151,7 @@ class NewsController extends BackController
 
       $this->app->user()->setAuthenticated(true);
 
-      $this->app->httpResponse()->redirect('.');
+      $this->app->httpResponse()->redirect('/confirmation-inscription.html');
     }
 
     $this->page->addVarPage('authorform', $authorform->createView());
@@ -149,26 +161,23 @@ class NewsController extends BackController
 
     $author = new Author;
 
-    $connexion = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('password'));
+    $connexion = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('pseudo'));
 
     $password = htmlspecialchars($request->postData('password'));
 
     $isCorrect = password_verify($password, $connexion['password']);
 
-
     if($request->method() == 'POST'){
 
         if($isCorrect){
 
-          echo 'C\'est bon';
+          $this->app->user()->setAuthenticated(true);
+          $this->app->httpResponse()->redirect('/confirmation-connexion.html');
+
         }else{
 
           echo 'Pas bon';
         }
-
-    }else{
-
-      echo 'testing testing';
 
     }
 
@@ -179,28 +188,13 @@ class NewsController extends BackController
 
     $formAuthorConnexionBuilder = new AuthorConnexionFormHandler($authorconnexionform, $this->managers->getManagerOf('Author'), $request); 
 
-  
-
     $this->page->addVarPage('authorconnexionform', $authorconnexionform->createView());
 
-    /*if($formAuthorConnexionBuilder->process()){
-
-      
-        echo $author['pseudo'].'<br />';
-        echo $author['password'].'<br />';
-
-        $connexion = $this->managers->getManagerOf('Author');
-
-        $this->page->addVarPage('connexion', $connexion->connexionIdentifiant($request->postData('pseudo')));
-
-
-      }else{
-        echo '<br />Mauvais identifiant';
-      }
-    */
   }
     
   public function executeWarningComment(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Confirmation de signalement');
 
     $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
   }
@@ -211,6 +205,16 @@ class NewsController extends BackController
 
     $this->processAuthorFormConnexion($request);
 
+  }
+
+  public function executeConfirmeInscription(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Confirmation d\'inscription');
+  }
+
+  public function executeConfirmeConnexion(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Confirmation de connexion');
   }
 
 }

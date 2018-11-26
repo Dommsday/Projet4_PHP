@@ -7,22 +7,24 @@ class AuthorManagerPDO extends AuthorManager{
 
 	protected function newIdentifiant(Author $author){
 
-		$request = $this->dao->prepare('INSERT INTO author SET pseudo = :pseudo, email = :email, password = :password');
+		$request = $this->dao->prepare('INSERT INTO author SET pseudo = :pseudo, email = :email, password = :password, passwordConfirm = :passwordConfirm');
 
 		$request->bindValue(':pseudo', $author->pseudo());
 		$request->bindValue(':email', $author->email());
 		$request->bindValue(':password', password_hash($author->password(), PASSWORD_DEFAULT));
+		$request->bindValue(':passwordConfirm', password_hash($author->passwordConfirm(), PASSWORD_DEFAULT));
 
 		$request->execute();
 
 		$author->setId($this->dao->lastInsertId());
 	}
 
-	public function connexionIdentifiant($password){
 
-		$request = $this->dao->prepare('SELECT id, email, pseudo FROM author WHERE password = :password');
+	public function connexionIdentifiant($pseudo){
 
-		$request->bindValue(':password', $password, \PDO::PARAM_STR);
+		$request = $this->dao->prepare('SELECT id, password FROM author WHERE pseudo = :pseudo');
+
+		$request->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
 		$request->execute();
 
 		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\Author');

@@ -19,10 +19,13 @@ class AuthorConnexionFormHandler{
 
 		if($this->request->method() == 'POST' && $this->authorconnexionform->Valid()){
 
+			
 			return true;
 		}
 		
+		
 		return false;
+
 	}
 
 	public function setAuthorForm(Form $authorconnexionform){

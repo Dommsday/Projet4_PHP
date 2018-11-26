@@ -36,6 +36,8 @@ td{
 	margin-top: 50px;
 	margin-left: 420px;
 	font-weight: bold;
+	width: 200px;
+	height: 100px;
 }
 /*PARTIE HEADER
 *****************/
@@ -64,6 +66,7 @@ header{
 .nav-item{
     padding: 30px;
 }
+
 
 /*FIN HEADER
 ****************/
@@ -228,6 +231,15 @@ header{
 	margin-bottom: 5%;
 	background: #FBEDE0;
 	border-radius: 20px;
+}
+
+.confirmation-inscription{
+
+	margin-left: 25%;
+}
+
+.confirmation-connexion{
+	margin-left: 30%;
 }
 
 .link-confirmation{

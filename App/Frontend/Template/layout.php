@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
 	<title>
 		<?= isset($title) ? $title : "Jean Forteroche: Billet simple pour l'Alaska"; ?>
@@ -15,10 +15,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 	<!--FICHIER CSS-->
-	<link rel="stylesheet" href="<?= $GLOBALS['ROOT_URL_CSS'] ?>css/layout.css" />
-	<link rel="stylesheet" href="<?=$GLOBALS['ROOT_URL_CSS']?>css/resolution_screen.css" media="screen and (min-width: 992px) and (max-width: 1199px)"/>
-	<link rel="stylesheet" href="<?=$GLOBALS['ROOT_URL_CSS']?>css/resolution_tablette.css" media="screen and (min-width: 768px) and (max-width: 991px)" />
-	<link rel="stylesheet" href="<?=$GLOBALS['ROOT_URL_CSS']?>css/resolution_phone.css" media="screen and (max-width: 767px)"/>
+	<link rel="stylesheet" href="/Web/css/layout.css" type="text/css" />
+	<link rel="stylesheet" href="/Web/css/resolution_screen.css" media="screen and (min-width: 992px) and (max-width: 1199px)" type="text/css" />
+	<link rel="stylesheet" href="/Web/css/resolution_tablette.css" media="screen and (min-width: 768px) and (max-width: 991px)" type="text/css" />
+	<link rel="stylesheet" href="/Web/css/resolution_phone.css" media="screen and (max-width: 767px)" type="text/css" />
 	
 	<!--FICHIER DES ICONES-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
@@ -29,7 +29,7 @@
 	<!--FACEBOOK-->
     <meta property="og:title" content="Jean Forteroche">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://www.julien-zimmermann.fr/test/Projet4_PHP/Autoload/autoload.php">
+    <meta property="og:url" content="http://www.julien-zimmermann.fr/blog/Projet4_PHP/Autoload/">
     <meta property="og:image" content=" ">
     <meta property="og:description" content="Depuis quelques temps maintenant, j'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'.Cependant, j'ai voulu innover en publiant mon roman sur mon blog. Le fonctionnement est très simple, je publie régulièrement par 'épisode', des petits chapitres de mon roman.">
         
@@ -46,7 +46,7 @@
 		
             <nav class="navbar navbar-expand-md navbar-light">
 
-                <a  class="navbar-brand" href="http://www.julien-zimmermann.fr/blog/Autoload/ ">Jean Forteroche</a>
+                <a  class="navbar-brand" href="/">Jean Forteroche</a>
 
             	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             	<span class="navbar-toggler-icon"></span>
@@ -56,21 +56,42 @@
 
 					<ul class ="navbar-nav mr-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="http://www.julien-zimmermann.fr/blog/Autoload/">Accueil</a>
+							<a class="nav-link" href="/">Accueil</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL']?>all-post.html">Articles</a>
+							<a class="nav-link" href="/all-post.html">Articles</a>
 						</li>
-
+						
+						<?php
+							if(!$user->isAuthenticated()){
+						?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL'] ?>inscription.html">S'inscrire</a>
+							<a class="nav-link" href="/inscription.html">S'incrire</a>
 						</li>
+						<?php
+						}
+						?>
 
+						<?php  
+							if($user->isAuthenticated()){
+						?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?=$GLOBALS['ROOT_URL'] ?>connexion.html">Se connecter</a>
+							<a class="nav-link" href="/"><i class="fas fa-user"></i></a>
 						</li>
-					
+						<?php  
+						}
+						?>
+
+						<?php
+							if(!$user->isAuthenticated()){
+						?>
+						<li class="nav-item">
+							<a class="nav-link" href="/connexion.html">Se connecter</a>
+						</li>
+						<?php  
+						}
+						?>
 					</ul>
 
 				</div>
@@ -81,7 +102,7 @@
 	<!--BANNIERE-->
 	<section class="container-fluid" id="banniere">
 		<div class="ban">
-			<img class="img-fluid" src="<?=$GLOBALS['ROOT_URL_CSS']?>images/montagne.jpg" alt="Montagne Responsive image" />
+			<img class="img-fluid" src="/Web/images/montagne.jpg" alt="Baleine Responsive image" />
 		</div>
 
 		<div class="intro texte_banniere">
@@ -93,9 +114,9 @@
 	<!--CONTENU DES DERNIERES NEWS-->
 	<section class="section-container container-fluid">
 		<div class="container-contenu container">
-			<div class="row">
 
-         
+			<div class="row">
+			
 				<?= $content ?>
 			</div>
 		</div>
