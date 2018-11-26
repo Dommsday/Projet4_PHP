@@ -147,18 +147,28 @@ class NewsController extends BackController
 
   public function processAuthorFormConnexion(HTTPRequest $request){
 
+    $author = new Author;
+
+    $connexion = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('password'));
+
+    $password = htmlspecialchars($request->postData('password'));
+
+    $isCorrect = password_verify($password, $connexion['password']);
+
+
     if($request->method() == 'POST'){
 
-        $author = new Author([
+        if($isCorrect){
 
-          'pseudo' => htmlspecialchars($request->postData('pseudo')),
-          'password' => password_hash($request->postData('password'), PASSWORD_DEFAULT)
+          echo 'C\'est bon';
+        }else{
 
-        ]);
+          echo 'Pas bon';
+        }
 
     }else{
 
-      $author = new Author;
+      echo 'testing testing';
 
     }
 
@@ -169,17 +179,25 @@ class NewsController extends BackController
 
     $formAuthorConnexionBuilder = new AuthorConnexionFormHandler($authorconnexionform, $this->managers->getManagerOf('Author'), $request); 
 
+  
 
     $this->page->addVarPage('authorconnexionform', $authorconnexionform->createView());
 
-    if($formAuthorConnexionBuilder->process()){
+    /*if($formAuthorConnexionBuilder->process()){
 
-      echo 'test process';
+      
+        echo $author['pseudo'].'<br />';
+        echo $author['password'].'<br />';
 
-    }else{
-      echo 'mauvais test process';
-    }
+        $connexion = $this->managers->getManagerOf('Author');
 
+        $this->page->addVarPage('connexion', $connexion->connexionIdentifiant($request->postData('pseudo')));
+
+
+      }else{
+        echo '<br />Mauvais identifiant';
+      }
+    */
   }
     
   public function executeWarningComment(HTTPRequest $request){
@@ -193,25 +211,6 @@ class NewsController extends BackController
 
     $this->processAuthorFormConnexion($request);
 
-    /*
-    $connexion = $this->managers->getManagerOf('Author');
-
-    $connexion->connexionIdentifiant($request->postData('pseudo'));
-
-    $login = $request->postData('pseudo');
-
-    $password = $request->postData('password');
-
-    $passwordCorrect = password_verify($password, $connexion);
-
-    if($passwordCorrect){
-
-      echo 'bon';
-    }else{
-
-      echo 'mauvais';
-    }*/
-    
   }
 
 }

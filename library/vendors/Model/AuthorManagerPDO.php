@@ -20,11 +20,12 @@ class AuthorManagerPDO extends AuthorManager{
 
 	public function connexionIdentifiant($password){
 
-		$request = $this->dao->prepare('SELECT id, pseudo FROM author WHERE password = :password');
+		$request = $this->dao->prepare('SELECT id, email, pseudo FROM author WHERE password = :password');
 
-		$request->bindValue(':password', $password->password());
-
+		$request->bindValue(':password', $password, \PDO::PARAM_STR);
 		$request->execute();
+
+		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\Author');
 
 		$connexion = $request->fetch();
 
