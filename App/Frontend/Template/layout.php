@@ -77,7 +77,11 @@
 							if($user->isAuthenticated()){
 						?>
 						<li class="nav-item">
-							<a class="nav-link" href="/"><i class="fas fa-user"></i></a>
+							<a class="nav-link" href="/"><i class="fas fa-user" title="Vous êtes connecté"></i></a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="/confirmation-deconnexion.html"><i class="fas fa-user-times" title="Déconnexion"></i></a>
 						</li>
 						<?php  
 						}

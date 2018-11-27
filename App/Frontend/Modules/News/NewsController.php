@@ -14,8 +14,9 @@ use \FormBuilder\AuthorFormConnexionBuilder;
 
 class NewsController extends BackController
 {
-    
-     //Méthode pour afficher les derniers articles postés
+
+ 
+  //Méthode pour afficher les derniers articles postés
   public function executeIndex(HTTPRequest $request)
   {
     $nombreNews = $this->app->config()->get('nombre_news');
@@ -155,6 +156,15 @@ class NewsController extends BackController
     }
 
     $this->page->addVarPage('authorform', $authorform->createView());
+  }
+
+   public function executeConfirmeDeconnexion(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Déconnexion');
+
+    $this->app->user()->setAuthenticated(false);
+
+    session_destroy(); 
   }
 
   public function processAuthorFormConnexion(HTTPRequest $request){

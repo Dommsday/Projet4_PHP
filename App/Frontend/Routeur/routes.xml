@@ -12,4 +12,6 @@
 		<route url="/connexion\.html" module="News" action="connexion"></route>
 		<route url ="/confirmation-connexion\.html" module="News" action="confirmeConnexion"></route>
 
+		<route url="/confirmation-deconnexion\.html" module="News" action="confirmeDeconnexion"></route>
+
 	</routes>
