@@ -5,6 +5,11 @@ namespace App\Backend\Modules\News;
 use \framework\BackController;
 use\framework\HTTPRequest;
 use \Entity\News;
+use \Entity\Author;
+use \FormBuilder\AuthorFormBuilder;
+use \FormBuilder\AuthorFormConnexionBuilder;
+use \framework\AuthorFormHandler;
+use \framework\AuthorConnexionFormHandler;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
@@ -13,6 +18,46 @@ use \framework\FormHandler;
 use \framework\FormTinyMCEHandler;
 
 class NewsController extends BackController{
+
+	public function processAuthorFormConnexion(HTTPRequest $request){
+
+    $author = new Author;
+
+    $connexion = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('pseudo'));
+
+    $password = htmlspecialchars($request->postData('password'));
+
+    $isCorrect = password_verify($password, $connexion['password']);
+
+    if($request->method() == 'POST'){
+
+        if($isCorrect){
+
+          $this->app->user()->setAuthenticated(true);
+          $this->app->httpResponse()->redirect('/admin/');
+
+        }
+
+    }
+
+    $formAuthorConnexionBuilder = new AuthorFormConnexionBuilder($author);
+    $formAuthorConnexionBuilder->build();
+
+    $authorconnexionform = $formAuthorConnexionBuilder->authorconnexionform();
+
+    $formAuthorConnexionBuilder = new AuthorConnexionFormHandler($authorconnexionform, $this->managers->getManagerOf('Author'), $request); 
+
+    $this->page->addVarPage('authorconnexionform', $authorconnexionform->createView());
+
+  }
+
+   public function executeConnexion(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Connexion');
+
+    $this->processAuthorFormConnexion($request);
+
+  }
 
 	public function executeIndex(HTTPRequest $request){
 
@@ -53,51 +98,6 @@ class NewsController extends BackController{
 		$this->page->addVarPage('title', 'Ajout d\'un article');
 	}
 
-	public function processForm(HTTPRequest $request){
-
-		if($request->method() == 'POST'){
-
-			$news = new News([
-
-				'author' => $request->postData('author'),
-				'title' => $request->postData('title'),
-				'content' => $request->postData('content')
-			]);
-
-			if($request->getExists('id')){
-
-				$news->setId($request->getData('id'));
-			}
-		}else{
-
-			if($request->getExists('id')){
-
-				$news = $this->managers->getManagerOf('News')->getPost($request->getData('id'));
-
-			}else{
-
-				$news = new News;
-			}
-		}
-
-		$formBuilder = new NewsFormBuilder($news);
-		$formBuilder->build();
-
-		$form = $formBuilder->form();
-        
-        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
-
-
-		if($formHandler->process()){
-
-			
-			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié ! ');
-			$this->app->httpResponse()->redirect('/admin/');
-		}
-
-		$this->page->addVarPage('form', $form->createView());
-	}
-    
     public function processTinyMCEForm(HTTPRequest $request){
 
 		if($request->method() == 'POST'){
@@ -137,7 +137,7 @@ class NewsController extends BackController{
 
 			
 			$this->app->user()->setMessage($news->idNew() ? '<p class="message">L\'article à bien été ajouté !</p>' : '<p class="message">L\'article a bien été modifié ! </p>');
-			$this->app->httpResponse()->redirect('/blog/Autoload/admin/');
+			$this->app->httpResponse()->redirect('/admin/');
 		}
 
 		$this->page->addVarPage('tinymce', $tinymce->createView());
@@ -158,7 +158,7 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('<p class="message">L\'article à bien été supprimé</p>');
 
-		$this->app->httpResponse()->redirect('/blog/Autoload/admin/all-post.html');
+		$this->app->httpResponse()->redirect('/admin/all-post.html');
 	}
     
     public function executeDeleteComment(HTTPRequest $request){
@@ -176,6 +176,16 @@ class NewsController extends BackController{
 
 		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
 
-		$this->app->httpResponse()->redirect("/blog/Autoload/admin/");
+		$this->app->httpResponse()->redirect('/admin/');
 	}
+
+	public function executeConfirmeDeconnexion(HTTPRequest $request){
+
+    $this->page->addVarPage('title', 'Déconnexion');
+
+    $this->app->user()->setAuthenticated(false);
+
+    session_destroy(); 
+  }
+
 }
