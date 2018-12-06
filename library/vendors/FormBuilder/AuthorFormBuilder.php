@@ -6,7 +6,6 @@ use \framework\StringField;
 use \framework\PasswordField;
 use \framework\PasswordConfirmField;
 use \framework\EmailField;
-use \framework\MaxLengthValidator;
 use \framework\NotNullValidator;
 
 class AuthorFormBuilder extends AuthorBuilder{
@@ -17,10 +16,11 @@ class AuthorFormBuilder extends AuthorBuilder{
         'label' => 'Pseudo',
         'name' => 'pseudo',
         'id' => 'pseudo',
+        'placeholder' => "6 caractères minimum",
+        'maxLength' => "20",
         'boots' => 'form-control',
-        'maxLength' => 50,
+        'idSpan' => 'pseudoHelp',
         'validators' => [
-          new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
           new NotNullValidator('Merci de spécifier le pseudo'),
         ],
        ]));
@@ -29,9 +29,12 @@ class AuthorFormBuilder extends AuthorBuilder{
         'label' => 'Mot de Passe',
         'name' => 'password',
         'id' => 'password',
+        'placeholder' => "8 caractères minimum",
         'boots' => 'form-control',
+        'idSpan' => 'passwordHelp',
         'validators' => [
           new NotNullValidator('Merci de spécifier votre mot de passe'),
+       
         ],
        ]));
 
@@ -50,6 +53,8 @@ class AuthorFormBuilder extends AuthorBuilder{
         'label' => 'E-mail',
         'name' => 'email',
         'id' => 'email',
+        'placeholder' => "Ex: aaa@bb.cc",
+        'idSpan' => 'emailHelp',
         'boots' => 'form-control',
         'validators' => [
           new NotNullValidator('Merci de spécifier une adresse mail valide'),

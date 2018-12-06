@@ -116,15 +116,19 @@ class NewsController extends BackController
 
     $author = new Author;
 
+    $pseudo = htmlspecialchars($request->postData('pseudo'));
     $password = htmlspecialchars($request->postData('password'));
     $passwordConfirm = htmlspecialchars($request->postData('passwordConfirm'));
     $email = htmlspecialchars($request->postData('email'));
+
+    $pseudoLength = $this->app->config()->get('pseudo_length');
+    $passwordLength = $this->app->config()->get('password_length');
 
     if($request->method() == 'POST'){
 
       if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-        if($passwordConfirm === $password){
+        if(($passwordConfirm === $password) && (strlen($pseudo) >= $pseudoLength) && (strlen($password) >= $passwordLength)){
 
             $author = new Author([
 
@@ -136,7 +140,7 @@ class NewsController extends BackController
 
           }else{
         
-            $this->app->user()->setMessage('Les mot de passe ne sont pas les mêmes');
+            $this->app->user()->setMessage('Vos identifiants ne sont pas correctements entrés');
           }
       }
     }
@@ -152,7 +156,11 @@ class NewsController extends BackController
 
       $this->app->user()->setAuthenticated(true);
 
+      
+
       $this->app->httpResponse()->redirect('/confirmation-inscription.html');
+
+      
     }
 
     $this->page->addVarPage('authorform', $authorform->createView());
@@ -183,10 +191,8 @@ class NewsController extends BackController
 
           $this->app->user()->setAuthenticated(true);
           $this->app->httpResponse()->redirect('/confirmation-connexion.html');
-
-        }else{
-
-          echo 'Pas bon';
+          $_SESSION['pseudo'] = $request->postData('pseudo');
+          $this->app->user()->setMessage('Bonjour'.$_SESSION['pseudo']);
         }
 
     }
@@ -204,9 +210,10 @@ class NewsController extends BackController
     
   public function executeWarningComment(HTTPRequest $request){
 
-    $this->page->addVarPage('title', 'Confirmation de signalement');
-
     $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
+    $this->app->user()->setMessage('Le commentaire à bien été signalé');
+
+   
   }
 
   public function executeConnexion(HTTPRequest $request){

@@ -22,7 +22,7 @@ class AuthorManagerPDO extends AuthorManager{
 
 	public function connexionIdentifiant($pseudo){
 
-		$request = $this->dao->prepare('SELECT id, password FROM author WHERE pseudo = :pseudo');
+		$request = $this->dao->prepare('SELECT id, password, administrator FROM author WHERE pseudo = :pseudo AND administrator = 1');
 
 		$request->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
 		$request->execute();

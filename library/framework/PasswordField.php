@@ -2,7 +2,7 @@
 namespace framework;
 
 class PasswordField extends Field{
-  
+
   public function buildWidget(){
     
     $widget = '';
@@ -12,14 +12,9 @@ class PasswordField extends Field{
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<label for="'.$this->id.'">'.$this->label.'</label><input type="password" name="'.$this->name.'" id="'.$this->id.'" class="'.$this->boots.'"';
+    $widget .= '<label for="'.$this->id.'">'.$this->label.'</label><input type="password" name="'.$this->name.'" id="'.$this->id.'" class="'.$this->boots.'" placeholder="'.$this->placeholder.'"/><span id="'.$this->idSpan.'"';
     
-    if (!empty($this->value)){
-      
-      $widget .= ' value="'.htmlspecialchars($this->value).'"';
-    }
-
-    return $widget .= ' />';
+    return $widget .= '></span>';
   }
-  
+
 }

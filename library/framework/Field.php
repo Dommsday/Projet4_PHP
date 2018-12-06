@@ -10,10 +10,12 @@ abstract class Field{
 	protected $label;
 	protected $name;
 	protected $id;
+	protected $idSpan;
+	protected $maxLength;
+	protected $placeholder;
 	protected $boots;
 	protected $value;
     protected $validators = [];
-	protected $length;
 
 	public function __construct(array $options =[]){
 
@@ -52,6 +54,18 @@ abstract class Field{
 		return $this->id;
 	}
 
+	public function idSpan(){
+		return $this->idSpan;
+	}
+
+	public function MaxLength(){
+		return $this->maxLength;
+	}
+
+	public function placeholder(){
+		return $this->placeholder;
+	}
+
 	public function name(){
 		return $this->name;
 	}
@@ -63,7 +77,6 @@ abstract class Field{
     public function length(){
 		return $this->length;
 	}
-
 
 	public function setLabel($label){
 
@@ -79,6 +92,27 @@ abstract class Field{
 		}
 	}
 
+	public function setIdSpan($idSpan){
+
+		if(is_string($idSpan)){
+			$this->idSpan = $idSpan;
+		}
+	}
+
+	public function setPlaceholder($placeholder){
+
+		if(is_string($placeholder)){
+			$this->placeholder = $placeholder;
+		}
+	}
+
+	public function setMaxLength($maxLength){
+
+		if(is_string($maxLength)){
+			$this->maxLength = $maxLength;
+		}
+	}
+
 	public function setBoots($boots){
 
 		if(is_string($boots)){
@@ -86,16 +120,6 @@ abstract class Field{
 		}
 	}
     
-    public function setLength($length){
-
-		$length = (int) $length;
-
-		if($length > 0){
-
-			$this->length = $length;
-		}
-	}
-
 	public function setName($name){
 
 		if(is_string($name)){

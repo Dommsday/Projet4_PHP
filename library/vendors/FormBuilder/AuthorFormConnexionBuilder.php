@@ -4,7 +4,6 @@ namespace FormBuilder;
 use \framework\AuthorConnexionBuilder;
 use \framework\StringField;
 use \framework\PasswordField;
-use \framework\MaxLengthValidator;
 use \framework\NotNullValidator;
 
 class AuthorFormConnexionBuilder extends AuthorConnexionBuilder{
@@ -15,11 +14,10 @@ class AuthorFormConnexionBuilder extends AuthorConnexionBuilder{
         'label' => 'Pseudo',
         'name' => 'pseudo',
         'id' => 'pseudo',
+        'maxLength' => "20",
         'boots' => 'form-control',
-        'maxLength' => 50,
         'validators' => [
-          new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
-          new NotNullValidator('Merci de spécifier l\'auteur du commentaire'),
+          new NotNullValidator('Merci de spécifier le pseudo'),
         ],
        ]));
 
@@ -30,6 +28,7 @@ class AuthorFormConnexionBuilder extends AuthorConnexionBuilder{
         'boots' => 'form-control',
         'validators' => [
           new NotNullValidator('Merci de spécifier votre mot de passe'),
+       
         ],
        ]));
   }

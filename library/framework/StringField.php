@@ -3,44 +3,19 @@ namespace framework;
 
 class StringField extends Field
 {
-  protected $maxLength;
   
   public function buildWidget()
   {
     $widget = '';
     
-    if (!empty($this->errorMessage))
-    {
+    if (!empty($this->errorMessage)){
+
       $widget .= $this->errorMessage.'<br />';
     }
     
-    $widget .= '<label for="'.$this->id.'">'.$this->label.'</label><input type="text" name="'.$this->name.'" id="'.$this->id.'" class="'.$this->boots.'"';
+    $widget .= '<label for="'.$this->id.'">'.$this->label.'</label><input type="text" name="'.$this->name.'" id="'.$this->id.'" class="'.$this->boots.'" placeholder="'.$this->placeholder.'" maxlength="'.$this->maxLength.'"/><span id="'.$this->idSpan.'"';
     
-    if (!empty($this->value))
-    {
-      
-      $widget .= ' value="'.htmlspecialchars($this->value).'"';
-    }
-    
-    if (!empty($this->maxLength))
-    {
-      $widget .= ' maxlength="'.$this->maxLength.'"';
-    }
-    
-    return $widget .= ' />';
+    return $widget .= '></span>';
   }
   
-  public function setMaxLength($maxLength)
-  {
-    $maxLength = (int) $maxLength;
-    
-    if ($maxLength > 0)
-    {
-      $this->maxLength = $maxLength;
-    }
-    else
-    {
-      throw new \RuntimeException('La longueur maximale doit être un nombre supérieur à 0');
-    }
-  }
 }

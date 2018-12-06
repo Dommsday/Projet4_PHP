@@ -2,4 +2,7 @@
 <definitions>
 	<define var='nombre_news' value='4'></define>
 	<define var='nombre_caracteres' value='100'></define>
+
+	<define var='pseudo_length' value='6'></define>
+	<define var='password_length' value='8'></define>
 </definitions>
