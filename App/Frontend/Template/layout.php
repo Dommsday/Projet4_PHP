@@ -37,6 +37,8 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="J'ai commencé l'écriture de mon nouveau roman 'Billet simple pour l'Alaska'."/>
     <meta name="twitter:site" content=" ">
+
+
 </head>
 
 <body>
@@ -77,10 +79,6 @@
 							if($user->isAuthenticated()){
 						?>
 						<li class="nav-item">
-							<a class="nav-link" href="/"><i class="fas fa-user" title="Vous êtes connecté"></i></a>
-						</li>
-
-						<li class="nav-item">
 							<a class="nav-link" href="/confirmation-deconnexion.html"><i class="fas fa-user-times" title="Déconnexion"></i></a>
 						</li>
 						<?php  
@@ -118,8 +116,23 @@
 	<!--CONTENU DES DERNIERES NEWS-->
 	<section class="section-container container-fluid">
 		<div class="container-contenu container">
-
+	
+			<?php
+			if($user->isAuthenticated()){
+			?>
+					<h1>Bonjour <?= $user->getAttribute('login')?></h1>
+			<?php	
+			}
+			?>
 			<div class="row">
+
+				<?php if($user->hasMessage()){
+				?>
+				<p class="message"><i class="fas fa-check-circle"></i><?=$user->getMessage()?></p>
+				<?php  
+				}
+				?>
+
 			
 				<?= $content ?>
 			</div>
@@ -137,7 +150,8 @@
 		</div>
 	</footer>
 
-
+	<script type="text/javascript" src="Web/js/time.js"></script>
+	<script type="text/javascript" src="Web/js/form.js"></script>
 	<!--PARTIE FORMULAIRE TINYMCE-->
 	<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
 
@@ -147,5 +161,6 @@
   		});
   	</script>
   	<!--FIN PARTIE FORMULAIRE TINYMCE-->
+
 </body>
 </html>

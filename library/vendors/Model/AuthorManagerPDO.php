@@ -22,7 +22,7 @@ class AuthorManagerPDO extends AuthorManager{
 
 	public function connexionIdentifiant($pseudo){
 
-		$request = $this->dao->prepare('SELECT id, password, administrator FROM author WHERE pseudo = :pseudo AND administrator = 1');
+		$request = $this->dao->prepare('SELECT id, password FROM author WHERE pseudo = :pseudo');
 
 		$request->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
 		$request->execute();
@@ -34,4 +34,18 @@ class AuthorManagerPDO extends AuthorManager{
 		return $connexion;
 	}
 
+	
+	public function connexionAdministrator($pseudo){
+
+		$request = $this->dao->prepare('SELECT id, password, administrator FROM author WHERE pseudo = :pseudo AND administrator = 1');
+
+		$request->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
+		$request->execute();
+
+		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\Author');
+
+		$connexion = $request->fetch();
+
+		return $connexion;
+	}
 }

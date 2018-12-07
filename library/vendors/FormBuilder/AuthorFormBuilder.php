@@ -17,7 +17,7 @@ class AuthorFormBuilder extends AuthorBuilder{
         'name' => 'pseudo',
         'id' => 'pseudo',
         'placeholder' => "6 caractères minimum",
-        'maxLength' => "20",
+        'maxLength' => '20',
         'boots' => 'form-control',
         'idSpan' => 'pseudoHelp',
         'validators' => [
@@ -29,7 +29,7 @@ class AuthorFormBuilder extends AuthorBuilder{
         'label' => 'Mot de Passe',
         'name' => 'password',
         'id' => 'password',
-        'placeholder' => "8 caractères minimum",
+        'placeholder' => '8 caractères minimum',
         'boots' => 'form-control',
         'idSpan' => 'passwordHelp',
         'validators' => [
@@ -53,7 +53,7 @@ class AuthorFormBuilder extends AuthorBuilder{
         'label' => 'E-mail',
         'name' => 'email',
         'id' => 'email',
-        'placeholder' => "Ex: aaa@bb.cc",
+        'placeholder' => 'Ex: aaa@bb.cc',
         'idSpan' => 'emailHelp',
         'boots' => 'form-control',
         'validators' => [

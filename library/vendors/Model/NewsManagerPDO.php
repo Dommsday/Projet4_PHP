@@ -48,6 +48,25 @@ class NewsManagerPDO extends NewsManager{
     return null;
 	}
 
+	public function countComments(){
+
+		$request =  $this->dao->query('SELECT n.id AS id, n.title AS title, n.date_news AS date_news, COUNT(c.news) AS total FROM news AS n INNER JOIN comments AS c ON c.news = n.id WHERE n.id = 1');
+
+		$request->execute();
+
+		$request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\News');
+
+		$listNews = $request->fetchAll();
+
+		foreach ($listNews as $news){
+			$news->setDateNews(new \DateTime($news->dateNews()));
+		}
+
+		$request->closeCursor();
+
+		return $listNews;
+
+
 	public function count(){
 
 		return $this->dao->query('SELECT COUNT(*) FROM news')->fetchColumn();

@@ -11,6 +11,8 @@ abstract class AuthorManager extends Manager{
 
 	abstract public function connexionIdentifiant($pseudo);
 
+    abstract public function connexionAdministrator($pseudo);
+
 	public function save(Author $author){
 
     	if($author->Valid()){

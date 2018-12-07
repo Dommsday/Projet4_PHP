@@ -108,6 +108,13 @@
 	<section class="section-container container-fluid">
 		<div class="container-contenu container">
 			<div class="row">
+
+				<?php if($user->hasMessage()){
+				?>
+				<p class="message"><i class="fas fa-check-circle"></i><?=$user->getMessage()?></p>
+				<?php  
+				}
+				?>
 			
 				<?= $content ?>
 			</div>
@@ -125,6 +132,8 @@
 		</div>
 	</footer>
 
+	
+	<script type="text/javascript" src="/Web/js/time.js"></script>
 
 	<!--PARTIE FORMULAIRE TINYMCE-->
 	<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>

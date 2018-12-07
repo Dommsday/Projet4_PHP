@@ -175,6 +175,7 @@ class NewsController extends BackController
     session_destroy(); 
   }
 
+  //Méthode de connexion
   public function processAuthorFormConnexion(HTTPRequest $request){
 
     $author = new Author;
@@ -189,10 +190,11 @@ class NewsController extends BackController
 
         if($isCorrect){
 
+          $this->app->user()->setAttribute('login', $request->postData('pseudo'));
           $this->app->user()->setAuthenticated(true);
           $this->app->httpResponse()->redirect('/confirmation-connexion.html');
-          $_SESSION['pseudo'] = $request->postData('pseudo');
-          $this->app->user()->setMessage('Bonjour'.$_SESSION['pseudo']);
+        
+          
         }
 
     }
@@ -211,6 +213,7 @@ class NewsController extends BackController
   public function executeWarningComment(HTTPRequest $request){
 
     $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
+    $this->app->httpResponse()->redirect('/');
     $this->app->user()->setMessage('Le commentaire à bien été signalé');
 
    

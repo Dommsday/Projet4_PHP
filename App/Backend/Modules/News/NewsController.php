@@ -21,9 +21,12 @@ class NewsController extends BackController{
 
 	public function processAuthorFormConnexion(HTTPRequest $request){
 
-    $author = new Author;
+    $author = new Author([
+    	'pseudo' => htmlspecialchars($request->postData('pseudo')),
+		'password' => htmlspecialchars($request->postData('password')),
+    ]);
 
-    $connexion = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('pseudo'));
+    $connexion = $this->managers->getManagerOf('Author')->connexionAdministrator($request->postData('pseudo'));
 
     $password = htmlspecialchars($request->postData('password'));
 
@@ -31,11 +34,14 @@ class NewsController extends BackController{
 
     if($request->method() == 'POST'){
 
-        if($isCorrect){
+        if(($isCorrect) && ($connexion['administrator'] == 1)){
 
           $this->app->user()->setAuthenticated(true);
           $this->app->httpResponse()->redirect('/admin/');
 
+        }else{
+
+        	$this->app->user()->setMessage('Vous n\'êtes pas l\'administrateur');
         }
 
     }
@@ -69,7 +75,6 @@ class NewsController extends BackController{
 		$this->page->addVarPage('nombreNews', $manager->count());
         
         $this->page->addVarPage('comments', $managerscomments->getAllComment());
-        $this->page->addVarPage('nombreComments', $managerscomments->count());
 	}
     
     public function executeAllPost(HTTPRequest $request){
@@ -77,8 +82,10 @@ class NewsController extends BackController{
 		$this->page->addVarPage('title', 'Liste des articles');
 
 		$manager = $this->managers->getManagerOf('News');
+		
 
-		$this->page->addVarPage('listNews', $manager->getList());
+		$this->page->addVarPage('listNews', $manager->countComments());
+		
 	}
     
     public function executeSeeAllComments(HTTPRequest $request){
@@ -102,9 +109,12 @@ class NewsController extends BackController{
 
 		if($request->method() == 'POST'){
 
-			$news = new News([
-
+			$author = new Author([
 				'author' => $request->postData('author'),
+			]);
+
+			$news = new News([
+				'authorId' => $author['id'],
 				'title' => $request->postData('title'),
 				'content' => $request->postData('content')
 			]);
@@ -136,7 +146,7 @@ class NewsController extends BackController{
 		if($formTinyMCEHandler->process()){
 
 			
-			$this->app->user()->setMessage($news->idNew() ? '<p class="message">L\'article à bien été ajouté !</p>' : '<p class="message">L\'article a bien été modifié ! </p>');
+			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté' : 'L\'article a bien été modifié');
 			$this->app->httpResponse()->redirect('/admin/');
 		}
 
@@ -156,7 +166,7 @@ class NewsController extends BackController{
         
         $this->managers->getManagerOf('Comment')->deleteFromNews($request->getData('id'));
 
-		$this->app->user()->setMessage('<p class="message">L\'article à bien été supprimé</p>');
+		$this->app->user()->setMessage('L\'article à bien été supprimé');
 
 		$this->app->httpResponse()->redirect('/admin/all-post.html');
 	}
@@ -165,16 +175,16 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('Comment')->delete($request->getData('id'));
 
-		$this->app->user()->setMessage('<p class="message">Le commentaire à bien été supprimé !</p>');
+		$this->app->user()->setMessage('Le commentaire à bien été supprimé');
 
-		$this->app->httpResponse()->redirect('.');
+		$this->app->httpResponse()->redirect('/admin/all-comments.html');
 	}
     
     public function executeCommentValid(HTTPRequest $request){
 
 		$this->managers->getManagerOf('Comment')->commentValid($request->getData('id'));
 
-		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
+		$this->app->user()->setMessage('Le commentaire a bien été validé');
 
 		$this->app->httpResponse()->redirect('/admin/');
 	}

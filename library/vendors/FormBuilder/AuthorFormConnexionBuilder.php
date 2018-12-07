@@ -14,7 +14,7 @@ class AuthorFormConnexionBuilder extends AuthorConnexionBuilder{
         'label' => 'Pseudo',
         'name' => 'pseudo',
         'id' => 'pseudo',
-        'maxLength' => "20",
+        'maxLength' => '20',
         'boots' => 'form-control',
         'validators' => [
           new NotNullValidator('Merci de spécifier le pseudo'),

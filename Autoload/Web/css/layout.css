@@ -28,17 +28,6 @@ td{
 	color: #000000;
 }
 
-/*Message qui s'affiche lors des commentaires ou articles*/
-.message{
-	font-size: 20px;
-	padding: 10px;
-	background: #228BE6;
-	margin-top: 50px;
-	margin-left: 420px;
-	font-weight: bold;
-	width: 200px;
-	height: 100px;
-}
 /*PARTIE HEADER
 *****************/
 header{
@@ -144,6 +133,8 @@ header{
 	color: #FFFFFF;
 }
 
+
+
 /*FIN NEWS
 *******************/
 
@@ -223,14 +214,19 @@ header{
 
 /*PAGE SIGNALEMENT
 **********************/
-.confirmation{
-	padding: 20px;
+.confirmation, .message{
 	border: solid black 2px;
-	margin-top: 5%;
-	margin-left: 10%;
-	margin-bottom: 5%;
 	background: #FBEDE0;
 	border-radius: 20px;
+	color: #000000;
+	margin-left: 10%;
+	text-align: center;
+}
+
+.confirmation{
+	padding: 20px;
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 .confirmation-inscription{
@@ -243,11 +239,24 @@ header{
 }
 
 .link-confirmation{
+	font-size: 1em;
 	margin-left: 6%;
 }
 
 .fa-check-circle{
 	color: green;
+	margin-right: 20px;
+}
+
+/*Message qui s'affiche lors des commentaires ou articles*/
+.message{
+	font-size: 20px;
+	padding: 15px;
+	margin-top: 50px;
+	margin-left: 420px;
+	font-weight: bold;
+	width: 200px;
+	height: 100px;
 }
 /*FIN PAGE SIGNALEMENT
 ************************/
@@ -297,6 +306,7 @@ footer{
 	margin-top: 2%;
 	margin-bottom: 2%;
 }
+
 
 label{
 	font-weight: bold;
@@ -422,6 +432,10 @@ td.title, td.date{
 	font-size: 1.2em;
 	font-weight: bold;
 	color: #228BE6;
+}
+
+td.title{
+	width: 20%;
 }
 
 /*FIN PAGE TOUT LES ARTICLES
