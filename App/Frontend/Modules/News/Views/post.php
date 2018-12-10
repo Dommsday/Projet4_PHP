@@ -11,10 +11,30 @@
 
 		<p><?= nl2br($post['content']) ?></p>
 
+		<?php
+			if($post['date'] != $post['updateDate']){
+		?>
+		<p><small><em>Modifié le <?= $post['updateDate'] ?></em></small></p>
+		<?php
+		}
+		?>
+
 	</div>
 
 	<div class="container-comment container-text col-md-12 col-lg-12 col-xl-12">
-		<p class="link-comment"><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaires</a></p>
+
+		<?php
+			if(!$user->isAuthenticated()){
+		?>
+		<p>Si vous voulez signaler un commentaire je vous invite à créer un compte ou à vous connectez :) </p>
+			<p class="link-comment"><a href="<?=$GLOBALS['ROOT_URL']?>inscription.html">S'inscrire</a> / <a href="<?=$GLOBALS['ROOT_URL']?>connexion.html">Se connecter</a></p>
+		<?php
+		 }
+		?>
+
+		
+			<p class="link-comment"><a href="comment-news-<?= $post['id'] ?>.html">Ajouter un commentaire</a></p>
+		
 
 		<?php
 			if(empty($comments)){
@@ -29,10 +49,16 @@
 		?>
 		
 		<div class="comment">
-			<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date']->format('d/m/Y à H\hi') ?>
+			<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date'] ?>
 
+			<?php
+				if($user->isAuthenticated()){
+			?>
 			<a class="link-warning" href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
-
+			
+			<?php 
+			}
+			?>
 			</p>
 
 			<p class="text-comment"><em><?= $comment['content'] ?></em></p>

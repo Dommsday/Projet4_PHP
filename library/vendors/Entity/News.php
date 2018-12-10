@@ -19,7 +19,7 @@ class News extends Entity{
 
 	public function Valid(){
 
-		return !(empty($this->author) ||  empty($this->title) || empty($this->content));
+		return !(empty($this->title) || empty($this->content));
 	}
 
 	public function setId($id){

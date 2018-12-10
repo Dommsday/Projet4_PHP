@@ -3,6 +3,8 @@
 	<tr>
 		<th class="title">Titre</th>
 		<th class="date">Date</th>
+		<th class="updateDate">Date de Modification</th>
+		<th class="nbrComments">Commentaires</th>
 		<th class="action">Action</th>
 	</tr>
 
@@ -11,10 +13,25 @@
 	?>
 
 	<tr>
-		<td class="title"><a href="<?= $GLOBALS['ROOT_URL'] ?>news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></td>
+		<td class="title"><a href="../news-<?= $news['id'] ?>.html"><?= $news['title'] ?></a></td>
 		<td class="date"><?= $news['date'] ?></td>
-		<td class="action"><a href="/blog/Autoload/admin/news-update-<?= $news['id'] ?>.html"><i class="fas fa-pen"></i></a>
-			<a href="/blog/Autoload/admin/news-delete-<?= $news['id'] ?>.html"><i class="fas fa-trash-alt"></i></a></td>
+		<td class="updateDate">
+			<?php
+				if($news['date'] != $news['updateDate']){
+			?>
+				<p><?= $news['updateDate'] ?></p>
+			<?php
+			}else{
+			?>
+			<p>-</p>
+			<?php
+			}
+			?>
+		</td>
+		<td class="nbrComments"><p><?= $news['total'] ?></p></td>
+		<td class="action"><a href="news-update-<?= $news['id'] ?>.html"><i class="fas fa-pen"></i></a>
+			<a href="news-delete-<?= $news['id'] ?>.html"><i class="fas fa-trash-alt"></i></a></td>
+		<td class="nbrComments"><p><?= $news['total'] ?></p></td>
 	</tr>
 
 	<?php

@@ -12,6 +12,8 @@ abstract class NewsManager extends Manager{
     abstract public function getPost($id);
 
     abstract public function count();
+
+    abstract public function countComments();
     
     abstract protected function add(News $post);
     
