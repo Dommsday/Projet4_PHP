@@ -1,4 +1,3 @@
-
 <div class="warning-comments col-md-12 col-lg-12 col-xl-12">
 <table>
 	<tr>
@@ -19,19 +18,21 @@
 		<td class="title"><?= $comment['title'] ?></td>
 		<td class="content"><?= $comment['comments'] ?></td>
 		<td class="date"><?= $comment['date'] ?></td>
-		
+		<td class="action">
 
 		<?php
 			if($comment['warning'] == 1){
-			?>
-				<td class="action"><i class="fas fa-star"></i>
-					<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-valid-<?=$comment['id'] ?>.html"><i class="fas fa-check"></i></a>
-					<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-delete-<?=$comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a>
-				</td>'
+		?>
+				<i class="fas fa-star"></i>
+				<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-valid-<?=$comment['id'] ?>.html"><i class="fas fa-check" title="Approuver"></i></a>
 		<?php
 			}
 		?>
-		</tr>
+
+			<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-delete-<?=$comment['id'] ?>.html"><i class="fas fa-trash-alt" title="Supprimer"></i></a>
+		</td>
+	
+	</tr>
 		
 	<?php
 		}
