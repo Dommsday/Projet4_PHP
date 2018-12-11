@@ -7,7 +7,7 @@ class NewsManagerPDO extends NewsManager{
 
 	public function getList($debut = -1, $limite = -1){
 
-		$req = 'SELECT id, title, content, DATE_FORMAT(date, "%d/%m/%Y %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y %Hh%imin") AS updateDate FROM news ORDER BY id DESC';
+		$req = 'SELECT id, title, content, DATE_FORMAT(date, "%d/%m/%Y à %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y à %Hh%imin") AS updateDate FROM news ORDER BY id DESC';
 
 		if($debut != -1 || $limite != -1){
 
@@ -30,7 +30,7 @@ class NewsManagerPDO extends NewsManager{
     
     public function getPost($id){
 
-		$requete = $this->dao->prepare('SELECT id, author, title, content, DATE_FORMAT(date, "%d/%m/%Y %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y %Hh%imin") AS updateDate FROM news WHERE id = :id');
+		$requete = $this->dao->prepare('SELECT id, author, title, content, DATE_FORMAT(date, "%d/%m/%Y à %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y à %Hh%imin") AS updateDate FROM news WHERE id = :id');
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
     
@@ -46,7 +46,7 @@ class NewsManagerPDO extends NewsManager{
 
 	public function countComments(){
 
-		$request =  $this->dao->query('SELECT n.id AS id, n.title AS title, DATE_FORMAT(n.date_news,"%d %b %Y") AS date_news, COUNT(c.id) AS total FROM news  n LEFT JOIN comments  c ON c.news = n.id ');
+		$request =  $this->dao->query('SELECT n.id AS id, n.title AS title, DATE_FORMAT(n.date,"%d/%m/%Y à %Hh%imin") AS date, DATE_FORMAT(n.updateDate, "%d/%m/%Y à %Hh%imin") AS updateDate , COUNT(c.id) AS total FROM news  n LEFT JOIN comments  c ON c.news = n.id GROUP BY n.id');
 
 		$request->execute();
 
@@ -55,6 +55,7 @@ class NewsManagerPDO extends NewsManager{
 		$request->closeCursor();
 
 		return $listNews;
+
 	}
 
 

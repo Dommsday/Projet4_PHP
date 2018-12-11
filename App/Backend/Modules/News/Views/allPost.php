@@ -31,7 +31,6 @@
 		<td class="nbrComments"><p><?= $news['total'] ?></p></td>
 		<td class="action"><a href="news-update-<?= $news['id'] ?>.html"><i class="fas fa-pen"></i></a>
 			<a href="news-delete-<?= $news['id'] ?>.html"><i class="fas fa-trash-alt"></i></a></td>
-		<td class="nbrComments"><p><?= $news['total'] ?></p></td>
 	</tr>
 
 	<?php
