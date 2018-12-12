@@ -11,18 +11,7 @@ class NewsTinyMCEFormBuilder extends TinyMCEBuilder
 {
   public function build()
   {
-    $this->tinymce->add(new StringField([
-        'label' => 'Auteur',
-        'name' => 'author',
-        'id' => 'author',
-        'boots' => 'form-control',
-        'maxLength' => 20,
-        'validators' => [
-          new MaxLengthValidator('L\'auteur spécifié est trop long', 50),
-          new NotNullValidator('Merci de spécifier l\'auteur de la news'),
-        ],
-       ]));
-
+    
        $this->tinymce->add(new StringField([
         'label' => 'Titre',
         'name' => 'title',

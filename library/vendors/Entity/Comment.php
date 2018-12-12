@@ -11,6 +11,7 @@ class Comment extends Entity{
 	protected $date;
 	protected $content;
     protected $warning;
+    protected $reporting;
 
 	const AUTEUR_INVALIDE = 1;
 	const CONTENU_INVALIDE = 2;
@@ -55,6 +56,13 @@ class Comment extends Entity{
 		$this->warning = $warning;
 	}
 
+	public function setReporting($reporting){
+
+    	$reporting = (int) $reporting;
+
+		$this->reporting = $reporting;
+	}
+
 	public function news(){
 		return $this->news;
 	}
@@ -73,6 +81,10 @@ class Comment extends Entity{
     
     public function warning(){
 		return $this->warning;
+	}
+
+	public function reporting(){
+		return $this->reporting;
 	}
 }
 

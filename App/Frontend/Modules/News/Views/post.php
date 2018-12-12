@@ -2,7 +2,7 @@
 
 	<div class="post-text col-md-12 col-lg-12 col-xl-12">
 		<div class="info-post col-md-12 col-lg-12 col-xl-12">
-			<p>Par <em><?= $post['author'] ?></em>, le <?= $post['date']->format('d/m/Y à H\hi') ?></p>
+			<p>Par <em><?= $post['author'] ?></em>, le <?= $post['date'] ?></p>
 		</div>
 
 		<div class="title col-md-12 col-lg-12 col-xl-12">
@@ -52,7 +52,7 @@
 			<p class="info-author">Posté par <?= htmlspecialchars($comment['author']) ?> le <?= $comment['date'] ?>
 
 			<?php
-				if($user->isAuthenticated()){
+				if($user->isAuthenticated() && $comment['reporting'] == 0){
 			?>
 			<a class="link-warning" href="warning-comment-<?= $comment['id'] ?>.html">Signaler</a>
 			
