@@ -8,6 +8,7 @@ use \framework\AuthorFormHandler;
 use \framework\AuthorConnexionFormHandler;
 use \Entity\Comment;
 use \Entity\Author;
+use \framework\User;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\AuthorFormBuilder;
 use \FormBuilder\AuthorFormConnexionBuilder;
@@ -180,6 +181,8 @@ class NewsController extends BackController
 
         if($isCorrect){
 
+          $this->app->user()->setAttribute('login', $request->postData('pseudo'));
+          $this->app->user()->setAttribute('administrator', $connexion['administrator']);
           $this->app->user()->setAuthenticated(true);
           $this->app->httpResponse()->redirect('/blog/Autoload/confirmation-connexion.html');
 

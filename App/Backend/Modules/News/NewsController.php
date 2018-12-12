@@ -3,14 +3,15 @@
 namespace App\Backend\Modules\News;
 
 use \framework\BackController;
-use\framework\HTTPRequest;
+use \framework\HTTPRequest;
 use \Entity\News;
+use \Entity\Comment;
 use \Entity\Author;
+use \framework\User;
 use \FormBuilder\AuthorFormBuilder;
 use \FormBuilder\AuthorFormConnexionBuilder;
 use \framework\AuthorFormHandler;
 use \framework\AuthorConnexionFormHandler;
-use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \FormBuilder\NewsFormBuilder;
 use \FormBuilder\NewsTinyMCEFormBuilder;
@@ -37,7 +38,7 @@ class NewsController extends BackController{
         if(($isCorrect) && ($connexion['administrator'] == 1)){
 
           $this->app->user()->setAuthenticated(true);
-          $this->app->httpResponse()->redirect('/admin/');
+          $this->app->httpResponse()->redirect('/blog/Autoload/admin/');
 
         }else{
 
@@ -59,13 +60,17 @@ class NewsController extends BackController{
 
    public function executeConnexion(HTTPRequest $request){
 
-    $this->page->addVarPage('title', 'Connexion');
+    	$this->page->addVarPage('title', 'Connexion');
 
-    $this->processAuthorFormConnexion($request);
+    	$this->processAuthorFormConnexion($request);
 
-  }
+  	}
 
 	public function executeIndex(HTTPRequest $request){
+
+		$user = new User;
+
+		if($user->getAttribute('administrator') == 1){
 
 		$this->page->addVarPage('title', 'Tableau de bord');
 
@@ -75,6 +80,12 @@ class NewsController extends BackController{
 		$this->page->addVarPage('nombreNews', $manager->count());
         
         $this->page->addVarPage('comments', $managerscomments->getAllComment());
+        $this->page->addVarPage('nombreComments', $managerscomments->count());
+
+    	}else{
+
+    		$this->app->httpResponse()->page404();
+    	}
 	}
     
     public function executeAllPost(HTTPRequest $request){
@@ -82,10 +93,8 @@ class NewsController extends BackController{
 		$this->page->addVarPage('title', 'Liste des articles');
 
 		$manager = $this->managers->getManagerOf('News');
-		
 
 		$this->page->addVarPage('listNews', $manager->countComments());
-		
 	}
     
     public function executeSeeAllComments(HTTPRequest $request){
@@ -105,16 +114,58 @@ class NewsController extends BackController{
 		$this->page->addVarPage('title', 'Ajout d\'un article');
 	}
 
+	public function processForm(HTTPRequest $request){
+
+		if($request->method() == 'POST'){
+
+			$news = new News([
+
+				'author' => $request->postData('author'),
+				'title' => $request->postData('title'),
+				'content' => $request->postData('content')
+			]);
+
+			if($request->getExists('id')){
+
+				$news->setId($request->getData('id'));
+			}
+		}else{
+
+			if($request->getExists('id')){
+
+				$news = $this->managers->getManagerOf('News')->getPost($request->getData('id'));
+
+			}else{
+
+				$news = new News;
+			}
+		}
+
+		$formBuilder = new NewsFormBuilder($news);
+		$formBuilder->build();
+
+		$form = $formBuilder->form();
+        
+        $formHandler = new FormHandler($form, $this->managers->getManagerOf('News'), $request);
+
+
+		if($formHandler->process()){
+
+			
+			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié ! ');
+			$this->app->httpResponse()->redirect('blog/Autoload/admin/');
+		}
+
+		$this->page->addVarPage('form', $form->createView());
+	}
+    
     public function processTinyMCEForm(HTTPRequest $request){
 
 		if($request->method() == 'POST'){
 
-			$author = new Author([
-				'author' => $request->postData('author'),
-			]);
-
 			$news = new News([
-				'authorId' => $author['id'],
+
+				'author' => $request->postData('author'),
 				'title' => $request->postData('title'),
 				'content' => $request->postData('content')
 			]);
@@ -146,8 +197,8 @@ class NewsController extends BackController{
 		if($formTinyMCEHandler->process()){
 
 			
-			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté' : 'L\'article a bien été modifié');
-			$this->app->httpResponse()->redirect('/admin/');
+			$this->app->user()->setMessage($news->idNew() ? '<p class="message">L\'article à bien été ajouté !</p>' : '<p class="message">L\'article a bien été modifié ! </p>');
+			$this->app->httpResponse()->redirect('/blog/Autoload/admin/');
 		}
 
 		$this->page->addVarPage('tinymce', $tinymce->createView());
@@ -164,38 +215,26 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('News')->delete($request->getData('id'));
         
-        $this->managers->getManagerOf('Comment')->deleteFromNews($request->getData('id'));
+		$this->app->user()->setMessage('<p class="message">L\'article à bien été supprimé</p>');
 
-		$this->app->user()->setMessage('L\'article à bien été supprimé');
-
-		$this->app->httpResponse()->redirect('/admin/all-post.html');
+		$this->app->httpResponse()->redirect('/blog/Autoload/admin/all-post.html');
 	}
     
     public function executeDeleteComment(HTTPRequest $request){
 
 		$this->managers->getManagerOf('Comment')->delete($request->getData('id'));
 
-		$this->app->user()->setMessage('Le commentaire à bien été supprimé');
+		$this->app->user()->setMessage('<p class="message">Le commentaire à bien été supprimé !</p>');
 
-		$this->app->httpResponse()->redirect('/admin/all-comments.html');
+		$this->app->httpResponse()->redirect('.');
 	}
     
     public function executeCommentValid(HTTPRequest $request){
 
 		$this->managers->getManagerOf('Comment')->commentValid($request->getData('id'));
 
-		$this->app->user()->setMessage('Le commentaire a bien été validé');
+		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
 
-		$this->app->httpResponse()->redirect('/admin/');
+		$this->app->httpResponse()->redirect("/blog/Autoload/admin/");
 	}
-
-	public function executeConfirmeDeconnexion(HTTPRequest $request){
-
-    $this->page->addVarPage('title', 'Déconnexion');
-
-    $this->app->user()->setAuthenticated(false);
-
-    session_destroy(); 
-  }
-
 }
