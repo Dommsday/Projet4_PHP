@@ -14,11 +14,11 @@ use \FormBuilder\AuthorFormConnexionBuilder;
 
 class NewsController extends BackController
 {
-
- 
-  //Méthode pour afficher les derniers articles postés
+    
+     //Méthode pour afficher les derniers articles postés
   public function executeIndex(HTTPRequest $request)
   {
+   
     $nombreNews = $this->app->config()->get('nombre_news');
     $nombreCaracteres = $this->app->config()->get('nombre_caracteres');
     
@@ -52,8 +52,8 @@ class NewsController extends BackController
 
     $this->page->addVarPage('listNews', $manager->getList());
   }
-
    //Méthode pour affichier un article précis
+  
   public function executePost(HTTPRequest $request){
 
     $post = $this->managers->getManagerOf("News")->getPost($request->getData('id'));
@@ -71,7 +71,8 @@ class NewsController extends BackController
     //Méthode pour ajouter un commentaire
   public function executeInsertComment(HTTPRequest $request){
       
-      
+    $user = new User;
+
     if($request->method() == 'POST'){
 
       $comment = new Comment([
@@ -84,6 +85,7 @@ class NewsController extends BackController
     }else{
 
       $comment = new Comment;
+      $comment->setAuthor($user->getAttribute('login'));
     }
 
     $formBuilder = new CommentFormBuilder($comment);
@@ -155,10 +157,8 @@ class NewsController extends BackController
     if($formAuthorBuilder->process()){
 
       $this->app->user()->setAuthenticated(true);
-
-      
-
-      $this->app->httpResponse()->redirect('/confirmation-inscription.html');
+      $this->app->user()->setAttribute('login', $request->postData('pseudo'));
+      $this->app->httpResponse()->redirect('/blog/Autoload/confirmation-inscription.html');
 
       
     }
@@ -166,16 +166,6 @@ class NewsController extends BackController
     $this->page->addVarPage('authorform', $authorform->createView());
   }
 
-   public function executeConfirmeDeconnexion(HTTPRequest $request){
-
-    $this->page->addVarPage('title', 'Déconnexion');
-
-    $this->app->user()->setAuthenticated(false);
-
-    session_destroy(); 
-  }
-
-  //Méthode de connexion
   public function processAuthorFormConnexion(HTTPRequest $request){
 
     $author = new Author;
@@ -190,13 +180,10 @@ class NewsController extends BackController
 
         if($isCorrect){
 
-          $this->app->user()->setAttribute('login', $request->postData('pseudo'));
           $this->app->user()->setAuthenticated(true);
-          $this->app->httpResponse()->redirect('/confirmation-connexion.html');
-        
-          
-        }
+          $this->app->httpResponse()->redirect('/blog/Autoload/confirmation-connexion.html');
 
+        }
     }
 
     $formAuthorConnexionBuilder = new AuthorFormConnexionBuilder($author);
@@ -209,14 +196,11 @@ class NewsController extends BackController
     $this->page->addVarPage('authorconnexionform', $authorconnexionform->createView());
 
   }
+
     
   public function executeWarningComment(HTTPRequest $request){
 
     $this->managers->getManagerOf('Comment')->warning($request->getData('id'));
-    $this->app->httpResponse()->redirect('/');
-    $this->app->user()->setMessage('Le commentaire à bien été signalé');
-
-   
   }
 
   public function executeConnexion(HTTPRequest $request){
@@ -237,5 +221,12 @@ class NewsController extends BackController
     $this->page->addVarPage('title', 'Confirmation de connexion');
   }
 
-}
+  public function executeConfirmDeconnexion(HTTPRequest $request){
 
+    $this->page->addVarPage('title', 'Déconnexion');
+
+    $this->app->user()->setAuthenticated(false);
+
+    session_destroy(); 
+  }
+}
