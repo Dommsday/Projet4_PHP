@@ -119,6 +119,8 @@ class NewsController extends BackController
 
     $author = new Author;
 
+    $verif = $this->managers->getManagerOf('Author')->connexionIdentifiant($request->postData('pseudo'));
+
     $pseudo = htmlspecialchars($request->postData('pseudo'));
     $password = htmlspecialchars($request->postData('password'));
     $passwordConfirm = htmlspecialchars($request->postData('passwordConfirm'));
@@ -129,7 +131,11 @@ class NewsController extends BackController
 
     if($request->method() == 'POST'){
 
-      if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+      if($pseudo == $verif['pseudo']){
+
+        $this->app->user()->setMessage('Le pseudo est déjà utilisé');
+
+      }elseif(filter_var($email, FILTER_VALIDATE_EMAIL)){
 
         if(($passwordConfirm === $password) && (strlen($pseudo) >= $pseudoLength) && (strlen($password) >= $passwordLength)){
 
