@@ -7,7 +7,7 @@ class NewsManagerPDO extends NewsManager{
 
 	public function getList($debut = -1, $limite = -1){
 
-		$req = 'SELECT id, title, content, DATE_FORMAT(date, "%d/%m/%Y à %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y à %Hh%imin") AS updateDate FROM news ORDER BY id DESC';
+		$req = 'SELECT id, title, content, DATE_FORMAT(date, "%d/%m/%Y à %Hh%imin") AS date, DATE_FORMAT(updateDate, "%d/%m/%Y à %Hh%imin") AS updateDate FROM news ORDER BY id';
 
 		if($debut != -1 || $limite != -1){
 
@@ -66,9 +66,8 @@ class NewsManagerPDO extends NewsManager{
     
     protected function add(News $post){
 
-		$request = $this->dao->prepare('INSERT INTO news SET author = :author, title = :title, content = :content, date = NOW(), updatDate = NOW()');
+		$request = $this->dao->prepare('INSERT INTO news SET title = :title, content = :content, date = NOW(), updateDate = NOW()');
 
-		$request->bindValue(':author', $post->author());
 		$request->bindValue(':title', $post->title());
 		$request->bindValue(':content', $post->content());
 
@@ -77,9 +76,8 @@ class NewsManagerPDO extends NewsManager{
     
     protected function modify(News $post){
 
-		$request = $this->dao->prepare('UPDATE news SET author = :author, title = :title, content = :content, updateDate = NOW() WHERE id = :id');
+		$request = $this->dao->prepare('UPDATE news SET  title = :title, content = :content, updateDate = NOW() WHERE id = :id');
 
-		$request->bindValue(':author', $post->author());
 		$request->bindValue(':title', $post->title());
 		$request->bindValue(':content', $post->content());
 		$request->bindValue(':id', $post->id(), \PDO::PARAM_INT);
@@ -89,7 +87,10 @@ class NewsManagerPDO extends NewsManager{
     
     public function delete($id){
 
-		$this->dao->exec('DELETE FROM news WHERE id = '.(int) $id);
+		$request = $this->dao->prepare('DELETE FROM news WHERE id = :id');
+		$request->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+
+		$request->execute();
 	}
 }
 

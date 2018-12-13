@@ -89,7 +89,7 @@ class NewsController extends BackController{
 
     	}else{
 
-    		$this->app->httpResponse()->page404();
+    		$this->app->httpResponse()->redirect('/blog/Autoload/');
     	}
 	}
     
@@ -212,7 +212,7 @@ class NewsController extends BackController{
 		if($formTinyMCEHandler->process()){
 
 			
-			$this->app->user()->setMessage($news->idNew() ? '<p class="message">L\'article à bien été ajouté !</p>' : '<p class="message">L\'article a bien été modifié ! </p>');
+			$this->app->user()->setMessage($news->idNew() ? 'L\'article à bien été ajouté !' : 'L\'article a bien été modifié !');
 			$this->app->httpResponse()->redirect('/blog/Autoload/admin/');
 		}
 
@@ -257,7 +257,7 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('Comment')->commentValid($request->getData('id'));
 
-		$this->app->user()->setMessage('<p class="message">Le commentaire a bien été validé ! </p>');
+		$this->app->user()->setMessage('Le commentaire a bien été validé !');
 
 		$this->app->httpResponse()->redirect("/blog/Autoload/admin/");
 	}
