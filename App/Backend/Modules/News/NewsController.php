@@ -38,6 +38,8 @@ class NewsController extends BackController{
         if(($isCorrect) && ($connexion['administrator'] == 1)){
 
           $this->app->user()->setAuthenticated(true);
+          $this->app->user()->setAttribute('administrator', $connexion['administrator']);
+          $this->app->user()->setAttribute('login', $request->postData('pseudo'));
           $this->app->httpResponse()->redirect('/blog/Autoload/admin/');
 
         }else{
@@ -76,11 +78,14 @@ class NewsController extends BackController{
 
 		$manager = $this->managers->getManagerOf('News');
         $managerscomments = $this->managers->getManagerOf('Comment');
+        $managersmembers = $this->managers->getManagerOf('Author');
 
 		$this->page->addVarPage('nombreNews', $manager->count());
         
         $this->page->addVarPage('comments', $managerscomments->getAllComment());
         $this->page->addVarPage('nombreComments', $managerscomments->count());
+
+        $this->page->addVarPage('nombreMembers', $managersmembers->count());
 
     	}else{
 
@@ -104,6 +109,16 @@ class NewsController extends BackController{
 		$managercomments = $this->managers->getManagerOf('Comment');
 
 		$this->page->addVarPage('comments', $managercomments->getAllComment());
+
+	}
+
+	public function executeSeeAllMembers(HTTPRequest $request){
+
+		$this->page->addVarPage('title', 'Liste des membres');
+
+		$managercomments = $this->managers->getManagerOf('Author');
+
+		$this->page->addVarPage('members', $managercomments->getAllMembers());
 
 	}
     
@@ -215,7 +230,7 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('News')->delete($request->getData('id'));
         
-		$this->app->user()->setMessage('<p class="message">L\'article à bien été supprimé</p>');
+		$this->app->user()->setMessage('L\'article à bien été supprimé');
 
 		$this->app->httpResponse()->redirect('/blog/Autoload/admin/all-post.html');
 	}
@@ -224,9 +239,18 @@ class NewsController extends BackController{
 
 		$this->managers->getManagerOf('Comment')->delete($request->getData('id'));
 
-		$this->app->user()->setMessage('<p class="message">Le commentaire à bien été supprimé !</p>');
+		$this->app->user()->setMessage('Le commentaire à bien été supprimé !');
 
 		$this->app->httpResponse()->redirect('.');
+	}
+
+	public function executeDeleteMember(HTTPRequest $request){
+
+		$this->managers->getManagerOf('Author')->delete($request->getData('id'));
+
+		$this->app->user()->setMessage('Le membre à bien été supprimé');
+
+		$this->app->httpResponse()->redirect('/blog/Autoload/admin/all-members.html');
 	}
     
     public function executeCommentValid(HTTPRequest $request){

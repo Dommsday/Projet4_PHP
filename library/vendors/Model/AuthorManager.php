@@ -12,6 +12,12 @@ abstract class AuthorManager extends Manager{
 	abstract public function connexionIdentifiant($pseudo);
 
     abstract public function connexionAdministrator($pseudo);
+    
+    abstract public function getAllMembers();
+
+    abstract public function count();
+
+    abstract public function delete($id);
 
 	public function save(Author $author){
 

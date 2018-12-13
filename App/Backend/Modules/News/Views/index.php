@@ -12,6 +12,11 @@
 		<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>all-comments.html"><h2>Commentaires</h2></a>
 		<p class="number"><?= $nombreComments ?> </p>
 	</div>
+
+	<div class="members">
+		<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>all-members.html"><h2>Membres</h2></a>
+		<p class="number"><?= $nombreMembers ?> </p>
+	</div>
 </div>
 
 <div class="title-comments-warning col-md-12 col-lg-12 col-xl-12">
@@ -41,8 +46,8 @@
 		<td class="title-warning"><?= $comment['title'] ?></td>
 		<td class="comment-warning"><?= $comment['comments'] ?></td>
 		<td class="date-warning"><?= $comment['date'] ?></td>
-		<td class="action-warning"><a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check"></i></a> 
-									<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt"></i></a> 
+		<td class="action-warning"><a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-valid-<?= $comment['id'] ?>.html"><i class="fas fa-check" title="Approuver"></i></a> 
+									<a href="<?= $GLOBALS['ROOT_URL_BACK'] ?>comment-delete-<?= $comment['id'] ?>.html"><i class="fas fa-trash-alt" title="Supprimer"></i></a> 
 		</td>
 	</tr>
 
